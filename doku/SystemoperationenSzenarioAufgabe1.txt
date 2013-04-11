@@ -1,18 +1,18 @@
 1. 		IEinkauf:
 		/// <summary>
-        /// Diese Operation läd eine Liste mit Produkten anhand des Produktnamen
+        /// Diese Operation läd eine Liste mit Produkten anhand des Produktnamen.
         /// </summary>
         /// <param name="name">Name des Produktes</param>
         /// <throw>UngültigerProduktnameException, falls die Produktname nicht existiert.</throw>
-        /// <returns>Liste der Produkten mit dem Namen "name"</returns>
-		List<Produkt> HoleAlleProdukte(String name);
+        /// <returns>Liste der Produkte</returns>
+		List<Produkt> GetAlleProdukte(String name);
 		
 		
 		/// <summary>
         /// Diese Operation läd alle Produkte aus dem System
         /// </summary>
 		/// <returns>Liste aller Produkten</returns>
-        List<Produkt> HoleAlLeProdukte();
+        List<Produkt> GetAlleProdukte();
 		
 2.		IVerkauf:
 		/// <summary> 
@@ -21,7 +21,11 @@
 		/// <param name="produkte">Liste mit Produkten.</param>
 		/// <param name="gültigAb">Datum des Angebotsbeginnes.</param>
         /// <param name="gültigBis">Datum des Angebotsendes.</param>
-		/// <throw>UngultigesDatumException, falls das Anfangs- oder Enddatum ungultig ist.</throw>
+		/// <throw>NullExpection, falls gültigab Null</throw>
+		/// <throw>NullException, falls gültigbis Null</throw>
+		/// <throw>NullException, falls Liste Null</throw>
+		/// <throw>EmptyListEception, falls die Liste keine Elemente hat</throw>
+		/// <throw>DatumVertauschtException, falls gültigbis<gültigab</throw>
         /// <returns>Angebot</returns>
 		Angebot AddAngebot(List<Produkt> produkte, Date gültigAb, Date gültigBis);
 
@@ -29,62 +33,61 @@
 
 4.		IVerkauf + IAWKAuftragsVerwaltung:
 		/// <summary>
-        /// Diese Operation fügt einen neuen Auftrag hinzu
+        /// Diese Operation fügt einen neuen Auftrag hinzu.
         /// </summary>
 		/// <param name="beauftragtAm">Datum des Auftragserteilung.</param>
 		/// <param name="angebot">Angebot fur den Auftrag gilt.</param>
 		/// <throw>UngultigesDatumException, falls das Auftragsdatum ungultig ist.</throw> 
 		/// <throw>UngultigesAngebotException, falls das Angebot ungultig ist.</throw>
+		/// <throw>NullExpection, falls beauftragtAm Null</throw>
+		/// <throw>NullExpection, falls angebot Null</throw>		
         /// <returns>Auftrag</returns>
 		Auftrag AddAuftrag(Date beauftragtAm, Angebot angebot);
 		
-		oder
-		
 		/// <summary>
-        /// Diese Operation fuhgt einen neuen Auftrag hinzu
+        /// Diese Operation fügt einen neuen Auftrag hinzu.
         /// </summary>
 		/// <param name="nummer">Nummer des Auftrages.</param>
 		/// <param name="beauftragtAm">Datum des Auftragserteilung.</param>
 		/// <param name="angebotnummer">Angebot fur den Auftrag gilt.</param>
-		/// <throw>UngultigesDatumException, falls das Auftragsdatum ungultig ist.</throw>
-		/// <throw>UngultigesAngebotNummerException, falls das Angebot ungultig ist.</throw>
+		/// <throw>NullExpection, falls beauftragtAm Null</throw>
         /// <returns>Auftrag</returns>
-		Auftrag AddAuftrag(Date beauftragtAm, AngebotNummerTyp angebotnummer);
+		Auftrag AddAuftrag(Date beauftragtAm, AngebotsTyp angebotstyp);
 
 5.	a)	IAWKProduktVerwaltung:
 		/// <summary> ?
         /// Prüft, ob ein Produktbestand ausreicht anhand der Produktnummer
         /// </summary>
-        /// <param name="nummer">.Produktnummer</param>
-		/// <param name="anzahl">.Zu pruefende Produktlagerbestand</param>
+        /// <param name="nummer">Produktnummer</param>
+		/// <param name="anzahl">Zu prüfende Produktlagerbestand</param>
         /// <throw>UngultigesProduktnummerException, falls die Produktnummer nicht existiert.</throw>
-        /// <returns>True/False</returns>
-		boolean ProduktLagerbestandPrüfen(ProduktNummerTyp nummer, Integer anzahl);
-		
-		oder
+        /// <throw>UngultigeAnzahlException, falls die anzahl <=0</throw>		
+        /// <returns>true/false</returns>
+		boolean CheckProduktLagerbestand(ProduktNummerTyp nummer, Integer anzahl);
 		
 		/// <summary> 
-        /// Prüeft, ob ein Produktbestand ausreicht anhand der Produktliste
+        /// Prüft, ob ein Produktbestand ausreicht anhand der Produktliste
         /// </summary>
         /// <param name="nummer">.Produktnummer</param>
         /// <throw>UngultigesProduktException, falls die Produkt nicht existiert.</throw>
         /// <returns>True/False</returns>
-		boolean ProduktLagerbestandPrüfen(List<Produkt> produktliste);
+		boolean CheckProduktLagerbestand(List<Produkt> produktliste);
 		
 	a)i.	/// <summary> 
-			/// Erzeugt eine Warenausgangsmeldung fur einen Produkt anhand der Produktnummer und der Anzahl
+			/// Erzeugt eine Warenausgangsmeldung für einen Produkt anhand der Produktnummer und der Anzahl
 			/// </summary>
-			/// <param name="nummer">.Produktnummer</param>
-			/// <param name="anzahl">.Anzahl des Produktes zum Auslagern</param>
+			/// <param name="nummer">Produktnummer</param>
+			/// <param name="anzahl">Anzahl des Produktes zum Auslagern</param>
 			/// <throw>UngultigesProduktnummerException, falls die Produktnummer nicht existiert.</throw>
+			/// <throw>UngultigeAnzahlException, falls die anzahl <=0</throw>			
 			void ProduktAuslagerungMelden(ProduktNummerTyp nummer, Integer anzahl);
-			
-			oder
-			/// <summary> ?
-			/// Diese Operation erzeugt eine Warenausgangsmeldung fur die Produkteliste
+
+
+			/// Diese Operation erzeugt eine Warenausgangsmeldung für die Produkteliste
 			/// </summary>
 			/// <param name="produktliste">.Produktliste</param>
-			/// <throw>UngultigesProduktnummerException, falls die Produktnummer nicht existiert.</throw>
+			/// <throw>NullException, falls Liste Null</throw>
+			/// <throw>EmptyListEception, falls die Liste keine Elemente hat</throw>
 			void ProduktAuslagerungMelden(List<Produkt> produktliste);
 		
 		
@@ -95,11 +98,12 @@
 			/// <param name="ausgangsdatum">Ausgangsdatum des Transportauftrages.</param>
 			/// <param name="lieferdatum">Lieferdatum des Transportauftrages.</param>
 			/// <param name="transportdienstleister">transportdienstleister des Transportauftrages.</param>
+			///<throw>DatumVertauschtException, falls lieferdatum<ausgangsdatum.</throw>
 			/// <returns>Transportauftrag</returns>
 			Transportauftrag AddTransportauftrag(Date ausgangsdatum, Date lieferdatum, TransportdienstleisterTyp transportdienstleister);
 			
 			/// <summary>
-			/// Diese Operation fuhgt eine neue Lieferung hinzu
+			/// Diese Operation fügt eine neue Lieferung hinzu.
 			/// </summary>
 			/// <param name="transportauftrag">Transportauftrag fur eine Lieferung.</param>
 			/// <returns>Lieferung</returns>
@@ -107,7 +111,7 @@
 			
 	iii.	IAWKBuchhaltungsverwaltung:
 			/// <summary>
-			/// Diese Operation fuhgt eine neue Rechnung hinzu
+			/// Diese Operation fügt eine neue Rechnung hinzu.
 			/// </summary>
 			/// <param name="auftrag">Auftrag in der Rechnung.</param>
 			/// <returns>Rechnung</returns>
@@ -117,16 +121,17 @@
 			/// Diese Operation verschickt Rechnung an den Kunden
 			/// </summary>
 			/// <param name="rechnung">Rechnung.</param>
-			/// <throw>UngultigeRechnungException, falls die Rechnung nicht existiert.</throw>
+			/// <throw>UngultigeRechnungException, falls die Rechnung nicht existiert.</throw> ???
 			void VerschickeRechnung(Rechnung rechnung);
 			
 	b)i.	class ProduktVerwaltung:
 			/// <summary> ?
-			/// Diese Operation bestellt fehlende Anzahl von Produkten
+			/// 	Diese Operation bestellt fehlende Anzahl von Produkten
 			/// </summary>
-			/// <param name="produkt">.Produkt mit fehlendem Bestand</param>
-			/// <param name="anzahl">.Fehlende Anzahl des Produktes</param>
+			/// <param name="produkt">Produkt mit fehlendem Bestand</param>
+			/// <param name="anzahl">Fehlende Anzahl des Produktes</param>
 			/// <throw>UngultigesProduktException, falls die Produkt nicht existiert.</throw>
+			/// <throw>UngultigeAnzahlException, falls die anzahl <=0</throw>	
 			void BestelleProdukt(Produkt produkt, Integer anzahl);
 			
 			/// <summary> ?
@@ -134,8 +139,9 @@
 			/// </summary>
 			/// <param name="produkt">.Produkt mit fehlendem Bestand</param>
 			/// <param name="anzahl">.Fehlende Anzahl des Produktes</param>
-			/// <param name="bestelldatum">.Bestelldatum</param>
+			/// <param name="bestelldatum">Bestelldatum</param>
 			/// <throw>UngultigesProduktException, falls die Produkt nicht existiert.</throw>
+			/// <throw>UngultigeAnzahlException, falls die anzahl <=0</throw>
 			/// <returns>Bestellung</returns>
 			Bestellung AddBestellung(Produkt produkt, Integer anzahl, Date bestelldatum);
 			
