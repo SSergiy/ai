@@ -1,0 +1,979 @@
+namespace Anwendungskernfassade
+{
+	/// Interface dient zur Abfrage des Produktes bzw. Produktlisten fur die Kunden. Representiert Kundensicht.
+    public interface IEinkauf
+    {	
+		/// <summary>
+        /// Diese Operation lad ein Produkt anhand der Produktnummer
+        /// </summary>
+        /// <param name="nummer">.Produktnummer</param>
+        /// <throw>UngultigesProduktException, falls die Produktnummer nicht existiert.</throw>
+        /// <returns>Produkt</returns>
+		Produkt GetProdukt(ProduktNummerTyp nummer);
+		
+		/// <summary>
+        /// Diese Operation lad eine Liste mit Produkten anhand der Produktname
+        /// </summary>
+        /// <param name="name">.Name des Produktes</param>
+        /// <throw>UngultigerProduktnameException, falls die Produktname nicht existiert.</throw>
+        /// <returns>Liste der Produkten mit dem Namen "name"</returns>
+		List<Produkt> GetProdukt(String name);
+		
+		/// <summary>
+        /// Diese Operation lad eine Liste mit Produkten anhand der Produkten vorhandenen im System
+        /// </summary>
+		/// <returns>Liste aller Produkten</returns>
+        List<Produkt> GetAlleProdukte();
+    }
+	
+	/// Interface zum Steuerung des Systems fur die Call-Center-Agenten und Systemadministratoren. 
+    public interface IVerkauf
+    {
+		/// <summary>
+        /// Diese Operation lad einen Kunde anhand der Kundenummer
+        /// </summary>
+        /// <param name="nummer">.Nummer</param>
+        /// <throw>UngultigerKundeummerException, falls die Kundenummer nicht existiert.</throw>
+        /// <returns>Kunde</returns>
+		Kunde GetKunde(KundeNummerTyp nummer);
+		
+		/// <summary>
+        /// Diese Operation lad einen Kunde anhand des Kundenames
+        /// </summary>
+        /// <param name="name">.Kundename</param>
+        /// <throw>UngultigeKundeummerException, falls der Kundename nicht existiert.</throw>
+        /// <returns>Kunde</returns>
+		Kunde GetKunde(String name);
+		
+		/// <summary>
+        /// Diese Operation fuhgt einen neuen Kunde hinzu
+        /// </summary>
+		/// <param name="name">Name des Kundees.</param>
+        /// <param name="strasse">Strasse des Wohnortes.</param>
+        /// <param name="hausnummer">Hausnummer des Wohnortes.</param>
+        /// <param name="postleitzahl">Postleitzahl des Wohnortes.</param>
+        /// <param name="ort">Ort des Wohnortes.</param>
+        /// <param name="land">Land des Wohnortes.</param>
+        /// <throw>UngultigeAdresseException, falls die Adresse ungultig ist.</throw>
+        /// <returns>Kunde</returns>
+		Kunde AddKunde(String name, String strasse, String hausnummer, String postleitzahl, String ort, String land);
+
+        /// <summary>
+        /// Diese Operation loscht einen Kunde
+        /// </summary>
+        /// <param name="kundenummer">Kundenummer.</param>
+        /// <throw>UngultigeKundenummerException, falls die Kundenummer nicht existiert.</throw>
+        void DeleteKunde(KundeNummerTyp nummer);
+		
+		/// <summary>
+        /// Diese Operation loscht einen Kunde
+        /// </summary>
+        /// <param name="kundenummer">Kundenummer.</param>
+        /// <throw>UngultigerKundenummerException, falls die Kundenummer nicht existiert.</throw>
+        void DeleteKunde(String nummer);
+		
+		/// <summary>
+        /// Diese Operation loscht einen Kunde
+        /// </summary>
+        /// <param name="kunde">Kunde.</param>
+        /// <throw>UngultigerKundeException, falls die Kunde nicht existiert.</throw>
+        void DeleteKunde(Kunde kunde);
+
+        /// <summary>
+        /// Diese Operation andert Kundendaten
+        /// </summary>
+        /// <param name="kunde">Kunde.</param>
+        /// <throw>UngultigerKundeException, falls die Lokation nicht existiert.</throw>
+        Kunde UpdateKunde(Kunde Kunde);
+		
+		/// <summary>
+        /// Diese Operation lad ein Produkt anhand der Produktnummer
+        /// </summary>
+        /// <param name="nummer">.Produktnummer</param>
+        /// <throw>UngultigesProduktException, falls die Produktnummer nicht existiert.</throw>
+        /// <returns>Produkt</returns>
+		Produkt GetProdukt(ProduktNummerTyp nummer);
+		
+		/// <summary>
+        /// Diese Operation lad eine Liste mit Produkten anhand der Produktname
+        /// </summary>
+        /// <param name="name">.Name des Produktes</param>
+        /// <throw>UngultigerProduktnameException, falls die Produktname nicht existiert.</throw>
+        /// <returns>Liste der Produkten mit dem Namen "name"</returns>
+		List<Produkt> GetProdukt(String name);
+		
+		/// <summary>
+        /// Diese Operation lad eine Liste mit Produkten anhand der Produkten vorhandenen im System
+        /// </summary>
+		/// <returns>Liste der Produkten</returns>
+        List<Produkt> GetAlleProdukte();
+		
+		/// <summary>
+        /// Diese Operation fuhgt ein neues Produkt hinzu
+        /// </summary>
+		/// <param name="name">Bezeichnung des Produktes.</param>
+        /// <param name="lagerbestand">Lagerbestand des Produktes.</param>
+        /// <throw>UngultigerLagerbestandException, falls der Lagerbestand ungultig ist.</throw>
+        /// <returns>Produkt</returns>
+		Produkt AddProdukt(String name, Integer lagerbestand);
+
+        /// <summary>
+        /// Diese Operation loscht ein Produkt
+        /// </summary>
+        /// <param name="nummer">Produktnummer.</param>
+        /// <throw>UngultigeProduktnummerException, falls das Produktnummer nicht existiert.</throw>
+        void DeleteProdukt(ProduktNummerTyp nummer);
+		
+		/// <summary>
+        /// Diese Operation loscht ein Produkt
+        /// </summary>
+        /// <param name="nummer">Produktnummer.</param>
+        /// <throw>UngultigerProduktnummerException, falls die Produktnummer nicht existiert.</throw>
+        void DeleteProdukt(String nummer);
+		
+		/// <summary>
+        /// Diese Operation loscht ein Produkt
+        /// </summary>
+        /// <param name="produkt">Produkt.</param>
+        /// <throw>UngultigesProduktException, falls das produkt nicht existiert.</throw>
+        void DeleteProdukt(Produkt produkt);
+
+        /// <summary>
+        /// Diese Operation andert Produktdaten
+        /// </summary>
+        /// <param name="produkt">Produkt.</param>
+        /// <throw>UngultigesProduktException, falls das Produkt nicht existiert.</throw>
+        /// <returns>Produkt</returns>
+		Produkt UpdateProdukt(Produkt produkt);
+		
+		/// <summary>
+        /// Diese Operation lad ein Angebot anhand der Angebotsnummer
+        /// </summary>
+        /// <param name="nummer">.Angebotsnummer</param>
+        /// <throw>UngultigesAngebotException, falls die Angebotnummer nicht existiert.</throw>
+        /// <returns>Angebot</returns>
+		Angebot GetAngebot(AngebotNummerTyp nummer);
+		
+		/// <summary>
+        /// Diese Operation lad ein Angebot anhand der Angebotsnummer
+        /// </summary>
+        /// <param name="nummer">.Angebotsnummer</param>
+        /// <throw>UngultigesAngebotException, falls die Angebotnummer nicht existiert.</throw>
+        /// <returns>Angebot</returns>
+		Angebot GetAngebot(String nummer);
+		
+		/// <summary>
+        /// Diese Operation lad eine Liste mit gultigen Angeboten 
+        /// </summary>
+        /// <param name="date">.</param>
+        /// <throw>UngultigesDatumException, falls Datum nicht existiert.</throw>
+        /// <returns>Liste der gultigen Angeboten</returns>
+		List<Angebot> GetAngebot(Date date);
+		
+		/// <summary>
+        /// Diese Operation lad eine Liste mit Angeboten
+        /// </summary>
+		/// <returns>Liste der Angeboten</returns>
+        List<Angebot> GetAlleAngebote();
+		
+		/// <summary> ?
+        /// Diese Operation fuhgt ein neues Angebot hinzu
+        /// </summary>
+		/// <param name="produkte">Liste mit Produkten.</param>
+		/// <param name="gultigAb">Datum des Angebotsbeginnes.</param>
+        /// <param name="gultigBis">Datum des Angebotsendes.</param>
+		/// ? <param name="gesamtpreis">Gesamtpreis des Angebotes (berechnet aus den Preisen aller Produkten im Angebot).</param>
+		/// <throw>UngultigesDatumException, falls das Anfangs- oder Enddatum ungultig ist.</throw>
+        /// <returns>Angebot</returns>
+		Angebot AddAngebot(List<Produkt> produkte, Date gultigAb, Date gultigBis, Double gesamtpreis);
+
+        /// <summary> ?
+        /// Diese Operation fuhgt ein neues Angebot hinzu
+        /// </summary>
+		/// <param name="produkte">Liste mit Produkten.</param>
+		/// <param name="gultigAb">Datum des Angebotsbeginnes.</param>
+        /// <param name="gultigBis">Datum des Angebotsendes.</param>
+		/// <throw>UngultigesDatumException, falls das Anfangs- oder Enddatum ungultig ist.</throw>
+        /// <returns>Angebot</returns>
+		Angebot AddAngebot(List<Produkt> produkte, Date gultigAb, Date gultigBis);
+		
+		/// <summary>
+        /// Diese Operation loscht ein Angebot
+        /// </summary>
+        /// <param name="nummer">Angebotnummer.</param>
+        /// <throw>UngultigeAngebotnummerException, falls das Angebotnummer nicht existiert.</throw>
+        void DeleteAngebot(AngebotNummerTyp nummer);
+		
+		/// <summary>
+        /// Diese Operation loscht ein Angebot
+        /// </summary>
+        /// <param name="nummer">Angebotnummer.</param>
+        /// <throw>UngultigeAngebotnummerException, falls die Angebotnummer nicht existiert.</throw>
+        void DeleteAngebot(String nummer);
+		
+		/// <summary>
+        /// Diese Operation loscht ein Angebot
+        /// </summary>
+        /// <param name="angebot">Angebot.</param>
+        /// <throw>UngultigesAngebotException, falls das Angebot nicht existiert.</throw>
+        void DeleteAngebot(Angebot angebot);
+
+        /// <summary>
+        /// Diese Operation andert Angebotsdaten
+        /// </summary>
+        /// <param name="angebot">Angebot.</param>
+        /// <throw>UngultigesAngebotException, falls das Angebot nicht existiert.</throw>
+        /// <returns>Angebot</returns>
+		Angebot UpdateAngebot(Angebot angebot);
+		
+		/// <summary>
+        /// Diese Operation lad ein Angebot anhand der Auftragsnummer
+        /// </summary>
+        /// <param name="nummer">.Auftragsnummer</param>
+        /// <throw>UngultigerAuftragException, falls die Auftragsnummer nicht existiert.</throw>
+        /// <returns>Auftrag</returns>
+		Auftrag GetAuftrag(AuftragNummerTyp nummer);
+		
+		/// <summary>
+        /// Diese Operation lad ein Angebot anhand der Auftragsnummer
+        /// </summary>
+        /// <param name="nummer">.Auftragsnummer</param>
+        /// <throw>UngultigerAuftragException, falls die Auftragsnummer nicht existiert.</throw>
+        /// <returns>Auftrag</returns>
+		Auftrag GetAuftrag(String nummer);
+		
+		/// <summary>
+        /// Diese Operation lad eine Liste mit gueltigen Auftraegen (nicht abgeschlossene Auftraege)
+        /// </summary>
+		/// <returns>Liste der gultigen Auftraegen</returns>
+        List<Auftrag> GetGultigeAuftrage();
+		
+		/// <summary>
+        /// Diese Operation lad eine Liste mit abgeschlossenen Auftraegen
+        /// </summary>
+		/// <returns>Liste der abgeschlossene Auftraegen</returns>
+        List<Auftrag> GetAbgeschlosseneAuftrage();
+		
+		/// <summary>
+        /// Diese Operation lad eine Liste mit allen Auftraegen
+        /// </summary>
+		/// <returns>Liste der allen Auftraegen</returns>
+        List<Auftrag> GetAlleAuftrage();
+		
+		/// <summary>
+        /// Diese Operation fuhgt einen neuen Auftrag hinzu
+        /// </summary>
+		/// <param name="beauftragtAm">Datum des Auftragserteilung.</param>
+		/// <param name="angebot">Angebot fur den Auftrag gilt.</param>
+		/// <throw>UngultigesDatumException, falls das Auftragsdatum ungultig ist.</throw>
+		/// <throw>UngultigesAngebotException, falls das Angebot ungultig ist.</throw>
+        /// <returns>Auftrag</returns>
+		Auftrag AddAuftrag(Date beauftragtAm, Angebot angebot);
+		
+		/// <summary>
+        /// Diese Operation fuhgt einen neuen Auftrag hinzu
+        /// </summary>
+		/// <param name="nummer">Nummer des Auftrages.</param>
+		/// <param name="beauftragtAm">Datum des Auftragserteilung.</param>
+		/// <param name="angebotnummer">Angebot fur den Auftrag gilt.</param>
+		/// <throw>UngultigesDatumException, falls das Auftragsdatum ungultig ist.</throw>
+		/// <throw>UngultigesAngebotNummerException, falls das Angebot ungultig ist.</throw>
+        /// <returns>Auftrag</returns>
+		Auftrag AddAuftrag(Date beauftragtAm, AngebotNummerTyp angebotnummer);
+		
+		/// <summary>
+        /// Diese Operation loscht einen Auftrag
+        /// </summary>
+        /// <param name="nummer">Auftragnummer.</param>
+        /// <throw>UngultigeAuftragnummerException, falls das Auftragnummer nicht existiert.</throw>
+        void DeleteAuftrag(AuftragNummerTyp nummer);
+		
+		/// <summary>
+        /// Diese Operation loscht einen Auftrag
+        /// </summary>
+        /// <param name="nummer">Auftragnummer.</param>
+        /// <throw>UngultigeAuftragnummerException, falls die Auftragsnummer nicht existiert.</throw>
+        void DeleteAuftrag(String nummer);
+		
+		/// <summary>
+        /// Diese Operation loscht einen Auftrag
+        /// <param name="auftrag">Auftrag.</param>
+        /// <throw>UngultigerAuftragException, falls der Auftrag nicht existiert.</throw>
+        void DeleteAuftrag(Auftrag auftrag);
+
+        /// <summary>
+        /// Diese Operation andert Auftragsdaten
+        /// </summary>
+        /// <param name="auftrag">Auftrag.</param>
+        /// <throw>UngultigerAuftragException, falls der Auftrag nicht existiert.</throw>
+        /// <returns>Auftrag</returns>
+		Auftrag UpdateAuftrag(Auftrag Auftrag);
+		
+		/// <summary>
+        /// Diese Operation lad eine Rechnung anhand der Rechnungsnummer
+        /// </summary>
+        /// <param name="nummer">.Rechnungsnummer</param>
+        /// <throw>UngultigeRechnungsnummerException, falls die Rechnungsnummer nicht existiert.</throw>
+        /// <returns>Lieferung</returns>
+		Rechnung GetRechnung(RechnungNummerTyp nummer);
+		
+		/// <summary>
+        /// Diese Operation lad eine Liste mit Rechnungen
+        /// </summary>
+		/// <returns>Liste der Rechnungen</returns>
+        List<Rechnung> GetAlleRechnungen();
+		
+		/// <summary>
+        /// Diese Operation fuhgt eine neue Rechnung hinzu
+        /// </summary>
+		/// <param name="auftrag">Auftrag in der Rechnung.</param>
+        /// <returns>Rechnung</returns>
+		Rechnung AddRechnung(Auftrag auftrag);
+
+        /// <summary>
+        /// Diese Operation loscht eine Rechnung
+        /// </summary>
+        /// <param name="nummer">Rechnungsnummer.</param>
+        /// <throw>UngultigeRechnungnummerException, falls das Rechnungsnummer nicht existiert.</throw>
+        void DeleteRechnung(RechnungNummerTyp nummer);
+		
+		/// <summary>
+        /// Diese Operation loscht eine Rechnung
+        /// </summary>
+        /// <param name="rechnung">Rechnung.</param>
+        /// <throw>UngultigeRechnungException, falls die Rechnung nicht existiert.</throw>
+        void DeleteRechnung(Rechnung rechnung);
+
+        /// <summary>
+        /// Diese Operation andert Rechnungsdaten
+        /// </summary>
+        /// <param name="rechnung">Rechnung.</param>
+        /// <throw>UngultigeRechnungException, falls die Rechnung nicht existiert.</throw>
+        /// <returns>Rechnung</returns>
+		Rechnung UpdateRechnung(Rechnung rechnung);
+		
+		/// <summary>
+        /// Diese Operation verschickt Rechnung an den Kunden
+        /// </summary>
+        /// <param name="rechnung">Rechnung.</param>
+        /// <throw>UngultigeRechnungException, falls die Rechnung nicht existiert.</throw>
+		void VerschickeRechnung(Rechnung rechnung);
+		
+				/// <summary>
+        /// Diese Operation lad einen Transportauftrag anhand der Transportauftragnummer
+        /// </summary>
+        /// <param name="nummer">.Transportauftragnummer</param>
+        /// <throw>UngultigerTransportauftragnummerException, falls die Transportauftragnummer nicht existiert.</throw>
+        /// <returns>Transportauftrag</returns>
+		Transportauftrag GetTransportauftrag(ProduktNummerTyp nummer);
+		
+		/// <summary>
+        /// Diese Operation lad eine Liste mit Transportauftragen
+        /// </summary>
+		/// <returns>Liste der Transportauftragen</returns>
+        List<Transportauftrag> GetAlleTransportauftrage();
+		
+		/// <summary>
+        /// Diese Operation fuhgt einen neuen Transportauftrag hinzu
+        /// </summary>
+		/// <param name="ausgangsdatum">Ausgangsdatum des Transportauftrages.</param>
+        /// <param name="lieferdatum">Lieferdatum des Transportauftrages.</param>
+		/// <param name="transportdienstleister">transportdienstleister des Transportauftrages.</param>
+        /// <returns>Transportauftrag</returns>
+		Transportauftrag AddTransportauftrag(Date ausgangsdatum, Date lieferdatum, TransportdienstleisterTyp transportdienstleister);
+
+        /// <summary>
+        /// Diese Operation loscht einen Transportauftrag
+        /// </summary>
+        /// <param name="nummer">Transportauftragnummer.</param>
+        /// <throw>UngultigeTransportauftragnummerException, falls das Transportauftragnummer nicht existiert.</throw>
+        void DeleteTransportauftrag(TransportauftragNummerTyp nummer);
+		
+		/// <summary>
+        /// Diese Operation loscht einen Transportauftrag
+        /// </summary>
+        /// <param name="transportauftrag">Transportauftrag.</param>
+        /// <throw>UngultigerTransportauftragException, falls der Transportauftrag nicht existiert.</throw>
+        void DeleteTransportauftrag(Transportauftrag transportauftrag);
+
+        /// <summary>
+        /// Diese Operation andert Transportauftragsdaten
+        /// </summary>
+        /// <param name="transportauftrag">Transportauftrag.</param>
+        /// <throw>UngultigerTransportauftragException, falls der Transportauftrag nicht existiert.</throw>
+        /// <returns>Transportauftrag</returns>
+		Transportauftrag UpdateTransportauftrag(Transportauftrag transportauftrag);
+		
+		/// <summary>
+        /// Diese Operation lad einee Lieferung anhand der Lieferungsnummer
+        /// </summary>
+        /// <param name="nummer">.Lieferungsnummer</param>
+        /// <throw>UngultigeLieferungsnummerException, falls die Lieferungsnummer nicht existiert.</throw>
+        /// <returns>Lieferung</returns>
+		Lieferung GetLieferung(LieferungNummerTyp nummer);
+		
+		/// <summary>
+        /// Diese Operation lad eine Liste mit Lieferungen
+        /// </summary>
+		/// <returns>Liste der Lieferungen</returns>
+        List<Transportauftrag> GetAlleLieferungen();
+		
+		/// <summary>
+        /// Diese Operation fuhgt eine neue Lieferung hinzu
+        /// </summary>
+		/// <param name="transportauftrag">Transportauftrag fur eine Lieferung.</param>
+        /// <returns>Lieferung</returns>
+		Lieferung AddLieferung(Transportauftrag transportauftrag);
+
+        /// <summary>
+        /// Diese Operation loscht einen Transportauftrag
+        /// </summary>
+        /// <param name="nummer">Lieferungsnummer.</param>
+        /// <throw>UngultigeLieferungnummerException, falls das Lieferungnummer nicht existiert.</throw>
+        void DeleteLieferung(LieferungNummerTyp nummer);
+		
+		/// <summary>
+        /// Diese Operation loscht eine Lieferung
+        /// </summary>
+        /// <param name="lieferung">Lieferung.</param>
+        /// <throw>UngultigeLieferungException, falls die Lieferung nicht existiert.</throw>
+        void DeleteLieferung(Lieferung lieferung);
+
+        /// <summary>
+        /// Diese Operation andert Lieferungsdaten
+        /// </summary>
+        /// <param name="lieferung">Lieferung.</param>
+        /// <throw>UngultigeLieferungException, falls die Lieferung nicht existiert.</throw>
+        /// <returns>Transportauftrag</returns>
+		Lieferung UpdateLieferung(Lieferung lieferung);
+    }
+}
+
+namespace Anwendungskern
+{
+	/// Interface dient zur Abfrage des Produktes bzw. Produktlisten fur die Kunden. Representiert Kundensicht im Kern.
+    public interface IProduktVerwaltung
+    {	
+		/// <summary>
+        /// Diese Operation lad ein Produkt anhand der Produktnummer
+        /// </summary>
+        /// <param name="nummer">.Produktnummer</param>
+        /// <throw>UngultigesProduktException, falls die Produktnummer nicht existiert.</throw>
+        /// <returns>Produkt</returns>
+		Produkt GetProdukt(ProduktNummerTyp nummer);
+		
+		/// <summary>
+        /// Diese Operation lad eine Liste mit Produkten anhand der Produktname
+        /// </summary>
+        /// <param name="name">.Name des Produktes</param>
+        /// <throw>UngultigerProduktnameException, falls die Produktname nicht existiert.</throw>
+        /// <returns>Liste der Produkten mit dem Namen "name"</returns>
+		List<Produkt> GetProdukt(String name);
+		
+		/// <summary>
+        /// Diese Operation lad eine Liste mit Produkten anhand der Produkten vorhandenen im System
+        /// </summary>
+		/// <returns>Liste aller Produkten</returns>
+        List<Produkt> GetAlleProdukte();
+    }
+	
+	/// Interface representiert Administratorensicht im Kern. Volle Angrifsrechte auf die Produktkomponente
+	public interface IAWKProduktVerwaltung
+    {		
+		/// <summary> ?
+        /// Diese Operation prueft, ob ein Produktbestand ausreicht anhand der Produktnummer
+        /// </summary>
+        /// <param name="nummer">.Produktnummer</param>
+		/// <param name="anzahl">.Zu pruefende Produktlagerbestand</param>
+        /// <throw>UngultigesProduktnummerException, falls die Produktnummer nicht existiert.</throw>
+        /// <returns>True/False</returns>
+		boolean ProduktLagerbestandPrufe(ProduktNummerTyp nummer, Integer anzahl);
+		
+		/// <summary> ?
+        /// Diese Operation prueft, ob ein Produktbestand ausreicht anhand der Produktliste
+        /// </summary>
+        /// <param name="nummer">.Produktnummer</param>
+        /// <throw>UngultigesProduktException, falls die Produkt nicht existiert.</throw>
+        /// <returns>True/False</returns>
+		boolean ProduktLagerbestandPrufe(List<Produkt> produktliste);
+		
+		/// <summary> ?
+        /// Diese Operation erzeugt eine Warenausgangsmeldung fur einen Produkt anhand der Produktnummer und Anzahl
+        /// </summary>
+        /// <param name="nummer">.Produktnummer</param>
+		/// <param name="anzahl">.Anzahl des Produktes zum Auslagern</param>
+        /// <throw>UngultigesProduktnummerException, falls die Produktnummer nicht existiert.</throw>
+		void ProduktAuslagerungMelden(ProduktNummerTyp nummer, Integer anzahl);
+		
+		/// <summary> ?
+        /// Diese Operation erzeugt eine Wareneingangsmeldung fur die Produkteliste
+        /// </summary>
+        /// <param name="produktliste">.Produktliste</param>
+        /// <throw>UngultigesProduktnummerException, falls die Produktnummer nicht existiert.</throw>
+		void ProduktEingangMelden(List<Produkt> produktliste);
+		
+		/// <summary> ?
+        /// Diese Operation erzeugt eine Wareeingangsmeldung fur einen Produkt anhand der Produktnummer und Anzahl
+        /// </summary>
+        /// <param name="nummer">.Produktnummer</param>
+		/// <param name="anzahl">.Anzahl des Produktes zum Einlagern</param>
+        /// <throw>UngultigesProduktnummerException, falls die Produktnummer nicht existiert.</throw>
+		void ProduktEingangMelden(ProduktNummerTyp nummer, Integer anzahl);
+		
+		/// <summary> ?
+        /// Diese Operation erzeugt eine Warenausgangsmeldung fur die Produkteliste
+        /// </summary>
+        /// <param name="produktliste">.Produktliste</param>
+        /// <throw>UngultigesProduktnummerException, falls die Produktnummer nicht existiert.</throw>
+		void ProduktAuslagerungMelden(List<Produkt> produktliste);
+		
+		/// <summary>
+        /// Diese Operation lad ein Produkt anhand der Produktnummer
+        /// </summary>
+        /// <param name="nummer">.Produktnummer</param>
+        /// <throw>UngultigesProduktException, falls die Produktnummer nicht existiert.</throw>
+        /// <returns>Produkt</returns>
+		Produkt GetProdukt(ProduktNummerTyp nummer);
+		
+		/// <summary>
+        /// Diese Operation lad eine Liste mit Produkten anhand der Produktname
+        /// </summary>
+        /// <param name="name">.Name des Produktes</param>
+        /// <throw>UngultigerProduktnameException, falls die Produktname nicht existiert.</throw>
+        /// <returns>Liste der Produkten mit dem Namen "name"</returns>
+		List<Produkt> GetProdukt(String name);
+		
+		/// <summary>
+        /// Diese Operation lad eine Liste mit Produkten anhand der Produkten vorhandenen im System
+        /// </summary>
+		/// <returns>Liste der Produkten</returns>
+        List<Produkt> GetAlleProdukte();
+		
+		/// <summary>
+        /// Diese Operation fuhgt ein neues Produkt hinzu
+        /// </summary>
+		/// <param name="name">Bezeichnung des Produktes.</param>
+        /// <param name="lagerbestand">Lagerbestand des Produktes.</param>
+        /// <throw>UngultigerLagerbestandException, falls der Lagerbestand ungultig ist.</throw>
+        /// <returns>Produkt</returns>
+		Produkt AddProdukt(String name, Integer lagerbestand);
+
+        /// <summary>
+        /// Diese Operation loscht ein Produkt
+        /// </summary>
+        /// <param name="nummer">Produktnummer.</param>
+        /// <throw>UngultigeProduktnummerException, falls das Produktnummer nicht existiert.</throw>
+        void DeleteProdukt(ProduktNummerTyp nummer);
+		
+		/// <summary>
+        /// Diese Operation loscht ein Produkt
+        /// </summary>
+        /// <param name="nummer">Produktnummer.</param>
+        /// <throw>UngultigerProduktnummerException, falls die Produktnummer nicht existiert.</throw>
+        void DeleteProdukt(String nummer);
+		
+		/// <summary>
+        /// Diese Operation loscht ein Produkt
+        /// </summary>
+        /// <param name="produkt">Produkt.</param>
+        /// <throw>UngultigesProduktException, falls das produkt nicht existiert.</throw>
+        void DeleteProdukt(Produkt produkt);
+
+        /// <summary>
+        /// Diese Operation andert Produktdaten
+        /// </summary>
+        /// <param name="produkt">Produkt.</param>
+        /// <throw>UngultigesProduktException, falls das Produkt nicht existiert.</throw>
+        /// <returns>Produkt</returns>
+		Produkt UpdateProdukt(Produkt produkt);
+	}
+	
+	/// Interface representiert Administratorensicht im Kern. Volle Angrifsrechte auf die Kundeverwaltungkomponente
+	public interface IAWKKundeVerwaltung
+	{
+		/// <summary>
+        /// Diese Operation lad einen Kunde anhand der Kundenummer
+        /// </summary>
+        /// <param name="nummer">.Nummer</param>
+        /// <throw>UngultigerKundeummerException, falls die Kundenummer nicht existiert.</throw>
+        /// <returns>Kunde</returns>
+		Kunde GetKunde(KundeNummerTyp nummer);
+		
+		/// <summary>
+        /// Diese Operation lad einen Kunde anhand des Kundenames
+        /// </summary>
+        /// <param name="name">.Kundename</param>
+        /// <throw>UngultigeKundeummerException, falls der Kundename nicht existiert.</throw>
+        /// <returns>Kunde</returns>
+		Kunde GetKunde(String name);
+		
+		/// <summary>
+        /// Diese Operation fuhgt einen neuen Kunde hinzu
+        /// </summary>
+		/// <param name="name">Name des Kundes.</param>
+		/// <param name="adresse">Adresse des Kundes.</param>
+        /// <throw>UngultigeAdresseException, falls die Adresse ungultig ist.</throw>
+        /// <returns>Kunde</returns>
+		Kunde AddKunde(String name, Adresse adresse);
+
+        /// <summary>
+        /// Diese Operation loscht einen Kunde
+        /// </summary>
+        /// <param name="kundenummer">Kundenummer.</param>
+        /// <throw>UngultigeKundenummerException, falls die Kundenummer nicht existiert.</throw>
+        void DeleteKunde(KundeNummerTyp nummer);
+		
+		/// <summary>
+        /// Diese Operation loscht einen Kunde
+        /// </summary>
+        /// <param name="kundenummer">Kundenummer.</param>
+        /// <throw>UngultigerKundenummerException, falls die Kundenummer nicht existiert.</throw>
+        void DeleteKunde(String nummer);
+		
+		/// <summary>
+        /// Diese Operation loscht einen Kunde
+        /// </summary>
+        /// <param name="kunde">Kunde.</param>
+        /// <throw>UngultigerKundeException, falls die Kunde nicht existiert.</throw>
+        void DeleteKunde(Kunde kunde);
+
+        /// <summary>
+        /// Diese Operation andert Kundendaten
+        /// </summary>
+        /// <param name="kunde">Kunde.</param>
+        /// <throw>UngultigerKundeException, falls die Lokation nicht existiert.</throw>
+        Kunde UpdateKunde(Kunde Kunde);
+	}
+	
+	///Interface fur die Auftragsverwaltung im Anwendungskern
+	public interface IAWKAuftragsverwaltung
+	{
+		/// <summary>
+        /// Diese Operation lad ein Angebot anhand der Angebotsnummer
+        /// </summary>
+        /// <param name="nummer">.Angebotsnummer</param>
+        /// <throw>UngultigesAngebotException, falls die Angebotnummer nicht existiert.</throw>
+        /// <returns>Angebot</returns>
+		Angebot GetAngebot(AngebotNummerTyp nummer);
+		
+		/// <summary>
+        /// Diese Operation lad ein Angebot anhand der Angebotsnummer
+        /// </summary>
+        /// <param name="nummer">.Angebotsnummer</param>
+        /// <throw>UngultigesAngebotException, falls die Angebotnummer nicht existiert.</throw>
+        /// <returns>Angebot</returns>
+		Angebot GetAngebot(String nummer);
+		
+		/// <summary>
+        /// Diese Operation lad eine Liste mit gultigen Angeboten 
+        /// </summary>
+        /// <param name="date">.</param>
+        /// <throw>UngultigesDatumException, falls Datum nicht existiert.</throw>
+        /// <returns>Liste der gultigen Angeboten</returns>
+		List<Angebot> GetAngebot(Date date);
+		
+		/// <summary>
+        /// Diese Operation lad eine Liste mit Angeboten
+        /// </summary>
+		/// <returns>Liste der Angeboten</returns>
+        List<Angebot> GetAlleAngebote();
+		
+		/// <summary> ?
+        /// Diese Operation fuhgt ein neues Angebot hinzu
+        /// </summary>
+		/// <param name="produkte">Liste mit Produkten.</param>
+		/// <param name="gultigAb">Datum des Angebotsbeginnes.</param>
+        /// <param name="gultigBis">Datum des Angebotsendes.</param>
+		/// ? <param name="gesamtpreis">Gesamtpreis des Angebotes (berechnet aus den Preisen aller Produkten im Angebot).</param>
+		/// <throw>UngultigesDatumException, falls das Anfangs- oder Enddatum ungultig ist.</throw>
+        /// <returns>Angebot</returns>
+		Angebot AddAngebot(List<Produkt> produkte, Date gultigAb, Date gultigBis, Double gesamtpreis);
+
+        /// <summary> ?
+        /// Diese Operation fuhgt ein neues Angebot hinzu
+        /// </summary>
+		/// <param name="produkte">Liste mit Produkten.</param>
+		/// <param name="gultigAb">Datum des Angebotsbeginnes.</param>
+        /// <param name="gultigBis">Datum des Angebotsendes.</param>
+		/// <throw>UngultigesDatumException, falls das Anfangs- oder Enddatum ungultig ist.</throw>
+        /// <returns>Angebot</returns>
+		Angebot AddAngebot(List<Produkt> produkte, Date gultigAb, Date gultigBis);
+		
+		/// <summary>
+        /// Diese Operation loscht ein Angebot
+        /// </summary>
+        /// <param name="nummer">Angebotnummer.</param>
+        /// <throw>UngultigeAngebotnummerException, falls das Angebotnummer nicht existiert.</throw>
+        void DeleteAngebot(AngebotNummerTyp nummer);
+		
+		/// <summary>
+        /// Diese Operation loscht ein Angebot
+        /// </summary>
+        /// <param name="nummer">Angebotnummer.</param>
+        /// <throw>UngultigeAngebotnummerException, falls die Angebotnummer nicht existiert.</throw>
+        void DeleteAngebot(String nummer);
+		
+		/// <summary>
+        /// Diese Operation loscht ein Angebot
+        /// </summary>
+        /// <param name="angebot">Angebot.</param>
+        /// <throw>UngultigesAngebotException, falls das Angebot nicht existiert.</throw>
+        void DeleteAngebot(Angebot angebot);
+
+        /// <summary>
+        /// Diese Operation andert Angebotsdaten
+        /// </summary>
+        /// <param name="angebot">Angebot.</param>
+        /// <throw>UngultigesAngebotException, falls das Angebot nicht existiert.</throw>
+        /// <returns>Angebot</returns>
+		Angebot UpdateAngebot(Angebot angebot);
+		
+		/// <summary>
+        /// Diese Operation lad ein Angebot anhand der Auftragsnummer
+        /// </summary>
+        /// <param name="nummer">.Auftragsnummer</param>
+        /// <throw>UngultigerAuftragException, falls die Auftragsnummer nicht existiert.</throw>
+        /// <returns>Auftrag</returns>
+		Auftrag GetAuftrag(AuftragNummerTyp nummer);
+		
+		/// <summary>
+        /// Diese Operation lad ein Angebot anhand der Auftragsnummer
+        /// </summary>
+        /// <param name="nummer">.Auftragsnummer</param>
+        /// <throw>UngultigerAuftragException, falls die Auftragsnummer nicht existiert.</throw>
+        /// <returns>Auftrag</returns>
+		Auftrag GetAuftrag(String nummer);
+		
+		/// <summary>
+        /// Diese Operation lad eine Liste mit gueltigen Auftraegen (nicht abgeschlossene Auftraege)
+        /// </summary>
+		/// <returns>Liste der gultigen Auftraegen</returns>
+        List<Auftrag> GetGultigeAuftrage();
+		
+		/// <summary>
+        /// Diese Operation lad eine Liste mit abgeschlossenen Auftraegen
+        /// </summary>
+		/// <returns>Liste der abgeschlossene Auftraegen</returns>
+        List<Auftrag> GetAbgeschlosseneAuftrage();
+		
+		/// <summary>
+        /// Diese Operation lad eine Liste mit allen Auftraegen
+        /// </summary>
+		/// <returns>Liste der allen Auftraegen</returns>
+        List<Auftrag> GetAlleAuftrage();
+		
+		/// <summary> ?
+        /// Diese Operation lad einen Auftrag bei dem Produktenlagerbestand vollstaendig ist
+        /// </summary>
+		/// <returns>Auftrag</returns>
+        Auftrag GetBereitZurAuslieferungAuftrag();
+		
+		/// <summary> ?
+        /// Diese Operation lad eine Liste mit allen Auftraegen bei denen Produktenlagerbestand vollstaendig ist
+        /// </summary>
+		/// <returns>Liste der allen Auftraegen</returns>
+        ///List<Auftrag> GetAlleBereitZurAuslieferungAuftrage();
+		
+		/// <summary>
+        /// Diese Operation fuhgt einen neuen Auftrag hinzu
+        /// </summary>
+		/// <param name="beauftragtAm">Datum des Auftragserteilung.</param>
+		/// <param name="angebot">Angebot fur den Auftrag gilt.</param>
+		/// <throw>UngultigesDatumException, falls das Auftragsdatum ungultig ist.</throw>
+		/// <throw>UngultigesAngebotException, falls das Angebot ungultig ist.</throw>
+        /// <returns>Auftrag</returns>
+		Auftrag AddAuftrag(Date beauftragtAm, Angebot angebot);
+		
+		/// <summary>
+        /// Diese Operation fuhgt einen neuen Auftrag hinzu
+        /// </summary>
+		/// <param name="nummer">Nummer des Auftrages.</param>
+		/// <param name="beauftragtAm">Datum des Auftragserteilung.</param>
+		/// <param name="angebotnummer">Angebot fur den Auftrag gilt.</param>
+		/// <throw>UngultigesDatumException, falls das Auftragsdatum ungultig ist.</throw>
+		/// <throw>UngultigesAngebotNummerException, falls das Angebot ungultig ist.</throw>
+        /// <returns>Auftrag</returns>
+		Auftrag AddAuftrag(Date beauftragtAm, AngebotNummerTyp angebotnummer);
+		
+		/// <summary>
+        /// Diese Operation loscht einen Auftrag
+        /// </summary>
+        /// <param name="nummer">Auftragnummer.</param>
+        /// <throw>UngultigeAuftragnummerException, falls das Auftragnummer nicht existiert.</throw>
+        void DeleteAuftrag(AuftragNummerTyp nummer);
+		
+		/// <summary>
+        /// Diese Operation loscht einen Auftrag
+        /// </summary>
+        /// <param name="nummer">Auftragnummer.</param>
+        /// <throw>UngultigeAuftragnummerException, falls die Auftragsnummer nicht existiert.</throw>
+        void DeleteAuftrag(String nummer);
+		
+		/// <summary>
+        /// Diese Operation loscht einen Auftrag
+        /// <param name="auftrag">Auftrag.</param>
+        /// <throw>UngultigerAuftragException, falls der Auftrag nicht existiert.</throw>
+        void DeleteAuftrag(Auftrag auftrag);
+
+        /// <summary>
+        /// Diese Operation andert Auftragsdaten
+        /// </summary>
+        /// <param name="auftrag">Auftrag.</param>
+        /// <throw>UngultigerAuftragException, falls der Auftrag nicht existiert.</throw>
+        /// <returns>Auftrag</returns>
+		Auftrag UpdateAuftrag(Auftrag Auftrag);
+		
+		/// <summary> ?
+		/// Diese Operation setzt Parameter IstAbgeschlossen auf true oder false.
+		/// </summary>
+		/// <param name="wert">.Zustand des Auftrages</param>
+		void SetIstAbgeschlossen(boolean wert);
+	}
+	
+	///Interface fur die TransportauftragVerwaltung im Anwendungskern
+	public interface IAWKTransportauftragverwaltung
+	{
+		/// <summary>
+        /// Diese Operation lad einen Transportauftrag anhand der Transportauftragnummer
+        /// </summary>
+        /// <param name="nummer">.Transportauftragnummer</param>
+        /// <throw>UngultigerTransportauftragnummerException, falls die Transportauftragnummer nicht existiert.</throw>
+        /// <returns>Transportauftrag</returns>
+		Transportauftrag GetTransportauftrag(ProduktNummerTyp nummer);
+		
+		/// <summary>
+        /// Diese Operation lad eine Liste mit Transportauftragen
+        /// </summary>
+		/// <returns>Liste der Transportauftragen</returns>
+        List<Transportauftrag> GetAlleTransportauftrage();
+		
+		/// <summary>
+        /// Diese Operation fuhgt einen neuen Transportauftrag hinzu
+        /// </summary>
+		/// <param name="ausgangsdatum">Ausgangsdatum des Transportauftrages.</param>
+        /// <param name="lieferdatum">Lieferdatum des Transportauftrages.</param>
+		/// <param name="transportdienstleister">transportdienstleister des Transportauftrages.</param>
+        /// <returns>Transportauftrag</returns>
+		Transportauftrag AddTransportauftrag(Date ausgangsdatum, Date lieferdatum, TransportdienstleisterTyp transportdienstleister);
+
+        /// <summary>
+        /// Diese Operation loscht einen Transportauftrag
+        /// </summary>
+        /// <param name="nummer">Transportauftragnummer.</param>
+        /// <throw>UngultigeTransportauftragnummerException, falls das Transportauftragnummer nicht existiert.</throw>
+        void DeleteTransportauftrag(TransportauftragNummerTyp nummer);
+		
+		/// <summary>
+        /// Diese Operation loscht einen Transportauftrag
+        /// </summary>
+        /// <param name="transportauftrag">Transportauftrag.</param>
+        /// <throw>UngultigerTransportauftragException, falls der Transportauftrag nicht existiert.</throw>
+        void DeleteTransportauftrag(Transportauftrag transportauftrag);
+
+        /// <summary>
+        /// Diese Operation andert Transportauftragsdaten
+        /// </summary>
+        /// <param name="transportauftrag">Transportauftrag.</param>
+        /// <throw>UngultigerTransportauftragException, falls der Transportauftrag nicht existiert.</throw>
+        /// <returns>Transportauftrag</returns>
+		Transportauftrag UpdateTransportauftrag(Transportauftrag transportauftrag);
+		
+		/// <summary>
+        /// Diese Operation lad einee Lieferung anhand der Lieferungsnummer
+        /// </summary>
+        /// <param name="nummer">.Lieferungsnummer</param>
+        /// <throw>UngultigeLieferungsnummerException, falls die Lieferungsnummer nicht existiert.</throw>
+        /// <returns>Lieferung</returns>
+		Lieferung GetLieferung(LieferungNummerTyp nummer);
+		
+		/// <summary>
+        /// Diese Operation lad eine Liste mit Lieferungen
+        /// </summary>
+		/// <returns>Liste der Lieferungen</returns>
+        List<Transportauftrag> GetAlleLieferungen();
+		
+		/// <summary>
+        /// Diese Operation fuhgt eine neue Lieferung hinzu
+        /// </summary>
+		/// <param name="transportauftrag">Transportauftrag fur eine Lieferung.</param>
+        /// <returns>Lieferung</returns>
+		Lieferung AddLieferung(Transportauftrag transportauftrag);
+
+        /// <summary>
+        /// Diese Operation loscht einen Transportauftrag
+        /// </summary>
+        /// <param name="nummer">Lieferungsnummer.</param>
+        /// <throw>UngultigeLieferungnummerException, falls das Lieferungnummer nicht existiert.</throw>
+        void DeleteLieferung(LieferungNummerTyp nummer);
+		
+		/// <summary>
+        /// Diese Operation loscht eine Lieferung
+        /// </summary>
+        /// <param name="lieferung">Lieferung.</param>
+        /// <throw>UngultigeLieferungException, falls die Lieferung nicht existiert.</throw>
+        void DeleteLieferung(Lieferung lieferung);
+
+        /// <summary>
+        /// Diese Operation andert Lieferungsdaten
+        /// </summary>
+        /// <param name="lieferung">Lieferung.</param>
+        /// <throw>UngultigeLieferungException, falls die Lieferung nicht existiert.</throw>
+        /// <returns>Transportauftrag</returns>
+		Lieferung UpdateLieferung(Lieferung lieferung);
+	}
+	
+	///Interface fur die Buchhaltungsverwaltung im Anwendungskern
+	public interface IAWKBuchhaltungsverwaltung
+	{
+		/// <summary>
+        /// Diese Operation lad eine Rechnung anhand der Rechnungsnummer
+        /// </summary>
+        /// <param name="nummer">.Rechnungsnummer</param>
+        /// <throw>UngultigeRechnungsnummerException, falls die Rechnungsnummer nicht existiert.</throw>
+        /// <returns>Lieferung</returns>
+		Rechnung GetRechnung(RechnungNummerTyp nummer);
+		
+		/// <summary>
+        /// Diese Operation lad eine Liste mit Rechnungen
+        /// </summary>
+		/// <returns>Liste der Rechnungen</returns>
+        List<Rechnung> GetAlleRechnungen();
+		
+		/// <summary>
+        /// Diese Operation fuhgt eine neue Rechnung hinzu
+        /// </summary>
+		/// <param name="auftrag">Auftrag in der Rechnung.</param>
+        /// <returns>Rechnung</returns>
+		Rechnung AddRechnung(Auftrag auftrag);
+
+        /// <summary>
+        /// Diese Operation loscht eine Rechnung
+        /// </summary>
+        /// <param name="nummer">Rechnungsnummer.</param>
+        /// <throw>UngultigeRechnungnummerException, falls das Rechnungsnummer nicht existiert.</throw>
+        void DeleteRechnung(RechnungNummerTyp nummer);
+		
+		/// <summary>
+        /// Diese Operation loscht eine Rechnung
+        /// </summary>
+        /// <param name="rechnung">Rechnung.</param>
+        /// <throw>UngultigeRechnungException, falls die Rechnung nicht existiert.</throw>
+        void DeleteRechnung(Rechnung rechnung);
+
+        /// <summary>
+        /// Diese Operation andert Rechnungsdaten
+        /// </summary>
+        /// <param name="rechnung">Rechnung.</param>
+        /// <throw>UngultigeRechnungException, falls die Rechnung nicht existiert.</throw>
+        /// <returns>Rechnung</returns>
+		Rechnung UpdateRechnung(Rechnung rechnung);
+		
+		/// <summary>
+        /// Diese Operation verschickt Rechnung an den Kunden
+        /// </summary>
+        /// <param name="rechnung">Rechnung.</param>
+        /// <throw>UngultigeRechnungException, falls die Rechnung nicht existiert.</throw>
+		void VerschickeRechnung(Rechnung rechnung);
+	}
+}
+

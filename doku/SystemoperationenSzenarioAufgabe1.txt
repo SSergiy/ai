@@ -1,0 +1,190 @@
+1. 		IEinkauf:
+		/// <summary>
+        /// Diese Operation läd eine Liste mit Produkten anhand des Produktnamen
+        /// </summary>
+        /// <param name="name">Name des Produktes</param>
+        /// <throw>UngültigerProduktnameException, falls die Produktname nicht existiert.</throw>
+        /// <returns>Liste der Produkten mit dem Namen "name"</returns>
+		List<Produkt> HoleAlleProdukte(String name);
+		
+		
+		/// <summary>
+        /// Diese Operation läd alle Produkte aus dem System
+        /// </summary>
+		/// <returns>Liste aller Produkten</returns>
+        List<Produkt> HoleAlLeProdukte();
+		
+2.		IVerkauf:
+		/// <summary> 
+        /// Diese Operation fuhgt ein neues Angebot hinzu
+        /// </summary>
+		/// <param name="produkte">Liste mit Produkten.</param>
+		/// <param name="gültigAb">Datum des Angebotsbeginnes.</param>
+        /// <param name="gültigBis">Datum des Angebotsendes.</param>
+		/// <throw>UngultigesDatumException, falls das Anfangs- oder Enddatum ungultig ist.</throw>
+        /// <returns>Angebot</returns>
+		Angebot AddAngebot(List<Produkt> produkte, Date gültigAb, Date gültigBis);
+
+3.		-----
+
+4.		IVerkauf + IAWKAuftragsVerwaltung:
+		/// <summary>
+        /// Diese Operation fügt einen neuen Auftrag hinzu
+        /// </summary>
+		/// <param name="beauftragtAm">Datum des Auftragserteilung.</param>
+		/// <param name="angebot">Angebot fur den Auftrag gilt.</param>
+		/// <throw>UngultigesDatumException, falls das Auftragsdatum ungultig ist.</throw> 
+		/// <throw>UngultigesAngebotException, falls das Angebot ungultig ist.</throw>
+        /// <returns>Auftrag</returns>
+		Auftrag AddAuftrag(Date beauftragtAm, Angebot angebot);
+		
+		oder
+		
+		/// <summary>
+        /// Diese Operation fuhgt einen neuen Auftrag hinzu
+        /// </summary>
+		/// <param name="nummer">Nummer des Auftrages.</param>
+		/// <param name="beauftragtAm">Datum des Auftragserteilung.</param>
+		/// <param name="angebotnummer">Angebot fur den Auftrag gilt.</param>
+		/// <throw>UngultigesDatumException, falls das Auftragsdatum ungultig ist.</throw>
+		/// <throw>UngultigesAngebotNummerException, falls das Angebot ungultig ist.</throw>
+        /// <returns>Auftrag</returns>
+		Auftrag AddAuftrag(Date beauftragtAm, AngebotNummerTyp angebotnummer);
+
+5.	a)	IAWKProduktVerwaltung:
+		/// <summary> ?
+        /// Prüft, ob ein Produktbestand ausreicht anhand der Produktnummer
+        /// </summary>
+        /// <param name="nummer">.Produktnummer</param>
+		/// <param name="anzahl">.Zu pruefende Produktlagerbestand</param>
+        /// <throw>UngultigesProduktnummerException, falls die Produktnummer nicht existiert.</throw>
+        /// <returns>True/False</returns>
+		boolean ProduktLagerbestandPrüfen(ProduktNummerTyp nummer, Integer anzahl);
+		
+		oder
+		
+		/// <summary> 
+        /// Prüeft, ob ein Produktbestand ausreicht anhand der Produktliste
+        /// </summary>
+        /// <param name="nummer">.Produktnummer</param>
+        /// <throw>UngultigesProduktException, falls die Produkt nicht existiert.</throw>
+        /// <returns>True/False</returns>
+		boolean ProduktLagerbestandPrüfen(List<Produkt> produktliste);
+		
+	a)i.	/// <summary> 
+			/// Erzeugt eine Warenausgangsmeldung fur einen Produkt anhand der Produktnummer und der Anzahl
+			/// </summary>
+			/// <param name="nummer">.Produktnummer</param>
+			/// <param name="anzahl">.Anzahl des Produktes zum Auslagern</param>
+			/// <throw>UngultigesProduktnummerException, falls die Produktnummer nicht existiert.</throw>
+			void ProduktAuslagerungMelden(ProduktNummerTyp nummer, Integer anzahl);
+			
+			oder
+			/// <summary> ?
+			/// Diese Operation erzeugt eine Warenausgangsmeldung fur die Produkteliste
+			/// </summary>
+			/// <param name="produktliste">.Produktliste</param>
+			/// <throw>UngultigesProduktnummerException, falls die Produktnummer nicht existiert.</throw>
+			void ProduktAuslagerungMelden(List<Produkt> produktliste);
+		
+		
+	 ii.	IAWKTransportauftragverwaltung:
+			/// <summary>
+			/// Fügt einen neuen Transportauftrag hinzu
+			/// </summary>
+			/// <param name="ausgangsdatum">Ausgangsdatum des Transportauftrages.</param>
+			/// <param name="lieferdatum">Lieferdatum des Transportauftrages.</param>
+			/// <param name="transportdienstleister">transportdienstleister des Transportauftrages.</param>
+			/// <returns>Transportauftrag</returns>
+			Transportauftrag AddTransportauftrag(Date ausgangsdatum, Date lieferdatum, TransportdienstleisterTyp transportdienstleister);
+			
+			/// <summary>
+			/// Diese Operation fuhgt eine neue Lieferung hinzu
+			/// </summary>
+			/// <param name="transportauftrag">Transportauftrag fur eine Lieferung.</param>
+			/// <returns>Lieferung</returns>
+			Lieferung AddLieferung(Transportauftrag transportauftrag);
+			
+	iii.	IAWKBuchhaltungsverwaltung:
+			/// <summary>
+			/// Diese Operation fuhgt eine neue Rechnung hinzu
+			/// </summary>
+			/// <param name="auftrag">Auftrag in der Rechnung.</param>
+			/// <returns>Rechnung</returns>
+			Rechnung AddRechnung(Auftrag auftrag);
+			
+			/// <summary>
+			/// Diese Operation verschickt Rechnung an den Kunden
+			/// </summary>
+			/// <param name="rechnung">Rechnung.</param>
+			/// <throw>UngultigeRechnungException, falls die Rechnung nicht existiert.</throw>
+			void VerschickeRechnung(Rechnung rechnung);
+			
+	b)i.	class ProduktVerwaltung:
+			/// <summary> ?
+			/// Diese Operation bestellt fehlende Anzahl von Produkten
+			/// </summary>
+			/// <param name="produkt">.Produkt mit fehlendem Bestand</param>
+			/// <param name="anzahl">.Fehlende Anzahl des Produktes</param>
+			/// <throw>UngultigesProduktException, falls die Produkt nicht existiert.</throw>
+			void BestelleProdukt(Produkt produkt, Integer anzahl);
+			
+			/// <summary> ?
+			/// Diese Operation erzeugt eine neue Bestellung
+			/// </summary>
+			/// <param name="produkt">.Produkt mit fehlendem Bestand</param>
+			/// <param name="anzahl">.Fehlende Anzahl des Produktes</param>
+			/// <param name="bestelldatum">.Bestelldatum</param>
+			/// <throw>UngultigesProduktException, falls die Produkt nicht existiert.</throw>
+			/// <returns>Bestellung</returns>
+			Bestellung AddBestellung(Produkt produkt, Integer anzahl, Date bestelldatum);
+			
+			/// <summary> ?
+			/// Diese Operation erzeugt einen neuen Einkaufsinfosatz
+			/// </summary>
+			/// <param name="produkt">.Produkt</param>
+			/// <param name="anzahl">.Menge des Produktes</param>
+			/// <param name="gueltigAb">.Beginndatum der Gultigkeit</param>
+			/// <param name="gueltigBis">.Endedatum der Gultigkeit</param>
+			/// <param name="Planlieferzeit">.Planlieferzeit</param>
+			/// <throw>UngultigesProduktException, falls die Produkt nicht existiert.</throw>
+			/// <returns>Einkaufsinfosatz</returns>
+			Einkaufsinfosatz AddEinkaufsinfosatz(Produkt produkt, Integer normalmenge, Date gueltigAb, Date gueltigBis, Date Planlieferzeit);
+	 
+	 ii.	IAWKProduktVerwaltung:
+			/// <summary> ?
+			/// Diese Operation erzeugt eine Wareneingangsmeldung fur die Produkteliste
+			/// </summary>
+			/// <param name="produktliste">.Produktliste</param>
+			/// <throw>UngultigesProduktnummerException, falls die Produktnummer nicht existiert.</throw>
+			void ProduktEingangMelden(List<Produkt> produktliste);
+			
+			oder
+			
+			/// <summary> ?
+			/// Diese Operation erzeugt eine Wareeingangsmeldung fur einen Produkt anhand der Produktnummer und Anzahl
+			/// </summary>
+			/// <param name="nummer">.Produktnummer</param>
+			/// <param name="anzahl">.Anzahl des Produktes zum Einlagern</param>
+			/// <throw>UngultigesProduktnummerException, falls die Produktnummer nicht existiert.</throw>
+			void ProduktEingangMelden(ProduktNummerTyp nummer, Integer anzahl);	
+			
+6.		IAWKTransportauftragVerwaltung:
+		/// <summary> ?
+		/// Diese Operation setzt Parameter LieferungErfolgt auf true oder false.
+		/// </summary>
+		/// <param name="wert">.Lieferungzustand</param>
+		void SetLieferungErfolgt(boolean wert);
+		
+7.		/// <summary> ?
+		/// Diese Operation setzt Parameter IstBezahlt auf true oder false.
+		/// </summary>
+		/// <param name="wert">.Zahlungszustand</param>
+		void SetIstBezahlt(boolean wert);
+		
+8.		IAWKAuftragsVerwaltung
+		/// <summary> ?
+		/// Diese Operation setzt Parameter IstAbgeschlossen auf true oder false.
+		/// </summary>
+		/// <param name="wert">.Zustand des Auftrages</param>
+		void SetIstAbgeschlossen(boolean wert);
