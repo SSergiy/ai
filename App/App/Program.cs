@@ -12,8 +12,10 @@ using NHibernate.Tool.hbm2ddl;
 using System.Reflection;
 
 
-namespace App
+namespace App 
 {
+
+
     public class Program
     {
        public static void Main(string[] args)
@@ -74,6 +76,7 @@ namespace App
                     Console.WriteLine("DB Fertig geschrieben nach ai.db");
                     Console.ReadKey();
 
+                    transaction.Commit();
 
                 }
             }

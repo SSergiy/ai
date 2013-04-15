@@ -10,7 +10,7 @@ namespace Aufgabe2
     {
         public virtual int Id { get; protected set; }
         public virtual string Name { get; set; }
-        public virtual IList<Kurs> Kurse { get; protected set; }
+        public virtual IList<Kurs> Kurse { get;  set; }
         public virtual Notenkonto Notenkonto { get; set; }
 
         public Student() { }
