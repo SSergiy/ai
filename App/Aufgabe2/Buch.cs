@@ -8,6 +8,7 @@ namespace Aufgabe2
 {
     public class Buch
     {
+
         public virtual int Id {get; protected set;}
         public virtual string Titel { get; set; }
     }

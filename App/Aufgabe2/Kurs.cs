@@ -10,7 +10,7 @@ namespace Aufgabe2
     {
         public virtual int Id { get; protected set; }
         public virtual string Titel { get; set; }
-        public virtual IList<Buch> Buch { get; protected set; }
+        public virtual IList<Buch> Buch { get; set; }
     }
 
     public class KurseMap : ClassMap<Kurs> 
