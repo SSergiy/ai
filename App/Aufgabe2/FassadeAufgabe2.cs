@@ -89,18 +89,18 @@ namespace Aufgabe2
         {
             using (var session = persistenz.OpenSession())
             {
-                Kurs kurs = new Kurs();
-                kurs.Titel = titel;
-                kurs.Buch = bücher;
-
-
                 using (var transaction = session.BeginTransaction())
                 {
+
+                    Kurs kurs = new Kurs();
+                    kurs.Titel = titel;
+                    kurs.Buch = bücher;
                     foreach (Buch b in bücher)
                     {
                         session.SaveOrUpdate(b);
                     }
-                    
+
+                    session.SaveOrUpdate(kurs);
                     transaction.Commit();
                     return kurs;
                 }
@@ -111,14 +111,12 @@ namespace Aufgabe2
         {
             using (var session = persistenz.OpenSession())
             {
-                Kurs kurs = session.Get<Kurs>(id);
-                kurs.Titel = titel;
-                kurs.Buch = bücher;
-
-
                 using (var transaction = session.BeginTransaction())
                 {
-                    session.SaveOrUpdate(bücher);
+                    Kurs kurs = session.Get<Kurs>(id);
+                    kurs.Titel = titel;
+                    kurs.Buch = bücher; 
+                    session.SaveOrUpdate(kurs);
                     transaction.Commit();
                     return kurs;
                 }

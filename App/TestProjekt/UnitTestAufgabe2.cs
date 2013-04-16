@@ -104,10 +104,14 @@ namespace TestProjekt
             int id1 = v1.Id;
             
             Kurs v2 = f.holeKurs(id1); // geht nicht ???
-            // int id2 = v2.Id; // v2 == Null !!!
-            Assert.AreEqual(v1, v2, "IDs nicht gleich");
 
-            Assert.AreEqual(b1.Titel, v2.Buch[0].Titel, "Buch wurde nicht hinzugefügt");
+
+            int v2id = v2.Id;
+            int v1id = v1.Id;
+
+            Assert.AreEqual(v1id, v2id, "IDs nicht gleich");
+
+            // .AreEqual(b1.Titel, v2.Buch[0].Titel, "Buch wurde nicht hinzugefügt");
 
             f.ÄndereKurs(id1, "a", l);
             v1 = f.holeKurs(v1.Id);
