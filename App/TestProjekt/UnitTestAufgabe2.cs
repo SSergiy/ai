@@ -136,7 +136,7 @@ namespace TestProjekt
             v1 = f.holeStudent(v1.Id);
             Student v2 = f.holeStudent(id1);
             Assert.AreEqual("a", v2.Name, "Name wurde nicht geändert");
-            Assert.AreEqual(k.Id, v2.Kurse[0].Id, "Name wurde nicht geändert");
+            Assert.AreEqual(k.Id, v2.Kurse[0].Id, "Kurse nicht gleich");
             f.LöscheStudent(id1);
             Assert.AreEqual(null, f.holeStudent(id1), "Student wurde nicht gelöscht!");
         }
