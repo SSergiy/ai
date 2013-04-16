@@ -5,7 +5,19 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "App", "App\App.csproj", "{E
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Aufgabe2", "Aufgabe2\Aufgabe2.csproj", "{0F7ED510-3816-4B73-8E75-3C2D9544ED76}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestProjekt", "TestProjekt\TestProjekt.csproj", "{21BC533A-D3A4-4D8E-92D8-181584747BD8}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{3EBB195C-089D-4D57-8B0F-17CF133D7D77}"
+	ProjectSection(SolutionItems) = preProject
+		App.vsmdi = App.vsmdi
+		Local.testsettings = Local.testsettings
+		TraceAndTestImpact.testsettings = TraceAndTestImpact.testsettings
+	EndProjectSection
+EndProject
 Global
+	GlobalSection(TestCaseManagementSettings) = postSolution
+		CategoryFile = App.vsmdi
+	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Debug|Mixed Platforms = Debug|Mixed Platforms
@@ -35,6 +47,16 @@ Global
 		{0F7ED510-3816-4B73-8E75-3C2D9544ED76}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{0F7ED510-3816-4B73-8E75-3C2D9544ED76}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{0F7ED510-3816-4B73-8E75-3C2D9544ED76}.Release|x86.ActiveCfg = Release|Any CPU
+		{21BC533A-D3A4-4D8E-92D8-181584747BD8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{21BC533A-D3A4-4D8E-92D8-181584747BD8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{21BC533A-D3A4-4D8E-92D8-181584747BD8}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{21BC533A-D3A4-4D8E-92D8-181584747BD8}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{21BC533A-D3A4-4D8E-92D8-181584747BD8}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{21BC533A-D3A4-4D8E-92D8-181584747BD8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{21BC533A-D3A4-4D8E-92D8-181584747BD8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{21BC533A-D3A4-4D8E-92D8-181584747BD8}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{21BC533A-D3A4-4D8E-92D8-181584747BD8}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{21BC533A-D3A4-4D8E-92D8-181584747BD8}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

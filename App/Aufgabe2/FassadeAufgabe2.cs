@@ -14,26 +14,13 @@ using NHibernate.Tool.hbm2ddl;
 namespace Aufgabe2
 {
     // Diese Fassade implementiert die Schnittstellen für die Aufgabe 2
-    class FassadeAufgabe2 : IAufgabe2
+    public class FassadeAufgabe2 : IAufgabe2
     {
         private static ISessionFactory persistenz;
 
         public FassadeAufgabe2()
         {
-            Configuration configuration = new Configuration();
-            FluentConfiguration fluentConfiguration = Fluently.Configure(configuration);
-            fluentConfiguration = fluentConfiguration
-                .Database(
-                            (SQLiteConfiguration.Standard.UsingFile("ai.db"))
-                    ).Mappings(m =>
-            m.FluentMappings
-                   .AddFromAssemblyOf<Aufgabe2.StudentMap>()
-            .AddFromAssemblyOf<Aufgabe2.BuchMap>()
-            .AddFromAssemblyOf<Aufgabe2.KurseMap>()
-            .AddFromAssemblyOf<Aufgabe2.NotenkontoMap>())
-            .ExposeConfiguration(cfg => new SchemaUpdate(cfg).Execute(false, true));
-
-        persistenz = configuration.BuildSessionFactory();
+            persistenz = Helper.CreateSessionFactory();
         }
 
 
@@ -52,6 +39,11 @@ namespace Aufgabe2
                     return buch;
                 }
             }
+        }
+
+        public Buch holeBuch(int id)
+        {
+            return persistenz.OpenSession().Get<Buch>(id);
         }
 
         public Buch ÄndereBuch(int id, string Titel)
@@ -88,6 +80,11 @@ namespace Aufgabe2
             }
         }
 
+        public Kurs holeKurs(int id)
+        {
+            return persistenz.OpenSession().Get<Kurs>(id);
+        }
+
         public Kurs ErstelleKurs(string titel, IList<Buch> bücher)
         {
             using (var session = persistenz.OpenSession())
@@ -99,7 +96,11 @@ namespace Aufgabe2
 
                 using (var transaction = session.BeginTransaction())
                 {
-                    session.SaveOrUpdate(bücher);
+                    foreach (Buch b in bücher)
+                    {
+                        session.SaveOrUpdate(b);
+                    }
+                    
                     transaction.Commit();
                     return kurs;
                 }
@@ -126,7 +127,7 @@ namespace Aufgabe2
 
         public void LöscheKurs(int id)
         {
-           using (var session = persistenz.OpenSession())
+            using (var session = persistenz.OpenSession())
             {
                 Kurs kurs = session.Get<Kurs>(id);
                 using (var transaction = session.BeginTransaction())
@@ -135,6 +136,11 @@ namespace Aufgabe2
                     transaction.Commit();
                 }
             }
+        }
+
+        public Notenkonto holeNotenkonto(int id)
+        {
+            return persistenz.OpenSession().Get<Notenkonto>(id);
         }
 
         public Notenkonto ErstelleNotenkonto(double gesamtnote)
@@ -178,6 +184,11 @@ namespace Aufgabe2
                     transaction.Commit();
                 }
             }
+        }
+
+        public Student holeStudent(int id)
+        {
+            return persistenz.OpenSession().Get<Student>(id);
         }
 
         public Student ErstelleStudent(string name, IList<Kurs> kurse, Notenkonto notenkonto)
@@ -228,6 +239,7 @@ namespace Aufgabe2
             }
             return student;
         }
+
         public void LöscheStudent(int id)
         {
             Student student;

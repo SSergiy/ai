@@ -11,16 +11,13 @@ using System.IO;
 using NHibernate.Tool.hbm2ddl;
 using System.Reflection;
 
-
-namespace App 
+namespace App
 {
-
-
     public class Program
     {
-       public static void Main(string[] args)
+        public static void Main(string[] args)
         {
-            var sessionFactory = CreateSessionFactory();
+            var sessionFactory = Helper.CreateSessionFactory();
 
             using (var session = sessionFactory.OpenSession())
             {
@@ -35,7 +32,7 @@ namespace App
                     // Erzeuge Studenten und Notenkonto
                     for (char character = 'A'; character < 'A' + 10; character++)
                     {
-                        string name = CreateName(character, 10);
+                        string name = Helper.CreateName(character, 10);
 
                         Notenkonto notenkonto = (new Notenkonto { Gesamtnote = (int)character });
                         notenkonten.Add(notenkonto);
@@ -45,7 +42,7 @@ namespace App
                     // Erzeuge Kurse
                     for (char buchstabe = 'Z'; buchstabe > 'Z' - 10; buchstabe--)
                     {
-                        string name = CreateName(buchstabe, 5);
+                        string name = Helper.CreateName(buchstabe, 5);
                         kurse.Add(new Kurs { Titel = name });
                         bücher.Add(new Buch { Titel = name + "-Buch" });
                     }
@@ -54,7 +51,7 @@ namespace App
                     Console.WriteLine("Daten erstellt. Speichere ...");
                     foreach (Notenkonto notenkonto in notenkonten)
                     {
-                       
+
                         session.SaveOrUpdate(notenkonto);
                     }
 
@@ -82,31 +79,6 @@ namespace App
             }
         }
 
-        private static string CreateName(char character, int size)
-        {
-            string name = "";
-            for (int zeichenlaenge = 0; zeichenlaenge < size; zeichenlaenge++)
-            {
-                name += character;
-            }
-            return name;
-        }
 
-        public static ISessionFactory CreateSessionFactory()
-        {
-            return Fluently.Configure()
-   .Database(SQLiteConfiguration.Standard
-   .UsingFile("ai.db")
-   )       
-   .Mappings(m =>
-     m.FluentMappings
-       .AddFromAssemblyOf<Aufgabe2.StudentMap>()
-       .AddFromAssemblyOf<Aufgabe2.BuchMap>()
-       .AddFromAssemblyOf<Aufgabe2.KurseMap>()
-       .AddFromAssemblyOf<Aufgabe2.NotenkontoMap>()       
-       )
-   .ExposeConfiguration(cfg => new SchemaUpdate(cfg).Execute(false, true))
-   .BuildSessionFactory();
-        }
     }
 }
