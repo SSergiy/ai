@@ -88,7 +88,7 @@ namespace TestProjekt
             f.ÄndereNotenkonto(id1, 1);
             v1 = f.holeNotenkonto(v1.Id);
             Notenkonto v2 = f.holeNotenkonto(id1);
-            Assert.AreEqual(1, v2.Gesamtnote, "Titel wurde nicht geändert");
+            Assert.AreEqual(1, v2.Gesamtnote, "Gesamtnote wurde nicht geändert");
             f.LöscheNotenkonto(id1);
             Assert.AreEqual(null, f.holeNotenkonto(id1), "Student wurde nicht gelöscht!");
         }
@@ -99,11 +99,11 @@ namespace TestProjekt
             Buch b1 = f.ErstelleBuch("b");
 
             IList<Buch> l = new List<Buch>();
-            // l.Add(b1);
+            l.Add(b1);
             Kurs v1 = f.ErstelleKurs("b", l);
             int id1 = v1.Id;
             
-            Kurs v2 = f.holeKurs(id1); // geht nicht ???
+            Kurs v2 = f.holeKurs(id1);
 
 
             int v2id = v2.Id;
@@ -111,12 +111,12 @@ namespace TestProjekt
 
             Assert.AreEqual(v1id, v2id, "IDs nicht gleich");
 
-            // .AreEqual(b1.Titel, v2.Buch[0].Titel, "Buch wurde nicht hinzugefügt");
+            Assert.AreEqual(b1.Titel, v2.Buch[0].Titel, "Buch wurde nicht hinzugefügt");
 
             f.ÄndereKurs(id1, "a", l);
             v1 = f.holeKurs(v1.Id);
             v2 = f.holeKurs(id1);
-            Assert.AreEqual("a", v2.Titel, "Name wurde nicht geändert");
+            Assert.AreEqual("a", v2.Titel, "Titel wurde nicht geändert");
 
             f.LöscheKurs(id1);
             Assert.AreEqual(null, f.holeKurs(id1), "Kurs wurde nicht gelöscht!");
@@ -127,7 +127,8 @@ namespace TestProjekt
         {
             IList<Buch> bs = new List<Buch>();
             IList<Kurs> ks = new List<Kurs>();
-            // ks.Add(f.ErstelleKurs("S1", bs)); // geht nicht ???
+            Kurs k = f.ErstelleKurs("S1", bs);
+            ks.Add(k);
             Notenkonto n = f.ErstelleNotenkonto(2);
             Student v1 = f.ErstelleStudent("b", ks, n);
             int id1 = v1.Id;
@@ -135,6 +136,7 @@ namespace TestProjekt
             v1 = f.holeStudent(v1.Id);
             Student v2 = f.holeStudent(id1);
             Assert.AreEqual("a", v2.Name, "Name wurde nicht geändert");
+            Assert.AreEqual(k.Id, v2.Kurse[0].Id, "Kurse nicht gleich");
             f.LöscheStudent(id1);
             Assert.AreEqual(null, f.holeStudent(id1), "Student wurde nicht gelöscht!");
         }
