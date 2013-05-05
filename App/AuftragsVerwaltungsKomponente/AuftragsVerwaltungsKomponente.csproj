@@ -31,6 +31,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="FluentNHibernate">
+      <HintPath>..\packages\FluentNHibernate.1.3.0.733\lib\FluentNHibernate.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -41,14 +44,28 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Angebot.cs" />
-    <Compile Include="AngebotNummerTyp.cs" />
+    <Compile Include="Fachliche Typen\AngebotNummerTyp.cs" />
     <Compile Include="Auftrag.cs" />
-    <Compile Include="AuftragNummerTyp.cs" />
+    <Compile Include="Fachliche Typen\AuftragNummerTyp.cs" />
     <Compile Include="AuftragsVerwalter.cs" />
     <Compile Include="AuftragsVerwaltungFassade.cs" />
     <Compile Include="AWFAuftragsVerwaltung.cs" />
     <Compile Include="IAWKAuftragsVerwaltung.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\KundenVerwaltungsKomponente\KundenVerwaltungsKomponente.csproj">
+      <Project>{F52BB24B-3581-4201-86F4-3EC9D9D7B26C}</Project>
+      <Name>KundenVerwaltungsKomponente</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\NullTypenKomponente\0TypenKomponente.csproj">
+      <Project>{06222526-7888-4ED3-B76B-BFCA3E86FD3A}</Project>
+      <Name>0TypenKomponente</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ProduktVerwaltunsKomponente\ProduktVerwaltunsKomponente.csproj">
+      <Project>{4794843D-5FC2-47CC-AB22-D5D9DF33DC75}</Project>
+      <Name>ProduktVerwaltunsKomponente</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

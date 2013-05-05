@@ -9,6 +9,7 @@ namespace Anwendungskern
     {
         interface IAWKProduktVerwaltung
         {
+            Produkt HoleProdukt(ProduktNummerTyp produktnummer); 
         }
     }
 }

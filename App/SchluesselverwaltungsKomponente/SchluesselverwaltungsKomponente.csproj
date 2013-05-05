@@ -69,9 +69,9 @@
     <Compile Include="UnbekannterSchlüsselException.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\NullTypenKomponente\NullTypenKomponente.csproj">
+    <ProjectReference Include="..\NullTypenKomponente\0TypenKomponente.csproj">
       <Project>{06222526-7888-4ED3-B76B-BFCA3E86FD3A}</Project>
-      <Name>NullTypenKomponente</Name>
+      <Name>0TypenKomponente</Name>
     </ProjectReference>
     <ProjectReference Include="..\Persistence-Management-Komponente\Persistence-Management-Komponente.csproj">
       <Project>{1F8F7E27-F17C-4AED-BE1E-4DF69B7601A8}</Project>

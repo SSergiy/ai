@@ -9,6 +9,12 @@ namespace Anwendungskern
     {
         class ProduktVerwalter
         {
+            private static ISessionFactory persistenz;
+
+            public Produkt HoleProdukt(ProduktNummerTyp produktnummer)
+            {
+                return persistenz.OpenSession().Get<Produkt>(produktnummer.nummer);
+            }
         }
     }
 }

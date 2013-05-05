@@ -12,7 +12,7 @@ namespace Anwendungskern
         public class Kunde
         {
             public virtual Int32 id { get; private set; }
-            public virtual KundeNummerTyp nummer { get; private set; }
+            public virtual KundeNummerTyp nummer { get;  set; }
             public virtual String name { get; set; }
             public virtual AdresseTyp adresse { get; set; }
             //public virtual IList<Angebot> angebote { get; set; }

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Anwendungskern.NullTypenKomponente;
 
 namespace Anwendungskern
 {
@@ -21,21 +22,21 @@ namespace Anwendungskern
             /// <param name="land">Die Land der neue Adresse des Kundes</param>
             /// <returns>Kunde</returns>
             /// 
-            Kunde ErstelleKunde(String name, String strasse, String hausnummer, String postleitzahl, String ort, String land);
-
+            // Kunde ErstelleKunde(String name, String strasse, String hausnummer, String postleitzahl, String ort, String land);
+            Kunde ErstelleKunde(AdresseTyp adresse);
 
             /// <summary>
             /// Löscht einen Kunden.
             /// </summary>
             /// <param name="adresse">Der Kunde, der gelöscht werden soll</param>
-            void LoescheKunde(Kunde kunde);
+            void LöscheKunde(Kunde kunde);
 
 
             /// <summary>
             /// Ändert einen Kunden.
             /// </summary>
             /// <param name="adresse">Der Kunde, der geändert werden soll</param>
-            Kunde AendereKunde(Kunde kunde);
+            Kunde ÄndereKunde(Kunde kunde);
         }
     }
 }

@@ -64,15 +64,15 @@
     <Compile Include="AWFKundeVerwaltung.cs" />
     <Compile Include="IAWKKundenVerwaltung.cs" />
     <Compile Include="Kunde.cs" />
-    <Compile Include="KundeNummerTyp.cs" />
+    <Compile Include="Fachliche Typen\KundeNummerTyp.cs" />
     <Compile Include="KundeVerwalter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="TransportauftragVerwaltungFassade.cs" />
+    <Compile Include="KundenVerwaltungFassade.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\NullTypenKomponente\NullTypenKomponente.csproj">
+    <ProjectReference Include="..\NullTypenKomponente\0TypenKomponente.csproj">
       <Project>{06222526-7888-4ED3-B76B-BFCA3E86FD3A}</Project>
-      <Name>NullTypenKomponente</Name>
+      <Name>0TypenKomponente</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
