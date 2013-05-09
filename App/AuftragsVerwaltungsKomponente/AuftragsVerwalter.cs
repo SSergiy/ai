@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using Anwendungskern.NullTypenKomponente;
 using Anwendungskern.ProduktVerwaltunsKomponente;
+using NHibernate;
 
 namespace Anwendungskern
 {
@@ -11,10 +12,11 @@ namespace Anwendungskern
     {
         class AuftragsVerwalter
         {
-            private static ISessionFactory persistenz;
+            private static ISessionFactory persistenz =  Persistence_Management_Komponente.Implementations.PersistenceManagerFactory.Persistenz();
 
             public Angebot ErstelleAngebot(IDictionary<ProduktVerwaltunsKomponente.ProduktNummerTyp, int> produkte, DateTime gültigAb, DateTime gültigBis)
             {
+                
                 var produktfassade = new ProduktVerwaltunsKomponente.ProduktVerwaltungFassade();
                
                 var angebot = new Angebot();

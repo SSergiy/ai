@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // Allgemeine Informationen über eine Assembly werden über die folgenden 
 // Attribute gesteuert. Ändern Sie diese Attributwerte, um die Informationen zu ändern,
 // die mit einer Assembly verknüpft sind.
-[assembly: AssemblyTitle("AuftragsVerwaltungsKomponente")]
+[assembly: AssemblyTitle("Konfigurator")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("AuftragsVerwaltungsKomponente")]
+[assembly: AssemblyProduct("Konfigurator")]
 [assembly: AssemblyCopyright("Copyright ©  2013")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // Die folgende GUID bestimmt die ID der Typbibliothek, wenn dieses Projekt für COM verfügbar gemacht wird
-[assembly: Guid("ce5a03a1-130f-4561-9c11-8df8616169c2")]
+[assembly: Guid("7bb18d31-b18a-4655-9095-25c2f0badd30")]
 
 // Versionsinformationen für eine Assembly bestehen aus den folgenden vier Werten:
 //
@@ -34,4 +34,3 @@ using System.Runtime.InteropServices;
 // [assembly: AssemblyVersion("1.0.*")]
 [assembly: AssemblyVersion("1.0.0.0")]
 [assembly: AssemblyFileVersion("1.0.0.0")]
-[assembly: System.Runtime.CompilerServices.InternalsVisibleTo("Persistence-Management-Komponente")]

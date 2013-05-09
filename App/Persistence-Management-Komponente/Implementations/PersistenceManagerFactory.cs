@@ -6,65 +6,38 @@ using NHibernate.Cfg;
 using NHibernate.Tool.hbm2ddl;
 using Persistence_Management_Komponente.Implementations.NHibernateImplementation;
 using Persistence_Management_Komponente.Interfaces;
+using System.Collections.Generic;
+using System.IO;
+using NHibernate;
 
 namespace Persistence_Management_Komponente.Implementations
 {
     /// <summary>
     /// Fabrik für verschiedene Persistenz-Implementierungen.
     /// </summary>
-    public class PersistenceManagerFactory
+    public static class PersistenceManagerFactory
     {
-        /// <summary>
-        /// Zur Verfügung stehende Arten von Persistenz-Implementierungen.
-        /// </summary>
-        public enum PersistenceManagerType { MSSQL2008, SQLite };
 
-        /// <summary>
-        /// Fabrikmethode für verschiedene Persistenz-Implementierungen.
-        /// </summary>
-        /// <param name="type">Art der zu erzeugenden Persistenz-Implementierung.</param>
-        /// <param name="mappingAssemblies">Assemblies, die Mapping-Informationen für Entitäten enthalten.</param>
-        /// <param name="persistenceManager">Eine Referenz auf den erzeugten Persistenzmanager</param>
-        /// <param name="conversationFactory">Eine Referenz auf die erzeugte Konversationsfabrik</param>
-        /// <pre>fluentMappings != null</pre>
-        /// <pre>hbmMappings != null</pre>
-        /// <post>persistenceManager != null</post>
-        /// <post>conversationFactory != null</post>
-        public static void CreatePersistence(PersistenceManagerType type, Assembly[] fluentMappings, Assembly[] hbmMappings, out IPersistenceManager persistenceManager, out IConversationFactory conversationFactory)
+        private static ISessionFactory factory = null;
+        public static ISessionFactory Persistenz()
         {
-            Contract.Requires(fluentMappings != null);
-            Contract.Requires(hbmMappings != null);
-            Configuration configuration = new Configuration();
-            FluentConfiguration fluentConfiguration = Fluently.Configure(configuration);
+            if (factory != null)
+                return factory;
 
-            switch(type)
-            {
-                case PersistenceManagerType.SQLite:
-                    fluentConfiguration = fluentConfiguration.Database(
-                        SQLiteConfiguration.Standard.ConnectionString("Data Source=SQLiteTempData.db")
-                    );
-                    break;
-            }
-            foreach (Assembly mappingAssembly in fluentMappings)
-            {
-                fluentConfiguration = fluentConfiguration.Mappings(m => m.FluentMappings.AddFromAssembly(mappingAssembly));
-            }
-            foreach (Assembly mappingAssembly in hbmMappings)
-            {
-                fluentConfiguration = fluentConfiguration.Mappings(m => m.HbmMappings.AddFromAssembly(mappingAssembly));
-            }
-            configuration = fluentConfiguration
-                .ExposeConfiguration(cfg =>
+            factory = Fluently.Configure()
+                .Database(SQLiteConfiguration
+                .Standard
+                .UsingFile("ai.db"))
+                .Mappings(m =>
+                {
+                    List<Assembly> allAssemblies = new List<Assembly>();
+                    string path = Assembly.GetExecutingAssembly().Location;
+                    foreach (string dll in Directory.GetFiles(path, "*.dll"))
                     {
-                        new SchemaExport(cfg)
-                            .Create(false, true);
-                    })
-                .BuildConfiguration();
-
-            persistenceManager = new NHibernatePersistenceManager(configuration);
-            conversationFactory = persistenceManager as IConversationFactory;
-            Contract.Assert(persistenceManager != null, "PersistenceManager should have been set.");
-            Contract.Assert(conversationFactory != null, "ConversationFactory should have been set.");
+                        m.FluentMappings.AddFromAssembly(Assembly.LoadFile(dll));
+                    }
+                }).ExposeConfiguration(cfg => new SchemaUpdate(cfg).Execute(false, true)).BuildSessionFactory();
+            return factory;
         }
     }
 }

@@ -5,11 +5,11 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{92922C89-EBD5-4527-ADBF-5F999C2A3ADD}</ProjectGuid>
+    <ProjectGuid>{CA5D687E-A100-45FD-B879-1D501355E4B0}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>AuftragsVerwaltungsKomponente</RootNamespace>
-    <AssemblyName>AuftragsVerwaltungsKomponente</AssemblyName>
+    <RootNamespace>AuftragsVerwaltungsKomponenteMappings</RootNamespace>
+    <AssemblyName>AuftragsVerwaltungsKomponenteMappings</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -43,32 +43,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Angebot.cs" />
-    <Compile Include="Fachliche Typen\AngebotNummerTyp.cs" />
-    <Compile Include="Auftrag.cs" />
-    <Compile Include="Fachliche Typen\AuftragNummerTyp.cs" />
-    <Compile Include="AuftragsVerwalter.cs" />
-    <Compile Include="AuftragsVerwaltungFassade.cs" />
-    <Compile Include="AWFAuftragsVerwaltung.cs" />
-    <Compile Include="IAWKAuftragsVerwaltung.cs" />
+    <Compile Include="AuftragsVerwaltungsKomponente.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\AuftragsVerwaltungsKomponente\AuftragsVerwaltungsKomponente.csproj">
+      <Project>{92922C89-EBD5-4527-ADBF-5F999C2A3ADD}</Project>
+      <Name>AuftragsVerwaltungsKomponente</Name>
+    </ProjectReference>
     <ProjectReference Include="..\KundenVerwaltungsKomponente\KundenVerwaltungsKomponente.csproj">
       <Project>{F52BB24B-3581-4201-86F4-3EC9D9D7B26C}</Project>
       <Name>KundenVerwaltungsKomponente</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\NullTypenKomponente\0TypenKomponente.csproj">
-      <Project>{06222526-7888-4ED3-B76B-BFCA3E86FD3A}</Project>
-      <Name>0TypenKomponente</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Persistence-Management-Komponente\Persistence-Management-Komponente.csproj">
-      <Project>{1F8F7E27-F17C-4AED-BE1E-4DF69B7601A8}</Project>
-      <Name>Persistence-Management-Komponente</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\ProduktVerwaltunsKomponente\ProduktVerwaltunsKomponente.csproj">
-      <Project>{4794843D-5FC2-47CC-AB22-D5D9DF33DC75}</Project>
-      <Name>ProduktVerwaltunsKomponente</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
