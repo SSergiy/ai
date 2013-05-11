@@ -14,7 +14,8 @@ namespace Anwendungskern
         {
             AngebotTyp ErstelleAngebot(IDictionary<ProduktNummerTyp,int> produkte, DateTime gültigAb, DateTime gültigBis);
             AuftragTyp ErstelleAuftrag(DateTime beauftragsAm, AngebotNummerTyp angebotnummer, KundeNummerTyp kundennummer);
-
+            RechnungTyp ErstelleRechnung(AuftragNummerTyp auftrag);
+            void VerschickeRechnung(RechnungNummerTyp rechnung);
         }
     }
 }

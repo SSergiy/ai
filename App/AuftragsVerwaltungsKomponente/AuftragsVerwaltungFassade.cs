@@ -22,6 +22,8 @@ namespace Anwendungskern
             {
                 return verwalter.ErstelleAuftrag(beauftragsAm, angebotnummer, kundennummer);
             }
+
+
         }
 
 

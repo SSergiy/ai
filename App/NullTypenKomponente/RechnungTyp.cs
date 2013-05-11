@@ -7,7 +7,7 @@ namespace Anwendungskern
 {
     namespace NullTypenKomponente
     {
-        public class AuftragTyp
+        public class RechnungTyp
         {
         }
     }
