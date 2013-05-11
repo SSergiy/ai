@@ -7,7 +7,7 @@ namespace Anwendungskern
 {
     namespace NullTypenKomponente
     {
-        class KontoverbindungTyp
+        public class KontoverbindungTyp
         {
         }
     }

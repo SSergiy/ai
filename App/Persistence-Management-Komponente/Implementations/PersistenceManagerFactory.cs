@@ -9,6 +9,7 @@ using Persistence_Management_Komponente.Interfaces;
 using System.Collections.Generic;
 using System.IO;
 using NHibernate;
+using System;
 
 namespace Persistence_Management_Komponente.Implementations
 {
@@ -24,20 +25,35 @@ namespace Persistence_Management_Komponente.Implementations
             if (factory != null)
                 return factory;
 
-            factory = Fluently.Configure()
-                .Database(SQLiteConfiguration
-                .Standard
-                .UsingFile("ai.db"))
-                .Mappings(m =>
+            FluentConfiguration a = Fluently.Configure().Database(SQLiteConfiguration.Standard.UsingFile("ai.db"));
+            
+            List<Assembly> allAssemblies = new List<Assembly>();
+            string path = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
+
+ 
+            FluentConfiguration f = a.Mappings(m =>
                 {
-                    List<Assembly> allAssemblies = new List<Assembly>();
-                    string path = Assembly.GetExecutingAssembly().Location;
                     foreach (string dll in Directory.GetFiles(path, "*.dll"))
                     {
-                        m.FluentMappings.AddFromAssembly(Assembly.LoadFile(dll));
+                        Console.WriteLine(dll);
+                        if (dll.Contains("Produkt")) m.FluentMappings.AddFromAssembly(Assembly.LoadFile(dll));
                     }
-                }).ExposeConfiguration(cfg => new SchemaUpdate(cfg).Execute(false, true)).BuildSessionFactory();
+                });
+
+           factory = f.ExposeConfiguration(cfg => new SchemaUpdate(cfg).Execute(false, true)).BuildSessionFactory();
+
             return factory;
         }
     }
 }
+
+/*
+
+ * 
+ * return Fluently.Configure().Database(SQLiteConfiguration.Standard.UsingFile("ai.db")).Mappings(m => m.FluentMappings
+               .AddFromAssemblyOf<Aufgabe2.StudentMap>()
+               .AddFromAssemblyOf<Aufgabe2.BuchMap>()
+               .AddFromAssemblyOf<Aufgabe2.KurseMap>()
+               .AddFromAssemblyOf<Aufgabe2.NotenkontoMap>())
+               .ExposeConfiguration(cfg => new SchemaUpdate(cfg).Execute(false, true)).BuildSessionFactory();
+ */

@@ -2,18 +2,21 @@
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{4794843D-5FC2-47CC-AB22-D5D9DF33DC75}</ProjectGuid>
-    <OutputType>Library</OutputType>
+    <ProjectGuid>{166FD971-5CE9-4A64-A82D-60F6E8D85EBD}</ProjectGuid>
+    <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>ProduktVerwaltunsKomponente</RootNamespace>
-    <AssemblyName>ProduktVerwaltunsKomponente</AssemblyName>
+    <RootNamespace>Konsole</RootNamespace>
+    <AssemblyName>Konsole</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkProfile>
+    </TargetFrameworkProfile>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -22,7 +25,8 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
@@ -40,22 +44,21 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AWFProduktVerwaltung.cs" />
-    <Compile Include="Bestellung.cs" />
-    <Compile Include="Fachliche Typen\BestellungNummerTyp.cs" />
-    <Compile Include="Einkaufsinfosatz.cs" />
-    <Compile Include="IAWKProduktVerwaltung.cs" />
-    <Compile Include="Lieferant.cs" />
-    <Compile Include="Fachliche Typen\LieferantNummerTyp.cs" />
-    <Compile Include="Orderbuch.cs" />
-    <Compile Include="Orderbuchsatz.cs" />
-    <Compile Include="Produkt.cs" />
-    <Compile Include="Fachliche Typen\ProduktNummerTyp.cs" />
-    <Compile Include="ProduktVerwalter.cs" />
-    <Compile Include="ProduktVerwaltungFassade.cs" />
+    <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Warenausgansmeldung.cs" />
-    <Compile Include="Wareneingangsmeldung.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Persistence-Management-Komponente\Persistence-Management-Komponente.csproj">
+      <Project>{1F8F7E27-F17C-4AED-BE1E-4DF69B7601A8}</Project>
+      <Name>Persistence-Management-Komponente</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ProduktVerwaltunsKomponente\ProduktVerwaltungsKomponente.csproj">
+      <Project>{4794843D-5FC2-47CC-AB22-D5D9DF33DC75}</Project>
+      <Name>ProduktVerwaltungsKomponente</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -73,6 +73,10 @@
       <Project>{4794843D-5FC2-47CC-AB22-D5D9DF33DC75}</Project>
       <Name>ProduktVerwaltungsKomponente</Name>
     </ProjectReference>
+    <ProjectReference Include="..\TransportauftragVerwaltungsKomponente\TransportauftragVerwaltungsKomponente.csproj">
+      <Project>{A8AF7257-10A7-4A25-B2FF-400DBFE95F34}</Project>
+      <Name>TransportauftragVerwaltungsKomponente</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

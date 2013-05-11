@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using FluentNHibernate.Mapping;
 
 namespace Anwendungskern
 {
@@ -9,6 +10,19 @@ namespace Anwendungskern
     {
         class Zahlungseingang
         {
+            public virtual int Id { get; protected set; }
+            public virtual DateTime Eingangsdatum { get; protected set; }
+            public virtual double Betrag { get; protected set; }
+        }
+
+        public class ZahlungseingangMap : ClassMap<Zahlungseingang>
+        {
+            public ZahlungseingangMap()
+            {
+                Id(x => x.Id);
+                Map(x => x.Eingangsdatum);
+                Map(x => x.Betrag);
+            }
         }
     }
 }

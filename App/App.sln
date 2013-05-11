@@ -54,6 +54,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Konfigurator", "Konfigurato
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestProduktVerwaltung", "TestProject1\TestProduktVerwaltung.csproj", "{E3026ECE-63A1-404A-9866-0BC22323A7E9}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Konsole", "Konsole\Konsole.csproj", "{166FD971-5CE9-4A64-A82D-60F6E8D85EBD}"
+EndProject
 Global
 	GlobalSection(TestCaseManagementSettings) = postSolution
 		CategoryFile = App.vsmdi
@@ -237,12 +239,23 @@ Global
 		{E3026ECE-63A1-404A-9866-0BC22323A7E9}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{E3026ECE-63A1-404A-9866-0BC22323A7E9}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{E3026ECE-63A1-404A-9866-0BC22323A7E9}.Release|x86.ActiveCfg = Release|Any CPU
+		{166FD971-5CE9-4A64-A82D-60F6E8D85EBD}.Debug|Any CPU.ActiveCfg = Debug|x86
+		{166FD971-5CE9-4A64-A82D-60F6E8D85EBD}.Debug|Mixed Platforms.ActiveCfg = Debug|x86
+		{166FD971-5CE9-4A64-A82D-60F6E8D85EBD}.Debug|Mixed Platforms.Build.0 = Debug|x86
+		{166FD971-5CE9-4A64-A82D-60F6E8D85EBD}.Debug|x86.ActiveCfg = Debug|x86
+		{166FD971-5CE9-4A64-A82D-60F6E8D85EBD}.Debug|x86.Build.0 = Debug|x86
+		{166FD971-5CE9-4A64-A82D-60F6E8D85EBD}.Release|Any CPU.ActiveCfg = Release|x86
+		{166FD971-5CE9-4A64-A82D-60F6E8D85EBD}.Release|Mixed Platforms.ActiveCfg = Release|x86
+		{166FD971-5CE9-4A64-A82D-60F6E8D85EBD}.Release|Mixed Platforms.Build.0 = Release|x86
+		{166FD971-5CE9-4A64-A82D-60F6E8D85EBD}.Release|x86.ActiveCfg = Release|x86
+		{166FD971-5CE9-4A64-A82D-60F6E8D85EBD}.Release|x86.Build.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{632A5D3B-1871-441C-A6DE-DF97C334F9D7} = {06FBA007-B2CD-482B-BB39-26B85D1FCEAE}
+		{166FD971-5CE9-4A64-A82D-60F6E8D85EBD} = {06FBA007-B2CD-482B-BB39-26B85D1FCEAE}
 		{F52BB24B-3581-4201-86F4-3EC9D9D7B26C} = {7C7E56D7-23FB-46AB-A658-1199A3008A57}
 		{C9D819E1-F83F-47FB-A6C2-869FB407AD3E} = {7C7E56D7-23FB-46AB-A658-1199A3008A57}
 		{A8AF7257-10A7-4A25-B2FF-400DBFE95F34} = {7C7E56D7-23FB-46AB-A658-1199A3008A57}
