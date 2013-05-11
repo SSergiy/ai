@@ -15,6 +15,16 @@ namespace Anwendungskern
             {
                 return produktverwalter.HoleProdukt(produktnummer);
             }
+
+            public bool PrüfeProduktLagerbestand(IDictionary<ProduktNummerTyp, int> produktliste)
+            {
+                return produktverwalter.PrüfeProduktLagerbestand(produktliste);
+            }
+
+            public void MeldeProduktAuslagerung(IDictionary<ProduktNummerTyp, int> produktliste, int auftragsnummer)
+            {
+                produktverwalter.MeldeProduktAuslagerung(produktliste, auftragsnummer);
+            }
         }
     }
 }

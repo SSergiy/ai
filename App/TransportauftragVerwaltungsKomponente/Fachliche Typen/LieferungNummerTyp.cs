@@ -5,29 +5,26 @@ using System.Text;
 
 namespace Anwendungskern
 {
-    namespace AuftragsVerwaltungsKomponente
+    namespace TransportauftragVerwaltungsKomponente
     {
-        public class AuftragNummerTyp
+        class LieferungNummerTyp
         {
             public virtual Int32 nummer { get; private set; }
 
-            /// <summary>
-            /// Nullable Constructor für NHibernate
-            /// </summary>
-            public AuftragNummerTyp() { }
+            public LieferungNummerTyp(){}
 
             /// <summary>
-            /// Basisconstructor, erzeugt ein neues AuftragNummerTyp Objekt.
+            /// Basisconstructor, erzeugt ein neues LieferungNummerTyp Objekt.
             /// </summary>
             /// <param name="nummer"></param>
-            public AuftragNummerTyp(Int32 nummer)
+            public LieferungNummerTyp(Int32 nummer)
             {
                 this.nummer = nummer;
             }
 
             public override String ToString()
             {
-                return "Auftragnummer:" + nummer;
+                return "Lieferungnummer: " + nummer;
             }
         }
     }

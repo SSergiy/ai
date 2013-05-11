@@ -38,7 +38,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AuftragsVerwaltungsKomponen
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "0TypenKomponente", "NullTypenKomponente\0TypenKomponente.csproj", "{06222526-7888-4ED3-B76B-BFCA3E86FD3A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProduktVerwaltunsKomponente", "ProduktVerwaltunsKomponente\ProduktVerwaltunsKomponente.csproj", "{4794843D-5FC2-47CC-AB22-D5D9DF33DC75}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProduktVerwaltungsKomponente", "ProduktVerwaltunsKomponente\ProduktVerwaltungsKomponente.csproj", "{4794843D-5FC2-47CC-AB22-D5D9DF33DC75}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Persistence-Management-Komponente", "Persistence-Management-Komponente\Persistence-Management-Komponente.csproj", "{1F8F7E27-F17C-4AED-BE1E-4DF69B7601A8}"
 EndProject
@@ -51,6 +51,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SchluesselverwaltungsKomponente", "SchluesselverwaltungsKomponente\SchluesselverwaltungsKomponente.csproj", "{24A383A3-8075-47B6-8EBA-4F43A9BA3F66}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Konfigurator", "Konfigurator\Konfigurator.csproj", "{6FF05C8E-6260-4890-8D34-34C38A27A830}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestProduktVerwaltung", "TestProject1\TestProduktVerwaltung.csproj", "{E3026ECE-63A1-404A-9866-0BC22323A7E9}"
 EndProject
 Global
 	GlobalSection(TestCaseManagementSettings) = postSolution
@@ -225,6 +227,16 @@ Global
 		{6FF05C8E-6260-4890-8D34-34C38A27A830}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{6FF05C8E-6260-4890-8D34-34C38A27A830}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{6FF05C8E-6260-4890-8D34-34C38A27A830}.Release|x86.ActiveCfg = Release|Any CPU
+		{E3026ECE-63A1-404A-9866-0BC22323A7E9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E3026ECE-63A1-404A-9866-0BC22323A7E9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E3026ECE-63A1-404A-9866-0BC22323A7E9}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{E3026ECE-63A1-404A-9866-0BC22323A7E9}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{E3026ECE-63A1-404A-9866-0BC22323A7E9}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{E3026ECE-63A1-404A-9866-0BC22323A7E9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E3026ECE-63A1-404A-9866-0BC22323A7E9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E3026ECE-63A1-404A-9866-0BC22323A7E9}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{E3026ECE-63A1-404A-9866-0BC22323A7E9}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{E3026ECE-63A1-404A-9866-0BC22323A7E9}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
