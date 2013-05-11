@@ -46,7 +46,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AWFBuchhaltungsVerwaltung.cs" />
     <Compile Include="BuchhaltungsVerwaltungFassade.cs" />
     <Compile Include="IAWKBuchhaltungsVerwaltung.cs" />
     <Compile Include="Rechnung.cs" />

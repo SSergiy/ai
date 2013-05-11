@@ -41,20 +41,18 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AdresseTyp.cs" />
-    <Compile Include="Fachliche Typen\AngebotNummerTyp.cs" />
-    <Compile Include="Fachliche Typen\AuftragNummerTyp.cs" />
-    <Compile Include="Fachliche Typen\BestellungNummerTyp.cs" />
-    <Compile Include="Fachliche Typen\KundeNummerTyp.cs" />
-    <Compile Include="Fachliche Typen\LieferantNummerTyp.cs" />
-    <Compile Include="Fachliche Typen\LieferungNummerTyp.cs" />
-    <Compile Include="Fachliche Typen\ProduktNummerTyp.cs" />
-    <Compile Include="Fachliche Typen\RechnungNummerTyp.cs" />
-    <Compile Include="Fachliche Typen\TransportauftragNummerTyp.cs" />
+    <Compile Include="Nummer Typen\AngebotNummerTyp.cs" />
+    <Compile Include="Nummer Typen\AuftragNummerTyp.cs" />
+    <Compile Include="Nummer Typen\BestellungNummerTyp.cs" />
+    <Compile Include="Nummer Typen\KundeNummerTyp.cs" />
+    <Compile Include="Nummer Typen\LieferantNummerTyp.cs" />
+    <Compile Include="Nummer Typen\LieferungNummerTyp.cs" />
+    <Compile Include="Nummer Typen\ProduktNummerTyp.cs" />
+    <Compile Include="Nummer Typen\RechnungNummerTyp.cs" />
+    <Compile Include="Nummer Typen\TransportauftragNummerTyp.cs" />
     <Compile Include="KontoverbindungTyp.cs" />
     <Compile Include="LieferscheinTyp.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="RechnungTyp.cs" />
-    <Compile Include="TechnicalException.cs" />
     <Compile Include="TransportdienstleisterTyp.cs" />
     <Compile Include="TransportInterfaces\AuftragVerwaltung.cs" />
     <Compile Include="TransportInterfaces\BuchhaltungVerwaltung.cs" />

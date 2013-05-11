@@ -46,7 +46,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AWFTransportauftragVerwaltung.cs" />
     <Compile Include="IAWKTransportauftragVerwaltung.cs" />
     <Compile Include="Lieferung.cs" />
     <Compile Include="Transportauftrag.cs" />
