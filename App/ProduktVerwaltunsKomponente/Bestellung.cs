@@ -3,21 +3,22 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using FluentNHibernate.Mapping;
+using NullTypenKomponente;
 
 namespace Anwendungskern
 {
     namespace ProduktVerwaltunsKomponente
     {
-        class Bestellung
+        class Bestellung : IBestellung
         {
             public virtual int Id { get; protected set; }
             public virtual DateTime Bestelldatum{ get; protected set; }
             public virtual int Menge { get; protected set; }
             public virtual bool Freigabe { get; protected set; }
-            public virtual Wareneingangsmeldung Wareneingangsmeldung { get; protected set; }
+            public virtual IWareneingangsmeldung Wareneingangsmeldung { get; protected set; }
         }
 
-        public class BestellungMap : ClassMap<Bestellung>
+        public class BestellungMap : ClassMap<IBestellung>
         {
             public BestellungMap()
             {

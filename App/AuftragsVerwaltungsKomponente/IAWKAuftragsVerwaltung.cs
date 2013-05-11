@@ -5,6 +5,8 @@ using System.Text;
 using Anwendungskern.ProduktVerwaltunsKomponente;
 using Anwendungskern.NullTypenKomponente;
 using Anwendungskern.KundenVerwaltungsKomponente;
+using NullTypenKomponente;
+using NullTypenKomponente.TransportInterfaces;
 
 namespace Anwendungskern
 {
@@ -12,9 +14,9 @@ namespace Anwendungskern
     {
         interface IAWKAuftragsVerwaltung
         {
-            AngebotTyp ErstelleAngebot(IDictionary<ProduktNummerTyp,int> produkte, DateTime gültigAb, DateTime gültigBis);
-            AuftragTyp ErstelleAuftrag(DateTime beauftragsAm, AngebotNummerTyp angebotnummer, KundeNummerTyp kundennummer);
-            RechnungTyp ErstelleRechnung(AuftragNummerTyp auftrag);
+            IAngebot ErstelleAngebot(IDictionary<ProduktNummerTyp,int> produkte, DateTime gültigAb, DateTime gültigBis);
+            IAuftrag ErstelleAuftrag(DateTime beauftragsAm, AngebotNummerTyp angebotnummer, KundeNummerTyp kundennummer);
+            IRechnung ErstelleRechnung(AuftragNummerTyp auftrag);
             void VerschickeRechnung(RechnungNummerTyp rechnung);
         }
     }

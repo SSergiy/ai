@@ -3,12 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using FluentNHibernate.Mapping;
+using NullTypenKomponente;
 
 namespace Anwendungskern
 {
     namespace ProduktVerwaltunsKomponente
     {
-        class Einkaufsinfosatz
+        class Einkaufsinfosatz : IEinkaufsinfosatz
         {
             public virtual int Id { get; protected set; }
             public virtual DateTime GültigAb { get; protected set; }
@@ -18,7 +19,7 @@ namespace Anwendungskern
             public virtual double Preis { get; protected set; }
         }
 
-        public class EinkaufsinfosatzhMap : ClassMap<Einkaufsinfosatz>
+        public class EinkaufsinfosatzhMap : ClassMap<IEinkaufsinfosatz>
         {
             public EinkaufsinfosatzhMap()
             {

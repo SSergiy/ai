@@ -50,6 +50,11 @@
     <Compile Include="RechnungTyp.cs" />
     <Compile Include="TechnicalException.cs" />
     <Compile Include="TransportdienstleisterTyp.cs" />
+    <Compile Include="TransportInterfaces\AuftragVerwaltung.cs" />
+    <Compile Include="TransportInterfaces\BuchhaltungVerwaltung.cs" />
+    <Compile Include="TransportInterfaces\KundenVerwaltung.cs" />
+    <Compile Include="TransportInterfaces\ProduktVerwaltung.cs" />
+    <Compile Include="TransportInterfaces\TransportauftragVerwaltung.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
