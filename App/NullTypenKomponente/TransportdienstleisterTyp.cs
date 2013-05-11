@@ -7,7 +7,7 @@ namespace Anwendungskern
 {
     namespace NullTypenKomponente
     {
-        class TransportdienstleisterTyp
+        public class TransportdienstleisterTyp
         {
         }
     }

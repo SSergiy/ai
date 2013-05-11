@@ -5,7 +5,6 @@ using System.Text;
 using Anwendungskern.NullTypenKomponente;
 using Anwendungskern.ProduktVerwaltunsKomponente;
 using NHibernate;
-using NullTypenKomponente;
 
 namespace Anwendungskern
 {
@@ -15,7 +14,7 @@ namespace Anwendungskern
         {
             private static ISessionFactory persistenz =  Persistence_Management_Komponente.Implementations.PersistenceManagerFactory.Persistenz();
 
-            public IAngebot ErstelleAngebot(IDictionary<ProduktVerwaltunsKomponente.ProduktNummerTyp, int> produkte, DateTime gültigAb, DateTime gültigBis)
+            public IAngebot ErstelleAngebot(IDictionary<ProduktNummerTyp, int> produkte, DateTime gültigAb, DateTime gültigBis)
             {
                 
                 var produktfassade = new ProduktVerwaltunsKomponente.ProduktVerwaltungFassade();
@@ -43,7 +42,13 @@ namespace Anwendungskern
                 return angebot;
             }
 
-            public IAuftrag ErstelleAuftrag(DateTime beauftragsAm, AngebotNummerTyp angebotnummer, KundenVerwaltungsKomponente.KundeNummerTyp kundennummer)
+            //public void VerschickeRechnung(RechnungNummerTyp rechnung)
+            public void VerschickeRechnung(RechnungNummerTyp rechnung)
+            {
+                var buchhaltungfassade = new BuchhaltungsVerwaltungsKomponente.BuchhaltungsVerwaltungFassade();
+            }
+
+            public IAuftrag ErstelleAuftrag(DateTime beauftragsAm, AngebotNummerTyp angebotnummer, KundeNummerTyp kundennummer)
             {
                 var kundenfassade = new KundenVerwaltungsKomponente.KundenVerwaltungFassade();
 

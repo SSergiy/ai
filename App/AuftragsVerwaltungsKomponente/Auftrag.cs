@@ -4,7 +4,9 @@ using System.Linq;
 using System.Text;
 using Anwendungskern.KundenVerwaltungsKomponente;
 using FluentNHibernate.Mapping;
-using NullTypenKomponente;
+using Anwendungskern.TransportauftragVerwaltungsKomponente;
+using Anwendungskern.NullTypenKomponente;
+
 namespace Anwendungskern
 {
     namespace AuftragsVerwaltungsKomponente
@@ -12,13 +14,13 @@ namespace Anwendungskern
         public class Auftrag : IAuftrag
         {
             public Auftrag() { }
+
             public virtual Int32 id { get; private set; }
-            public virtual DateTime beauftragtAm;
-            public virtual Angebot angebot;
-            public virtual Kunde kunde;
+            public virtual DateTime beauftragtAm { get; set; }
+            public virtual Angebot angebot { get; set; }
+            public virtual Kunde kunde { get; set; }
 
-
-
+            public virtual Lieferung Lieferung { get; protected set; }
 
             public int Id()
             {
@@ -55,6 +57,7 @@ namespace Anwendungskern
                 Map(x => x.beauftragtAm);
                 Map(x => x.angebot);
                 Map(x => x.kunde);
+                Map(x => x.Lieferung);
             }
         }
     

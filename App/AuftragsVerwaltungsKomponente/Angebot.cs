@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using Anwendungskern.ProduktVerwaltunsKomponente;
 using FluentNHibernate.Mapping;
-using NullTypenKomponente;
+using Anwendungskern.NullTypenKomponente;
 
 namespace Anwendungskern
 {

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Anwendungskern.NullTypenKomponente;
 
 namespace Anwendungskern
 {
@@ -9,6 +10,8 @@ namespace Anwendungskern
     {
         interface IAWKBuchhaltungsVerwaltung
         {
+            IRechnung ErstelleRechnung(AuftragNummerTyp auftrag);
+            //void VerschickeRechnung(RechnungNummerTyp rechnung);
         }
     }
 }

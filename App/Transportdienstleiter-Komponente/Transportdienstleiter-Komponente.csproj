@@ -44,6 +44,12 @@
     <Compile Include="TransportdienstleisterAdapter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\NullTypenKomponente\0TypenKomponente.csproj">
+      <Project>{06222526-7888-4ED3-B76B-BFCA3E86FD3A}</Project>
+      <Name>0TypenKomponente</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

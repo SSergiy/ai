@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Anwendungskern.NullTypenKomponente;
 
 namespace Anwendungskern
 {
@@ -14,6 +15,16 @@ namespace Anwendungskern
             public Produkt HoleProdukt(ProduktNummerTyp produktnummer) 
             {
                 return produktverwalter.HoleProdukt(produktnummer);
+            }
+
+            public bool PrüfeProduktLagerbestand(IDictionary<ProduktNummerTyp, int> produktliste)
+            {
+                return produktverwalter.PrüfeProduktLagerbestand(produktliste);
+            }
+
+            public void MeldeProduktAuslagerung(IDictionary<ProduktNummerTyp, int> produktliste, int auftragsnummer)
+            {
+                produktverwalter.MeldeProduktAuslagerung(produktliste, auftragsnummer);
             }
         }
     }

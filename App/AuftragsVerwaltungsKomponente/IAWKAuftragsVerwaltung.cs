@@ -12,9 +12,10 @@ namespace Anwendungskern
     {
         interface IAWKAuftragsVerwaltung
         {
-            AngebotTyp ErstelleAngebot(IDictionary<ProduktNummerTyp,int> produkte, DateTime gültigAb, DateTime gültigBis);
-            AuftragTyp ErstelleAuftrag(DateTime beauftragsAm, AngebotNummerTyp angebotnummer, KundeNummerTyp kundennummer);
-
+            IAngebot ErstelleAngebot(IDictionary<ProduktNummerTyp,int> produkte, DateTime gültigAb, DateTime gültigBis);
+            IAuftrag ErstelleAuftrag(DateTime beauftragsAm, AngebotNummerTyp angebotnummer, KundeNummerTyp kundennummer);
+            IRechnung ErstelleRechnung(AuftragNummerTyp auftrag);
+            void VerschickeRechnung(RechnungNummerTyp rechnung);
         }
     }
 }

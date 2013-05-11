@@ -64,7 +64,6 @@
     <Compile Include="AWFKundeVerwaltung.cs" />
     <Compile Include="IAWKKundenVerwaltung.cs" />
     <Compile Include="Kunde.cs" />
-    <Compile Include="Fachliche Typen\KundeNummerTyp.cs" />
     <Compile Include="KundeVerwalter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="KundenVerwaltungFassade.cs" />

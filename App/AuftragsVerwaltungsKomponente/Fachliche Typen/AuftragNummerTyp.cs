@@ -7,7 +7,7 @@ namespace Anwendungskern
 {
     namespace AuftragsVerwaltungsKomponente
     {
-        class AuftragNummerTyp
+        public class AuftragNummerTyp
         {
             public virtual Int32 nummer { get; private set; }
 
