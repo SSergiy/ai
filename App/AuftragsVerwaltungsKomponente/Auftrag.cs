@@ -4,10 +4,8 @@ using System.Linq;
 using System.Text;
 using Anwendungskern.KundenVerwaltungsKomponente;
 using FluentNHibernate.Mapping;
-
 using Anwendungskern.TransportauftragVerwaltungsKomponente;
-
-using NullTypenKomponente;
+using Anwendungskern.NullTypenKomponente;
 
 namespace Anwendungskern
 {

@@ -3,22 +3,25 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace NullTypenKomponente
+namespace Anwendungskern
 {
-    public interface IAngebot 
+    namespace NullTypenKomponente
     {
-       Int32 Id();
-       IDictionary<IProdukt,int> Produkte();
-       DateTime GültigAb();
-       DateTime GültigBis();
-    }
+        public interface IAngebot
+        {
+            Int32 Id();
+            IDictionary<IProdukt, int> Produkte();
+            DateTime GültigAb();
+            DateTime GültigBis();
+        }
 
 
-    public interface IAuftrag 
-    {
-        Int32 Id();
-        DateTime BeauftragtAm();
-        IAngebot Angebot();
-        IKunde Kunde();
+        public interface IAuftrag
+        {
+            Int32 Id();
+            DateTime BeauftragtAm();
+            IAngebot Angebot();
+            IKunde Kunde();
+        }
     }
 }

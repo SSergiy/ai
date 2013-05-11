@@ -5,6 +5,7 @@ using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NHibernate;
 using Anwendungskern.AuftragsVerwaltungsKomponente;
+using Anwendungskern.NullTypenKomponente;
 
 namespace TestProjectPersistenzmanager
 {
@@ -17,7 +18,7 @@ namespace TestProjectPersistenzmanager
         public void ErstelleAuftrag()
         {
             var auftragsverwaltung = new AuftragsVerwaltungFassade();
-            var auftrag = auftragsverwaltung.ErstelleAuftrag(DateTime.Now, new AngebotNummerTyp(42), new Anwendungskern.KundenVerwaltungsKomponente.KundeNummerTyp(42));
+            var auftrag = auftragsverwaltung.ErstelleAuftrag(DateTime.Now, new AngebotNummerTyp(42), new KundeNummerTyp(42));
             Assert.IsNotNull(auftrag);
         }
     }

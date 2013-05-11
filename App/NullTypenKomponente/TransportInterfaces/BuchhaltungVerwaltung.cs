@@ -2,21 +2,23 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-
-namespace NullTypenKomponente.TransportInterfaces
+namespace Anwendungskern
 {
-    public interface IRechnung
+    namespace NullTypenKomponente
     {
-        int Id { get; }
-        DateTime RechnungsDatum { get; }
-        bool IstBezahlt { get; }
-        List<IZahlungseingang> Zahlungseingang { get; }
-    }
+        public interface IRechnung
+        {
+            int Id { get; }
+            DateTime RechnungsDatum { get; }
+            bool IstBezahlt { get; }
+            List<IZahlungseingang> Zahlungseingang { get; }
+        }
 
-    public interface IZahlungseingang
-    {
-        int Id { get; }
-        DateTime Eingangsdatum { get; }
-        double Betrag { get; }
+        public interface IZahlungseingang
+        {
+            int Id { get; }
+            DateTime Eingangsdatum { get; }
+            double Betrag { get; }
+        }
     }
 }

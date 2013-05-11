@@ -5,6 +5,7 @@ using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NHibernate;
 using Anwendungskern.ProduktVerwaltunsKomponente;
+using Anwendungskern.NullTypenKomponente;
 
 namespace TestProject1
 {

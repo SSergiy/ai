@@ -5,8 +5,6 @@ using System.Text;
 using Anwendungskern.ProduktVerwaltunsKomponente;
 using Anwendungskern.NullTypenKomponente;
 using Anwendungskern.KundenVerwaltungsKomponente;
-using NullTypenKomponente;
-using NullTypenKomponente.TransportInterfaces;
 
 namespace Anwendungskern
 {

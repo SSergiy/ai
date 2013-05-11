@@ -4,7 +4,6 @@ using System.Linq;
 using System.Text;
 using FluentNHibernate.Mapping;
 using Anwendungskern.NullTypenKomponente;
-using NullTypenKomponente;
 
 namespace Anwendungskern
 {

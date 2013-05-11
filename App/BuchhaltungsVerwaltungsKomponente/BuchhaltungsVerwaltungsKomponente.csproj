@@ -51,7 +51,6 @@
     <Compile Include="IAWKBuchhaltungsVerwaltung.cs" />
     <Compile Include="Rechnung.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="RechnungNummerTyp.cs" />
     <Compile Include="BuchhaltungsVerwalter.cs" />
     <Compile Include="Zahlungseingang.cs" />
     <Compile Include="ZahlungseingangNummerTyp.cs" />

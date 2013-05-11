@@ -49,10 +49,8 @@
     <Compile Include="AWFTransportauftragVerwaltung.cs" />
     <Compile Include="IAWKTransportauftragVerwaltung.cs" />
     <Compile Include="Lieferung.cs" />
-    <Compile Include="Fachliche Typen\LieferungNummerTyp.cs" />
     <Compile Include="Transportauftrag.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Fachliche Typen\TransportauftragNummerTyp.cs" />
     <Compile Include="TransportauftragVerwalter.cs" />
     <Compile Include="TransportauftragVerwaltungFassade.cs" />
   </ItemGroup>

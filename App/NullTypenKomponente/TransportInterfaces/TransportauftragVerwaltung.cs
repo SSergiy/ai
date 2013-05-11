@@ -3,22 +3,24 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Anwendungskern.NullTypenKomponente;
-
-namespace NullTypenKomponente.TransportInterfaces
+namespace Anwendungskern
 {
-    public interface ILieferung
+    namespace NullTypenKomponente
     {
-        int Id { get; }
-        ITransportauftrag Transportauftrag { get; }
-    }
+        public interface ILieferung
+        {
+            int Id { get; }
+            ITransportauftrag Transportauftrag { get; }
+        }
 
-    public interface ITransportauftrag
-    {
-        int Id { get; }
-        DateTime Ausgangsdatum { get; }
-        bool LieferungErfolgt { get; }
-        DateTime Lieferdatum { get; }
-        TransportdienstleisterTyp Transportdienstleister { get; }
-    }
+        public interface ITransportauftrag
+        {
+            int Id { get; }
+            DateTime Ausgangsdatum { get; }
+            bool LieferungErfolgt { get; }
+            DateTime Lieferdatum { get; }
+            TransportdienstleisterTyp Transportdienstleister { get; }
+        }
 
+    }
 }

@@ -49,15 +49,12 @@
   <ItemGroup>
     <Compile Include="AWFProduktVerwaltung.cs" />
     <Compile Include="Bestellung.cs" />
-    <Compile Include="Fachliche Typen\BestellungNummerTyp.cs" />
     <Compile Include="Einkaufsinfosatz.cs" />
     <Compile Include="IAWKProduktVerwaltung.cs" />
     <Compile Include="Lieferant.cs" />
-    <Compile Include="Fachliche Typen\LieferantNummerTyp.cs" />
     <Compile Include="Orderbuch.cs" />
     <Compile Include="Orderbuchsatz.cs" />
     <Compile Include="Produkt.cs" />
-    <Compile Include="Fachliche Typen\ProduktNummerTyp.cs" />
     <Compile Include="ProduktVerwalter.cs" />
     <Compile Include="ProduktVerwaltungFassade.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
