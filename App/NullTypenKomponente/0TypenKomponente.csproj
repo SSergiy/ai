@@ -46,7 +46,15 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TechnicalException.cs" />
     <Compile Include="TransportdienstleisterTyp.cs" />
-    <Compile Include="TransportTypen\AngebotTyp.cs" />
+    <Compile Include="TransportInterfaces\AuftragVerwaltung.cs" />
+    <Compile Include="TransportInterfaces\KundenVerwaltung.cs" />
+    <Compile Include="TransportInterfaces\ProduktVerwaltung.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ProduktVerwaltunsKomponente\ProduktVerwaltunsKomponente.csproj">
+      <Project>{4794843D-5FC2-47CC-AB22-D5D9DF33DC75}</Project>
+      <Name>ProduktVerwaltunsKomponente</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

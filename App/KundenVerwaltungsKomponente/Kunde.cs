@@ -4,12 +4,13 @@ using System.Linq;
 using System.Text;
 using Anwendungskern.NullTypenKomponente;
 using FluentNHibernate.Mapping;
+using NullTypenKomponente;
 
 namespace Anwendungskern
 {
     namespace KundenVerwaltungsKomponente
     {
-        public class Kunde
+        public class Kunde : IKunde
         {
             public virtual Int32 id { get; private set; }
             public virtual KundeNummerTyp nummer { get;  set; }
