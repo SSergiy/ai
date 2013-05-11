@@ -12,7 +12,7 @@ namespace TestProjectPersistenzmanager
     [TestClass]
     public class TestePersistenzManager
     {
-        private static readonly ISessionFactory persistenz = Persistence_Management_Komponente.Implementations.PersistenceManagerFactory.Persistenz();
+        private static readonly ISessionFactory persistenz = Persistenzmanager.Implementations.PersistenceManagerFactory.Persistenz();
 
         [TestMethod]
         public void ErstelleAuftrag()

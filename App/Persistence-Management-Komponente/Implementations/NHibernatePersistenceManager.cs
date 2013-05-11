@@ -7,10 +7,10 @@ using log4net;
 using NHibernate;
 using NHibernate.Cfg;
 using NHibernate.Linq;
-using Persistence_Management_Komponente.Exceptions;
-using Persistence_Management_Komponente.Interfaces;
+using Persistenzmanager.Exceptions;
+using Persistenzmanager.Interfaces;
 
-namespace Persistence_Management_Komponente.Implementations.NHibernateImplementation
+namespace Persistenzmanager.Implementations.NHibernateImplementation
 {
     public sealed class NHibernatePersistenceManager : IPersistenceManager, IConversationFactory
     {

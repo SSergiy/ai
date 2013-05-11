@@ -67,6 +67,7 @@
     <Compile Include="Implementations\PersistenceManagerFactory.cs" />
     <Compile Include="Interfaces\IConversation.cs" />
     <Compile Include="Interfaces\IPersistenceManager.cs" />
+    <Compile Include="PersistenzManagerFactory.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

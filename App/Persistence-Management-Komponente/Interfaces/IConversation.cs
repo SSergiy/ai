@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Persistence_Management_Komponente.Interfaces
+namespace Persistenzmanager.Interfaces
 {
     public interface ITransactionControl
     {

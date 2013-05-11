@@ -11,7 +11,7 @@ namespace Anwendungskern
     {
         class ProduktVerwalter
         {
-			private static readonly ISessionFactory persistenz = Persistence_Management_Komponente.Implementations.PersistenceManagerFactory.Persistenz();
+			private static readonly ISessionFactory persistenz = Persistenzmanager.Implementations.PersistenceManagerFactory.Persistenz();
 
             public Produkt HoleProdukt(ProduktNummerTyp produktnummer)
             {

@@ -12,7 +12,7 @@ namespace Anwendungskern
     {
         class AuftragsVerwalter
         {
-            private static ISessionFactory persistenz =  Persistence_Management_Komponente.Implementations.PersistenceManagerFactory.Persistenz();
+            private static ISessionFactory persistenz =  Persistenzmanager.Implementations.PersistenceManagerFactory.Persistenz();
 
             public IAngebot ErstelleAngebot(IDictionary<ProduktNummerTyp, int> produkte, DateTime gültigAb, DateTime gültigBis)
             {

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Persistence_Management_Komponente.Exceptions
+namespace Persistenzmanager.Exceptions
 {
     /// <summary>
     /// Kapselt ein technisches Problem.

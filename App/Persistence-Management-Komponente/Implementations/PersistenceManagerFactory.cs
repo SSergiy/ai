@@ -4,14 +4,14 @@ using FluentNHibernate.Cfg;
 using FluentNHibernate.Cfg.Db;
 using NHibernate.Cfg;
 using NHibernate.Tool.hbm2ddl;
-using Persistence_Management_Komponente.Implementations.NHibernateImplementation;
-using Persistence_Management_Komponente.Interfaces;
+using Persistenzmanager.Implementations.NHibernateImplementation;
+using Persistenzmanager.Interfaces;
 using System.Collections.Generic;
 using System.IO;
 using NHibernate;
 using System;
 
-namespace Persistence_Management_Komponente.Implementations
+namespace Persistenzmanager.Implementations
 {
     /// <summary>
     /// Fabrik für verschiedene Persistenz-Implementierungen.

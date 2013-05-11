@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Persistence_Management_Komponente.Interfaces
+namespace Persistenzmanager.Interfaces
 {
     /// <summary>
     /// Die Typ-0 Schnittstelle zur Kapselung eines Persistenzframeworks.
