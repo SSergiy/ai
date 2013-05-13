@@ -11,7 +11,7 @@ namespace Anwendungskern
     {
         class BuchhaltungsVerwalter
         {
-            private static ISessionFactory persistenz = Persistenzmanager.Implementations.PersistenceManagerFactory.Persistenz();
+            private static ISessionFactory persistenz = Persistenzmanager.Factory.Session();
 
             internal IRechnung ErstelleRechnung(IAuftrag auftrag)
             {

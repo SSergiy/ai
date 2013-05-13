@@ -44,7 +44,7 @@ namespace Persistenzmanager
                             if (erlaubtedll.Contains(filename))
                             {
                                 System.Console.WriteLine(dll);
-                                System.Console.ReadKey();
+                                //System.Console.ReadKey();
                                 m.FluentMappings.AddFromAssembly(Assembly.LoadFile(dll));
                             }
                         }

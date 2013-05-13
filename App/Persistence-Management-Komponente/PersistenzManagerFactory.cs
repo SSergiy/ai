@@ -7,6 +7,7 @@ using NHibernate;
 using FluentNHibernate.Cfg;
 using FluentNHibernate.Cfg.Db;
 using NHibernate.Tool.hbm2ddl;
+using System.IO;
 
 namespace Persistenzmanager
 {
@@ -23,12 +24,12 @@ namespace Persistenzmanager
 
             // Erlaubte DLL für Fluent NHibernate. 
             // Der Rest wird nicht nach Mappings durchsucht.
-            erlaubte_dll.Add("AuftragsVerwaltungsKomponente");
-            erlaubte_dll.Add("BuchhaltungsVerwaltungsKomponente");
-            erlaubte_dll.Add("KundenVerwaltungsKomponente");
-            erlaubte_dll.Add("ProduktVerwaltungsKomponente");
-            erlaubte_dll.Add("TransportauftragsVerwaltungsKomponente");
-            List<Assembly> assemblies = new List<Assembly>();
+            erlaubte_dll.Add("AuftragsVerwaltungsKomponente.dll");
+            erlaubte_dll.Add("BuchhaltungsVerwaltungsKomponente.dll");
+            erlaubte_dll.Add("KundenVerwaltungsKomponente.dll");
+            erlaubte_dll.Add("ProduktVerwaltungsKomponente.dll");
+            erlaubte_dll.Add("TransportauftragVerwaltungsKomponente.dll");
+            //List<Assembly> assemblies = new List<Assembly>();
             string path = System.IO.Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
             factory = Fluently.Configure()
                .Database(SQLiteConfiguration
@@ -36,12 +37,11 @@ namespace Persistenzmanager
                .UsingFile("ai.db"))
                .Mappings(m =>
                {
-
-                   foreach (string dll in System.IO.Directory.GetFiles(path, "*.dll"))
+                   foreach (string dll in Directory.GetFiles(path, "*.dll"))
                    {
-                       if (System.IO.File.Exists(dll))
+                       if (File.Exists(dll))
                        {
-                           string filename = System.IO.Path.GetFileName(dll);
+                           string filename = Path.GetFileName(dll);
                            if (erlaubte_dll.Contains(filename))
                            {
                                m.FluentMappings.AddFromAssembly(Assembly.LoadFile(dll));

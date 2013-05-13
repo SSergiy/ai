@@ -6,13 +6,18 @@ using Anwendungskern.NullTypenKomponente;
 
 namespace Anwendungskern
 {
-    namespace ProduktVerwaltunsKomponente
+    namespace ProduktVerwaltungsKomponente
     {
        public class ProduktVerwaltungFassade:IAWKProduktVerwaltung
         {
             private static readonly ProduktVerwalter produktverwalter = new ProduktVerwalter();
 
-            public Produkt HoleProdukt(ProduktNummerTyp produktnummer) 
+            public List<IProdukt> HoleAlleProdukte()
+            {
+                return produktverwalter.HoleAlleProdukte();
+            }
+
+            public IProdukt HoleProdukt(ProduktNummerTyp produktnummer) 
             {
                 return produktverwalter.HoleProdukt(produktnummer);
             }

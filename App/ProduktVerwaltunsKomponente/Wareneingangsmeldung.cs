@@ -7,7 +7,7 @@ using Anwendungskern.NullTypenKomponente;
 
 namespace Anwendungskern
 {
-    namespace ProduktVerwaltunsKomponente
+    namespace ProduktVerwaltungsKomponente
     {
         public class Wareneingangsmeldung : IWareneingangsmeldung
         {

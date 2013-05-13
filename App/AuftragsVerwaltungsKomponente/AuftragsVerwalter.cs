@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Anwendungskern.NullTypenKomponente;
-using Anwendungskern.ProduktVerwaltunsKomponente;
+using Anwendungskern.ProduktVerwaltungsKomponente;
 using NHibernate;
 
 namespace Anwendungskern
@@ -12,11 +12,11 @@ namespace Anwendungskern
     {
         class AuftragsVerwalter
         {
-            private static ISessionFactory persistenz =  Persistenzmanager.Implementations.PersistenceManagerFactory.Persistenz();
+            private static ISessionFactory persistenz = Persistenzmanager.Factory.Session();
 
             public IAngebot ErstelleAngebot(IDictionary<ProduktNummerTyp, int> produkte, DateTime gültigAb, DateTime gültigBis)
             {
-                var produktfassade = new ProduktVerwaltunsKomponente.ProduktVerwaltungFassade();
+                var produktfassade = new ProduktVerwaltungsKomponente.ProduktVerwaltungFassade();
                
                 var angebot = new Angebot();
 
@@ -25,7 +25,7 @@ namespace Anwendungskern
                     using (var transaction = session.BeginTransaction())
                     {
 
-                        var dic = new Dictionary<Produkt, int>();
+                        var dic = new Dictionary<IProdukt, int>();
                         foreach (var pair in produkte)
                         {
                             var produkt = produktfassade.HoleProdukt(pair.Key);

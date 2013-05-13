@@ -27,7 +27,6 @@ namespace Anwendungskern
             {
                 return verwalter.HoleAuftrag(auftrag);
             }
-
         }
     }
 }

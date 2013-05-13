@@ -8,8 +8,8 @@
     <ProjectGuid>{4794843D-5FC2-47CC-AB22-D5D9DF33DC75}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>ProduktVerwaltunsKomponente</RootNamespace>
-    <AssemblyName>ProduktVerwaltunsKomponente</AssemblyName>
+    <RootNamespace>ProduktVerwaltungsKomponente</RootNamespace>
+    <AssemblyName>ProduktVerwaltungsKomponente</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -37,6 +37,10 @@
     </Reference>
     <Reference Include="NHibernate">
       <HintPath>..\packages\NHibernate.3.3.3.4000\lib\Net35\NHibernate.dll</HintPath>
+    </Reference>
+    <Reference Include="NHibernate.Linq, Version=1.1.0.1001, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\NHibernate.Linq.1.0\lib\NHibernate.Linq.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />

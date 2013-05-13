@@ -7,7 +7,7 @@ using Anwendungskern.NullTypenKomponente;
 
 namespace Anwendungskern
 {
-    namespace ProduktVerwaltunsKomponente
+    namespace ProduktVerwaltungsKomponente
     {
         class Lieferant : ILieferant
         {

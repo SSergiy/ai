@@ -12,7 +12,7 @@ namespace Anwendungskern
     {
         class TransportauftragVerwalter
         {
-            private static ISessionFactory persistenz = Persistenzmanager.Implementations.PersistenceManagerFactory.Persistenz();
+            private static ISessionFactory persistenz = Persistenzmanager.Factory.Session();
 
             internal TransportauftragNummerTyp ErstelleTransportauftrag(DateTime ausgangsdatum, DateTime lieferdatum, TransportdienstleisterTyp transportdienstleister)
             {

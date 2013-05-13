@@ -16,7 +16,7 @@ namespace Persistenzmanager.Implementations
     /// <summary>
     /// Fabrik für verschiedene Persistenz-Implementierungen.
     /// </summary>
-    public static class PersistenceManagerFactory
+    public static class PersistenceManagerFactory2
     {
 
         private static ISessionFactory factory = null;

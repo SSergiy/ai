@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Anwendungskern
 {
-    namespace ProduktVerwaltunsKomponente
+    namespace ProduktVerwaltungsKomponente
     {
         class BestellungNummerTyp
         {
