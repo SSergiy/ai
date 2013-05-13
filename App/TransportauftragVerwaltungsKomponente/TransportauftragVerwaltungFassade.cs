@@ -16,6 +16,11 @@ namespace Anwendungskern
             {
                 return transportauftragverwalter.ErstelleTransportauftrag(ausgangsdatum, lieferdatum, transportdienstleister);
             }
+
+            public ILieferung ErstelleLieferung(ITransportauftrag transportauftrag, IAuftrag auftrag)
+            {
+                return transportauftragverwalter.ErstelleLieferung(transportauftrag, auftrag);
+            }
         }
     }
 }

@@ -10,8 +10,8 @@ namespace Anwendungskern
     {
         interface IAWKBuchhaltungsVerwaltung
         {
-            IRechnung ErstelleRechnung(AuftragNummerTyp auftrag);
-            void VerschickeRechnung(RechnungNummerTyp rechnung);
+            IRechnung ErstelleRechnung(IAuftrag auftrag);
+            void VerschickeRechnung(IRechnung rechnung);
         }
     }
 }

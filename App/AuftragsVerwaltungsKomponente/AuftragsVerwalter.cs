@@ -16,7 +16,6 @@ namespace Anwendungskern
 
             public IAngebot ErstelleAngebot(IDictionary<ProduktNummerTyp, int> produkte, DateTime gültigAb, DateTime gültigBis)
             {
-                
                 var produktfassade = new ProduktVerwaltunsKomponente.ProduktVerwaltungFassade();
                
                 var angebot = new Angebot();
@@ -65,6 +64,20 @@ namespace Anwendungskern
                     }
                 }
                 return auftrag;
+            }
+
+            internal IAuftrag HoleAuftrag(AuftragNummerTyp auftrag)
+            {
+                IAuftrag a = null;
+                using (var session = persistenz.OpenSession())
+                {
+                    using (var transaction = session.BeginTransaction())
+                    {
+                        a = session.Get<Auftrag>(auftrag.nummer);
+                    }
+                }
+                if (a == null) throw new NullReferenceException();
+                return a;
             }
         }
     }

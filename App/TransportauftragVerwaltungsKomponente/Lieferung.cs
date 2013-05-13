@@ -13,8 +13,9 @@ namespace Anwendungskern
         {
             public Lieferung() { }
 
-            public virtual int Id { get; protected set; }
-            public virtual ITransportauftrag Transportauftrag { get; protected set; }
+            public virtual int Id { get; set; }
+            public virtual ITransportauftrag Transportauftrag { get; set; }
+            public virtual IAuftrag Auftrag { get; set; }
         }
 
         public class LieferungMap : ClassMap<ILieferung>
@@ -23,6 +24,7 @@ namespace Anwendungskern
             {
                 Id(x => x.Id);
                 Map(x => x.Transportauftrag);
+                Map(x => x.Auftrag);
             }
         }
     }

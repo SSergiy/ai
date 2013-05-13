@@ -23,14 +23,9 @@ namespace Anwendungskern
                 return verwalter.ErstelleAuftrag(beauftragsAm, angebotnummer, kundennummer);
             }
 
-            public void VerschickeRechnung(RechnungNummerTyp rechnung)
+            public IAuftrag HoleAuftrag(AuftragNummerTyp auftrag)
             {
-
-            }
-
-            public IRechnung ErstelleRechnung(AuftragNummerTyp auftrag)
-            {
-                return null;
+                return verwalter.HoleAuftrag(auftrag);
             }
 
         }

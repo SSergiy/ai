@@ -11,6 +11,7 @@ namespace Anwendungskern
         {
             int Id { get; }
             ITransportauftrag Transportauftrag { get; }
+            IAuftrag Auftrag  { get; }
         }
 
         public interface ITransportauftrag
