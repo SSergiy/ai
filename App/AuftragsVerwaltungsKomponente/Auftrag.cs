@@ -41,12 +41,6 @@ namespace Anwendungskern
             {
                 return kunde;
             }
-
-
-            IKunde IAuftrag.Kunde()
-            {
-                return kunde;
-            }
         }
 
         public class AuftragMap : ClassMap<Auftrag> 

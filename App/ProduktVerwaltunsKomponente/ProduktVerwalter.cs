@@ -39,31 +39,50 @@ namespace Anwendungskern
                 // ok
             }
 
+            private List<Produkt> erzeugeDummyProdukte(ISession session) 
+            {
+                List<Produkt> result = new List<Produkt>();
+                for (int i = 0; i < 10; i++)
+                {
+                    Produkt p = new Produkt();
+                    p.Lagerbestand = 10;
+                    p.Name = "Produkt " + i;
+                    session.SaveOrUpdate(p);
+                    result.Add(p);
+                }
+                session.Transaction.Commit();
+                return result;
+            }
+
+
             internal List<IProdukt> HoleAlleProdukte()
             {
-                List<IProdukt> ret = persistenz.OpenSession().Query<IProdukt>().ToList();
-
-                if (ret.Count == 0)
+                IList<Produkt> temp;
+                List<IProdukt> result = new List<IProdukt>();
+                using (var session = persistenz.OpenSession())
                 {
-                    using (var session = persistenz.OpenSession())
+                    using (var trans = session.BeginTransaction())
                     {
-                        using (var trans = session.BeginTransaction())
+                        temp = session.Query<Produkt>().ToList();
+                        
+
+                        
+                        if (temp.Count == 0)
                         {
-                            for (int i = 0; i < 10; i++)
-                            {
-                                Produkt p = new Produkt();
-                                p.Lagerbestand = 10;
-                                p.Name = "Produkt " + i;
-                                session.SaveOrUpdate(p);
-                            }
-                            trans.Commit();
+                            temp = erzeugeDummyProdukte(session);
+                        }
+                        
+
+
+                        foreach (Produkt produkt in temp) 
+                        {
+                            result.Add(produkt);
                         }
                     }
-                    ret = persistenz.OpenSession().Query<IProdukt>().ToList();
                 }
-
-                return ret;
+                return result;
             }
         }
     }
 }
+

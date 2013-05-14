@@ -25,6 +25,7 @@ namespace Anwendungskern
 
             public IDictionary<IProdukt, int> Produkte()
             {
+                
                 return produkte;
             }
 

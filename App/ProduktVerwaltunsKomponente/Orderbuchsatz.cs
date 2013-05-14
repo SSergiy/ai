@@ -9,7 +9,7 @@ namespace Anwendungskern
 {
     namespace ProduktVerwaltungsKomponente
     {
-        class Orderbuchsatz : IOrderbuchsatz
+        public class Orderbuchsatz : IOrderbuchsatz
         {
             public virtual int Id { get; protected set; }
             public virtual DateTime GültigAb  { get; protected set; }
@@ -17,7 +17,7 @@ namespace Anwendungskern
 
         }
 
-        public class OrderbuchsatzMap : ClassMap<IOrderbuchsatz>
+        public class OrderbuchsatzMap : ClassMap<Orderbuchsatz>
         {
             public OrderbuchsatzMap()
             {

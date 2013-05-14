@@ -24,9 +24,16 @@ namespace Anwendungskern
             public LieferantMap()
             {
                 Id(x => x.Id);
-                Id(x => x.Name);
-                Id(x => x.Adresse);
-                Id(x => x.Kontoverbindung);
+                Map(x => x.Name);
+                Component<AdresseTyp>(x => x.Adresse, m => 
+                {
+                    m.Map(x => x.strasse);
+                    m.Map(x => x.hausnummer);
+                    m.Map(x => x.postleitzahl);
+                    m.Map(x => x.ort);
+                    m.Map(x => x.land);
+                });
+                Map(x => x.Kontoverbindung);
                 HasMany(x => x.Einkaufsinfosatz).Table("LieferantEinkaufsinfosatz");
                 HasMany(x => x.Bestellung).Table("LieferantBestellung");
             }

@@ -29,7 +29,7 @@ namespace Persistenzmanager
             erlaubte_dll.Add("KundenVerwaltungsKomponente.dll");
             erlaubte_dll.Add("ProduktVerwaltungsKomponente.dll");
             erlaubte_dll.Add("TransportauftragVerwaltungsKomponente.dll");
-            //List<Assembly> assemblies = new List<Assembly>();
+            erlaubte_dll.Add("Transportdienstleiter-Komponente.dll");
             string path = System.IO.Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
             factory = Fluently.Configure()
                .Database(SQLiteConfiguration

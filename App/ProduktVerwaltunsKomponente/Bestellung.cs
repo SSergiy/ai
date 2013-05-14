@@ -9,7 +9,7 @@ namespace Anwendungskern
 {
     namespace ProduktVerwaltungsKomponente
     {
-        class Bestellung : IBestellung
+        public class Bestellung : IBestellung
         {
             public virtual int Id { get; protected set; }
             public virtual DateTime Bestelldatum{ get; protected set; }
@@ -18,7 +18,7 @@ namespace Anwendungskern
             public virtual IWareneingangsmeldung Wareneingangsmeldung { get; protected set; }
         }
 
-        public class BestellungMap : ClassMap<IBestellung>
+        public class BestellungMap : ClassMap<Bestellung>
         {
             public BestellungMap()
             {

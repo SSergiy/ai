@@ -15,7 +15,7 @@ namespace Anwendungskern
             public virtual DateTime Ausgangsdatum { get; protected set; }
             public virtual bool LieferungErfolgt { get; protected set; }
             public virtual DateTime Lieferdatum { get; protected set; }
-            public virtual TransportdienstleisterTyp Transportdienstleister { get; protected set; }
+            //public virtual TransportdienstleisterTyp Transportdienstleister { get; protected set; }
         }
 
         public class TransportauftragMap : ClassMap<Transportauftrag>
@@ -26,7 +26,7 @@ namespace Anwendungskern
                 Map(x => x.Ausgangsdatum);
                 Map(x => x.LieferungErfolgt);
                 Map(x => x.Lieferdatum);
-                Map(x => x.Transportdienstleister);
+                //Map(x => x.Transportdienstleister);
             }
         }
     }

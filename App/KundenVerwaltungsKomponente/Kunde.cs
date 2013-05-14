@@ -11,7 +11,7 @@ namespace Anwendungskern
     {
         public class Kunde : IKunde
         {
-            public virtual Int32 id { get; private set; }
+            public virtual Int32 id { get; protected set; }
             public virtual KundeNummerTyp nummer { get;  set; }
             public virtual String name { get; set; }
             public virtual AdresseTyp adresse { get; set; }

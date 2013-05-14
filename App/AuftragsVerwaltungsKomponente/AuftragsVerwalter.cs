@@ -24,7 +24,6 @@ namespace Anwendungskern
                 {
                     using (var transaction = session.BeginTransaction())
                     {
-
                         var dic = new Dictionary<IProdukt, int>();
                         foreach (var pair in produkte)
                         {
@@ -33,6 +32,7 @@ namespace Anwendungskern
                         }
                         angebot.gültigAb = gültigAb;
                         angebot.gültigBis = gültigBis;
+                        angebot.produkte = dic;
                         session.SaveOrUpdate(angebot);
                         transaction.Commit();
                     }
@@ -56,7 +56,7 @@ namespace Anwendungskern
                 {
                     using (var transaction = session.BeginTransaction())
                     {
-                        auftrag.angebot = persistenz.OpenSession().Get<Angebot>(angebotnummer.nummer);
+                        auftrag.angebot = session.Get<Angebot>(angebotnummer.nummer);
                         auftrag.kunde = kundenfassade.HoleKunde(kundennummer);
                         auftrag.beauftragtAm = beauftragsAm;
                         session.SaveOrUpdate(auftrag);
@@ -69,13 +69,7 @@ namespace Anwendungskern
             internal IAuftrag HoleAuftrag(AuftragNummerTyp auftrag)
             {
                 IAuftrag a = null;
-                using (var session = persistenz.OpenSession())
-                {
-                    using (var transaction = session.BeginTransaction())
-                    {
-                        a = session.Get<Auftrag>(auftrag.nummer);
-                    }
-                }
+                a = persistenz.OpenSession().Get<Auftrag>(auftrag.nummer);
                 if (a == null) throw new NullReferenceException();
                 return a;
             }

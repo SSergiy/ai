@@ -17,7 +17,7 @@ namespace Anwendungskern
             public virtual IList<IOrderbuchsatz> Orderbuchsatz { get; protected set; }
         }
 
-        public class OrderbuchMap : ClassMap<IOrderbuch>
+        public class OrderbuchMap : ClassMap<Orderbuch>
         {
             public OrderbuchMap()
             {
