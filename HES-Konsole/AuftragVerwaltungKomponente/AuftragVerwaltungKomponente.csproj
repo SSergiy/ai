@@ -1,0 +1,89 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{B4FF9550-FF3E-4A78-A8BF-B7CC5984364E}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>AuftragVerwaltungKomponente</RootNamespace>
+    <AssemblyName>AuftragVerwaltungKomponente</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="FluentNHibernate">
+      <HintPath>..\packages\FluentNHibernate.1.3.0.733\lib\FluentNHibernate.dll</HintPath>
+    </Reference>
+    <Reference Include="NHibernate">
+      <HintPath>..\packages\NHibernate.3.3.3.4000\lib\Net35\NHibernate.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Angebot.cs" />
+    <Compile Include="Auftrag.cs" />
+    <Compile Include="AuftragVerwaltung.cs" />
+    <Compile Include="AuftragVerwaltungFassade.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\0TypenKomponente\0TypenKomponente.csproj">
+      <Project>{4048C75D-4694-4079-8A1A-312B5192F966}</Project>
+      <Name>0TypenKomponente</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\BuchhaltungVerwaltungKomponente\BuchhaltungVerwaltungKomponente.csproj">
+      <Project>{47C9F6B7-6385-432F-AF3B-F74C32411814}</Project>
+      <Name>BuchhaltungVerwaltungKomponente</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\KundeVerwaltungKomponente\KundeVerwaltungKomponente.csproj">
+      <Project>{C9AEA77F-3506-4148-ADA7-DFA401D0772E}</Project>
+      <Name>KundeVerwaltungKomponente</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Persistenzmanager\Persistenzmanager.csproj">
+      <Project>{BC76B9E3-70FA-4AE2-9092-E1C7AB786028}</Project>
+      <Name>Persistenzmanager</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ProduktVerwaltungKomponente\ProduktVerwaltungKomponente.csproj">
+      <Project>{0D4944A5-1820-47AA-8271-898CC2381FEB}</Project>
+      <Name>ProduktVerwaltungKomponente</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TransportauftragVerwaltungKomponente\TransportauftragVerwaltungKomponente.csproj">
+      <Project>{0C5B2C44-F64F-4CE2-94C2-B4546E616723}</Project>
+      <Name>TransportauftragVerwaltungKomponente</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
