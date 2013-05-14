@@ -7,16 +7,16 @@ using Anwendungskern.NullTypenKomponente;
 
 namespace Anwendungskern
 {
-    namespace ProduktVerwaltunsKomponente
+    namespace ProduktVerwaltungsKomponente
     {
         public class Produkt : IProdukt
         {
             public virtual int Id { get; protected set; }
-            public virtual int Name { get; protected set; }
-            public virtual int Lagerbestand { get; protected set; }
-            public virtual IOrderbuch Orderbuch { get; protected set; }
-            public virtual IList<IEinkaufsinfosatz> Einkaufsinfosatz { get; protected set; }
-            public virtual IList<IWarenausgansmeldung> Warenausgansmeldung { get; protected set; }
+            public virtual string Name { get; set; }
+            public virtual int Lagerbestand { get; set; }
+            public virtual IOrderbuch Orderbuch { get; set; }
+            public virtual IList<IEinkaufsinfosatz> Einkaufsinfosatz { get; set; }
+            public virtual IList<IWarenausgansmeldung> Warenausgansmeldung { get; set; }
         }
 
         public class ProduktMap : ClassMap<Produkt>

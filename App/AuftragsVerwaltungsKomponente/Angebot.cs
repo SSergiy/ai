@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using Anwendungskern.ProduktVerwaltunsKomponente;
+using Anwendungskern.ProduktVerwaltungsKomponente;
 using FluentNHibernate.Mapping;
 using Anwendungskern.NullTypenKomponente;
 

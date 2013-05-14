@@ -59,6 +59,10 @@
       <Project>{06222526-7888-4ED3-B76B-BFCA3E86FD3A}</Project>
       <Name>0TypenKomponente</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Persistence-Management-Komponente\Persistence-Management-Komponente.csproj">
+      <Project>{1F8F7E27-F17C-4AED-BE1E-4DF69B7601A8}</Project>
+      <Name>Persistence-Management-Komponente</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

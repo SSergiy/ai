@@ -12,9 +12,9 @@ namespace Anwendungskern
         public class Rechnung : IRechnung
         {
             public virtual int Id { get; protected set; }
-            public virtual DateTime RechnungsDatum { get; protected set; }
-            public virtual bool IstBezahlt { get; protected set; }
-            public virtual List<IZahlungseingang> Zahlungseingang { get; protected set; }
+            public virtual DateTime RechnungsDatum { get; set; }
+            public virtual bool IstBezahlt { get; set; }
+            public virtual List<IZahlungseingang> Zahlungseingang { get; set; }
         }
 
         public class RechnungMap : ClassMap<Rechnung>

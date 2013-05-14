@@ -20,7 +20,7 @@ namespace Anwendungskern
         public interface IProdukt
         {
             int Id { get; }
-            int Name { get; }
+            string Name { get; }
             int Lagerbestand { get; }
             IOrderbuch Orderbuch { get; }
             IList<IEinkaufsinfosatz> Einkaufsinfosatz { get; }

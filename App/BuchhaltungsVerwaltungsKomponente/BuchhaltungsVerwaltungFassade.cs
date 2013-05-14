@@ -10,14 +10,16 @@ namespace Anwendungskern
     {
         public class BuchhaltungsVerwaltungFassade:IAWKBuchhaltungsVerwaltung
         {
-            public IRechnung ErstelleRechnung(AuftragNummerTyp auftrag)
+            private static readonly BuchhaltungsVerwalter buchhaltungsVerwalter = new BuchhaltungsVerwalter();
+
+            public IRechnung ErstelleRechnung(IAuftrag auftrag)
             {
-                throw new NotImplementedException();
+                return buchhaltungsVerwalter.ErstelleRechnung(auftrag);
             }
 
-            public void VerschickeRechnung(RechnungNummerTyp rechnung)
+            public void VerschickeRechnung(IRechnung rechnung)
             {
-                throw new NotImplementedException();
+                buchhaltungsVerwalter.VerschickeRechnung(rechnung);
             }
         }
     }

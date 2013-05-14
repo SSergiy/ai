@@ -6,11 +6,11 @@ using Anwendungskern.NullTypenKomponente;
 
 namespace Anwendungskern
 {
-    namespace ProduktVerwaltunsKomponente
+    namespace ProduktVerwaltungsKomponente
     {
         interface IAWKProduktVerwaltung
         {
-            Produkt HoleProdukt(ProduktNummerTyp produktnummer);
+            IProdukt HoleProdukt(ProduktNummerTyp produktnummer);
             bool PrüfeProduktLagerbestand(IDictionary<ProduktNummerTyp, int> produktliste);
             void MeldeProduktAuslagerung(IDictionary<ProduktNummerTyp, int> produktliste, int auftragsnummer);
         }

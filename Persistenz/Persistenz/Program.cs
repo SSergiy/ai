@@ -34,9 +34,10 @@ namespace Persistenz
                 using (var transaction = session.BeginTransaction())
                 {
                     var a = session.Get<ClassA>(1);
+                    Console.WriteLine(a.name);
                 }
             }
-
+            Console.ReadKey();
         }
     }
 }
