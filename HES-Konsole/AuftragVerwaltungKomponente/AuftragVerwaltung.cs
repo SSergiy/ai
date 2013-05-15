@@ -19,23 +19,23 @@ private static ISessionFactory persistenz = Persistenzmanager.Factory.Session();
                
                 var angebot = new Angebot();
 
-                //using (var session = persistenz.OpenSession())
-                //{
-                //    using (var transaction = session.BeginTransaction())
-                //    {
-                //        var dic = new Dictionary<IProdukt, int>();
-                //        foreach (var pair in produkte)
-                //        {
-                //            var produkt = produktfassade.HoleProdukt(pair.Key);
-                //            dic.Add(produkt, pair.Value);
-                //        }
-                //        angebot.GültigAb = gültigAb;
-                //        angebot.GültigBis = gültigBis;
-                //        angebot.Produkte = dic;
-                //        session.SaveOrUpdate(angebot);
-                //        transaction.Commit();
-                //    }
-                //}
+                using (var session = persistenz.OpenSession())
+                {
+                    using (var transaction = session.BeginTransaction())
+                    {
+                        var dic = new Dictionary<IProdukt, int>();
+                        foreach (var pair in produkte)
+                        {
+                            var produkt = produktfassade.HoleProdukt(pair.Key);
+                            dic.Add(produkt, pair.Value);
+                        }
+                        angebot.GültigAb = gültigAb;
+                        angebot.GültigBis = gültigBis;
+                        angebot.Produkte = dic;
+                        session.SaveOrUpdate(angebot);
+                        transaction.Commit();
+                    }
+                }
 
                 return angebot;
             }
@@ -50,18 +50,22 @@ private static ISessionFactory persistenz = Persistenzmanager.Factory.Session();
             {
                 var kundenfassade = new KundeVerwaltungKomponente.KundeVerwaltungFassade();
 
-                var auftrag = new Auftrag();
-                //using (var session = persistenz.OpenSession())
-                //{
-                //    using (var transaction = session.BeginTransaction())
-                //    {
-                //        auftrag.Angebot = session.Get<Angebot>(angebotnummer.nummer);
-                //        auftrag.Kunde = kundenfassade.HoleKunde(kundennummer);
-                //        auftrag.BeauftragtAm = beauftragtAm;
-                //        session.SaveOrUpdate(auftrag);
-                //        transaction.Commit();
-                //    }
-                //}
+                Auftrag auftrag = null;
+                using (var session = persistenz.OpenSession())
+                {
+                    using (var transaction = session.BeginTransaction())
+                    {
+                        auftrag = new Auftrag();
+                        auftrag.Angebot = session.Get<Angebot>(angebotnummer.nummer);
+                        auftrag.Kunde = kundenfassade.HoleKunde(kundennummer);
+                        auftrag.BeauftragtAm = beauftragtAm;
+                        session.SaveOrUpdate(auftrag);
+                        transaction.Commit();
+                    }
+                }
+
+                if (auftrag == null) throw new NullReferenceException();
+
                 return auftrag;
             }
 

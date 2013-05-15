@@ -11,7 +11,7 @@ namespace AuftragVerwaltungKomponente
     {
         public Angebot() { }
 
-        public virtual int Id { get; private set; }
+        public virtual int Id { get; protected set; }
         public virtual IDictionary<IProdukt, int> Produkte { get; set; }
         public virtual DateTime GültigAb { get; set; }
         public virtual DateTime GültigBis { get; set; }
