@@ -7,14 +7,14 @@ using FluentNHibernate.Mapping;
 
 namespace BuchhaltungVerwaltungKomponente
 {
-    class Zahlungseingang : IZahlungseingang
+    public class Zahlungseingang : IZahlungseingang
     {
         public virtual int Id { get; protected set; }
         public virtual DateTime Eingangsdatum { get; protected set; }
         public virtual double Betrag { get; protected set; }
     }
 
-    public class ZahlungseingangMap : ClassMap<IZahlungseingang>
+    public class ZahlungseingangMap : ClassMap<Zahlungseingang>
     {
         public ZahlungseingangMap()
         {

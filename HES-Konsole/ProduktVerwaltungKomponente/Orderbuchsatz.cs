@@ -13,6 +13,8 @@ namespace ProduktVerwaltungKomponente
         public virtual DateTime GültigAb { get; protected set; }
         public virtual DateTime GültigBis { get; protected set; }
 
+        public Orderbuchsatz() { }
+
     }
 
     public class OrderbuchsatzMap : ClassMap<Orderbuchsatz>

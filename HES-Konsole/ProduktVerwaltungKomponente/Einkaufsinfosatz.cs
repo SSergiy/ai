@@ -7,7 +7,7 @@ using FluentNHibernate.Mapping;
 
 namespace ProduktVerwaltungKomponente
 {
-    class Einkaufsinfosatz : IEinkaufsinfosatz
+    public class Einkaufsinfosatz : IEinkaufsinfosatz
     {
         public virtual int Id { get; protected set; }
         public virtual DateTime GültigAb { get; protected set; }
@@ -15,9 +15,11 @@ namespace ProduktVerwaltungKomponente
         public virtual double Planlieferzeit { get; protected set; }
         public virtual int Normalmenge { get; protected set; }
         public virtual double Preis { get; protected set; }
+
+        public Einkaufsinfosatz() { }
     }
 
-    public class EinkaufsinfosatzhMap : ClassMap<IEinkaufsinfosatz>
+    public class EinkaufsinfosatzhMap : ClassMap<Einkaufsinfosatz>
     {
         public EinkaufsinfosatzhMap()
         {
