@@ -14,7 +14,10 @@ namespace ProduktVerwaltungKomponente
         public virtual int Menge { get; protected set; }
         public virtual bool Freigabe { get; protected set; }
         public virtual IWareneingangsmeldung Wareneingangsmeldung { get; protected set; }
+
+public Bestellung() { }
     }
+
 
     public class BestellungMap : ClassMap<Bestellung>
     {
@@ -24,7 +27,7 @@ namespace ProduktVerwaltungKomponente
             Map(x => x.Bestelldatum);
             Map(x => x.Menge);
             Map(x => x.Freigabe);
-            Map(x => x.Wareneingangsmeldung);
+            HasOne<Wareneingangsmeldung>(x => x.Wareneingangsmeldung);
         }
     }
 }

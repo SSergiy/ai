@@ -21,7 +21,7 @@ namespace ProduktVerwaltungKomponente
 
                 if (temp.Count == 0)
                 {
-                    temp = erzeugeDummyProdukte(session);
+                    temp = erzeugeDummyProdukte();
                 }
             }
             return persistenz.OpenSession().Get<Produkt>(produktnummer.nummer);
@@ -47,18 +47,26 @@ namespace ProduktVerwaltungKomponente
             // ok
         }
 
-        private List<Produkt> erzeugeDummyProdukte(ISession session)
+        private List<Produkt> erzeugeDummyProdukte()
         {
             List<Produkt> result = new List<Produkt>();
-            for (int i = 0; i < 10; i++)
+
+            using (var session = persistenz.OpenSession())
             {
-                Produkt p = new Produkt();
-                p.Lagerbestand = 10;
-                p.Name = "Produkt " + i;
-                session.SaveOrUpdate(p);
-                result.Add(p);
+                using (var trans = session.BeginTransaction())
+                {
+                    for (int i = 0; i < 10; i++)
+                    {
+                        Produkt p = new Produkt();
+                        p.Lagerbestand = 10;
+
+                        p.Name = "Produkt " + i;
+                        session.SaveOrUpdate(p);
+                        result.Add(p);
+                    }
+                    trans.Commit();
+                }
             }
-            session.Transaction.Commit();
             return result;
         }
 
@@ -75,7 +83,7 @@ namespace ProduktVerwaltungKomponente
 
                     if (temp.Count == 0)
                     {
-                        temp = erzeugeDummyProdukte(session);
+                        temp = erzeugeDummyProdukte();
                     }
 
                     foreach (Produkt produkt in temp)

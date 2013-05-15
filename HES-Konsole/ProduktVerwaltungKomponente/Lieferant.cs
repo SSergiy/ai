@@ -8,7 +8,7 @@ using FluentNHibernate.Mapping;
 
 namespace ProduktVerwaltungKomponente
 {
-    class Lieferant : ILieferant
+    public class Lieferant : ILieferant
     {
         public virtual int Id { get; protected set; }
         public virtual string Name { get; protected set; }
@@ -16,9 +16,11 @@ namespace ProduktVerwaltungKomponente
         public virtual KontoverbindungTyp Kontoverbindung { get; protected set; }
         public virtual IList<IEinkaufsinfosatz> Einkaufsinfosatz { get; protected set; }
         public virtual IList<IBestellung> Bestellung { get; protected set; }
+
+        public Lieferant() { }
     }
 
-    public class LieferantMap : ClassMap<ILieferant>
+    public class LieferantMap : ClassMap<Lieferant>
     {
         public LieferantMap()
         {
@@ -32,9 +34,12 @@ namespace ProduktVerwaltungKomponente
                 m.Map(x => x.ort);
                 m.Map(x => x.land);
             });
-            Map(x => x.Kontoverbindung);
-            HasMany(x => x.Einkaufsinfosatz).Table("LieferantEinkaufsinfosatz");
-            HasMany(x => x.Bestellung).Table("LieferantBestellung");
+            Component<KontoverbindungTyp>(x => x.Kontoverbindung, m =>
+            {
+                m.Map(x => x.nummer);
+            });
+            HasMany<Einkaufsinfosatz>(x => x.Einkaufsinfosatz).Table("LieferantEinkaufsinfosatz");
+            HasMany<Bestellung>(x => x.Bestellung).Table("LieferantBestellung");
         }
     }
 }

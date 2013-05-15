@@ -13,8 +13,11 @@ namespace ProduktVerwaltungKomponente
         public virtual string Name { get; set; }
         public virtual int Lagerbestand { get; set; }
         public virtual IOrderbuch Orderbuch { get; set; }
+
         public virtual IList<IEinkaufsinfosatz> Einkaufsinfosatz { get; set; }
         public virtual IList<IWarenausgansmeldung> Warenausgansmeldung { get; set; }
+
+        public Produkt() { }
     }
 
     public class ProduktMap : ClassMap<Produkt>
@@ -24,9 +27,9 @@ namespace ProduktVerwaltungKomponente
             Id(x => x.Id);
             Map(x => x.Name);
             Map(x => x.Lagerbestand);
-            Map(x => x.Orderbuch);
-            HasManyToMany(x => x.Einkaufsinfosatz).Table("ProduktEinkaufsinfosatz");
-            HasManyToMany(x => x.Warenausgansmeldung).Table("ProduktWarenausgansmeldung");
+            HasOne<Orderbuch>(x => x.Orderbuch);
+            HasManyToMany<Einkaufsinfosatz>(x => x.Einkaufsinfosatz).Table("ProduktEinkaufsinfosatz");
+            HasManyToMany<Warenausgansmeldung>(x => x.Warenausgansmeldung).Table("ProduktWarenausgansmeldung");
         }
     }
 }

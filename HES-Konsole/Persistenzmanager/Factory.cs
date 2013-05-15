@@ -22,7 +22,9 @@ namespace Persistenzmanager
 
             // Erlaubte DLL
             erlaubtedll.Add("KundeVerwaltungKomponente.dll");
+            erlaubtedll.Add("BuchhaltungVerwaltungKomponente.dll");
             erlaubtedll.Add("ProduktVerwaltungKomponente.dll");
+            erlaubtedll.Add("AuftragVerwaltung.dll");
             List<Assembly> allAssemblies = new List<Assembly>();
             string path = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
 

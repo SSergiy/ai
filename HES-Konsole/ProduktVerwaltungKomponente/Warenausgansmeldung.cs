@@ -7,14 +7,16 @@ using FluentNHibernate.Mapping;
 
 namespace ProduktVerwaltungKomponente
 {
-    class Warenausgansmeldung : IWarenausgansmeldung
+    public class Warenausgansmeldung : IWarenausgansmeldung
     {
         public virtual int Id { get; protected set; }
         public virtual DateTime Datum { get; protected set; }
         public virtual int Menge { get; protected set; }
+
+        public Warenausgansmeldung() { }
     }
 
-    public class WarenausgansmeldungMap : ClassMap<IWarenausgansmeldung>
+    public class WarenausgansmeldungMap : ClassMap<Warenausgansmeldung>
     {
         public WarenausgansmeldungMap()
         {

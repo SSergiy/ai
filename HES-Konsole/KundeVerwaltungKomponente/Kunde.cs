@@ -11,7 +11,7 @@ namespace KundeVerwaltungKomponente
 {
     public class Kunde : IKunde
     {
-        public virtual Int32 id { get; protected set; }
+        public virtual int id { get; protected set; }
         public virtual KundeNummerTyp nummer { get; set; }
         public virtual String name { get; set; }
         public virtual AdresseTyp adresse { get; set; }
@@ -34,10 +34,11 @@ namespace KundeVerwaltungKomponente
         public KundeMap()
         {
             Id(x => x.id);
+
             Component<KundeNummerTyp>(x => x.nummer, m => // hiermit mappen wir einen fachlichen Datentyp innerhalb einer Entität
             {
                 m.Map(x => x.nummer);
-            }).Unique(); //Unique() eigentlich unnötig da der NummerTyp hochgezält wird
+            }).Unique();
 
             Map(x => x.name);
 

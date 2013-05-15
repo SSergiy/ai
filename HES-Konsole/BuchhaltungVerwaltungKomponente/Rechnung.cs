@@ -22,7 +22,7 @@ namespace BuchhaltungVerwaltungKomponente
             Id(x => x.Id);
             Map(x => x.RechnungsDatum);
             Map(x => x.IstBezahlt);
-            HasMany(x => x.Zahlungseingang).Table("RechnungZahlungseingang");
+            HasMany<Zahlungseingang>(x => x.Zahlungseingang).Table("RechnungZahlungseingang");
         }
     }
 }
