@@ -58,11 +58,10 @@ namespace TestVerwaltungKomponente
 
             IAuftrag auf = f.ErstelleAuftrag(DateTime.Now, an, kn);
 
-            AuftragNummerTyp n = new AuftragNummerTyp(auf.Id);
 
-            IAuftrag a = f.HoleAuftrag(n);
+            IAuftrag a = f.HoleAuftrag(auf.nummer);
 
-            Assert.AreEqual(auf.BeauftragtAm, a.BeauftragtAm);
+            Assert.AreEqual(auf.BeauftragtAm.ToString(), a.BeauftragtAm.ToString());
         }
 
     }

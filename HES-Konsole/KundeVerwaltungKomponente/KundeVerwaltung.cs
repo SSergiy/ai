@@ -6,6 +6,7 @@ using NHibernate;
 using _0TypenKomponente.TransportInterfaces;
 using _0TypenKomponente;
 using _0TypenKomponente.NummerTypen;
+using NHibernate.Linq;
 
 namespace KundeVerwaltungKomponente
 {
@@ -15,12 +16,13 @@ namespace KundeVerwaltungKomponente
 
         internal IKunde ErstelleKunde(KundeNummerTyp nummer, String name, AdresseTyp adresse)
         {
-            Kunde k = new Kunde(nummer, name, adresse);
+            Kunde k = null;
 
             using (var session = persistenz.OpenSession())
             {
                 using (var transaction = session.BeginTransaction())
                 {
+                    k = new Kunde(nummer, name, adresse);
                     session.SaveOrUpdate(k);
                     transaction.Commit();
                 }
@@ -32,15 +34,17 @@ namespace KundeVerwaltungKomponente
 
         internal IKunde HoleKunde(KundeNummerTyp kundennummerntyp)
         {
-                    
             Kunde k = null;
 
             using (var session = persistenz.OpenSession())
             {
-                k = session.Get<Kunde>(kundennummerntyp.nummer);
+                var temp = session.Query<Kunde>().ToList();
+                foreach (Kunde t in temp)
+                {
+                    if (t.nummer.nummer == kundennummerntyp.nummer)
+                        k = t;
+                }
             }
-
-            if (k == null) throw new NullReferenceException();
 
             return k;
         }
