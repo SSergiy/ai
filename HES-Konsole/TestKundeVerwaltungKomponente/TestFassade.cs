@@ -31,38 +31,37 @@ namespace TestVerwaltungKomponente
             Assert.AreEqual("name", k2.name);
         }
 
-        //[TestMethod]
-        //public void TestProduktVerwaltung()
-        //{
-        //    ProduktVerwaltungFassade pv = new ProduktVerwaltungFassade();
+        [TestMethod]
+        public void TestProduktVerwaltung()
+        {
+            ProduktVerwaltungFassade pv = new ProduktVerwaltungFassade();
 
-        //    IProdukt p = pv.HoleProdukt(new ProduktNummerTyp(1));
-        //    Assert.AreEqual(10, p.Lagerbestand);
-        //}
+            IProdukt p = pv.HoleProdukt(new ProduktNummerTyp(1));
+            Assert.AreEqual(10, p.Lagerbestand);
+        }
 
-        //[TestMethod]
-        //public void TestBuchhaltungVerwaltung()
-        //{
-        //    BuchhaltungVerwaltungFassade f = new BuchhaltungVerwaltungFassade();
+        [TestMethod]
+        public void TestBuchhaltungVerwaltung()
+        {
+            BuchhaltungVerwaltungFassade f = new BuchhaltungVerwaltungFassade();
 
-        //    //f.ErstelleRechnung(null);
-        //}
+            //f.ErstelleRechnung(null);
+        }
 
         [TestMethod]
         public void TestAuftragVerwaltung()
         {
-            //AuftragVerwaltungFassade f = new AuftragVerwaltungFassade();
+            AuftragVerwaltungFassade f = new AuftragVerwaltungFassade();
 
-            //AngebotNummerTyp an = new AngebotNummerTyp(1);
-            //KundeNummerTyp kn = new KundeNummerTyp(1);
+            AngebotNummerTyp an = new AngebotNummerTyp(1);
+            KundeNummerTyp kn = new KundeNummerTyp(1);
 
-            //IAuftrag auf = f.ErstelleAuftrag(DateTime.Now, an, kn);
+            IAuftrag auf = f.ErstelleAuftrag(DateTime.Now, an, kn);
 
-            //AuftragNummerTyp n = new AuftragNummerTyp(auf.Id);
 
-            //IAuftrag a = f.HoleAuftrag(n);
+            IAuftrag a = f.HoleAuftrag(auf.nummer);
 
-            //Assert.AreEqual(auf.BeauftragtAm, a.BeauftragtAm);
+            Assert.AreEqual(auf.BeauftragtAm.ToString(), a.BeauftragtAm.ToString());
         }
 
     }

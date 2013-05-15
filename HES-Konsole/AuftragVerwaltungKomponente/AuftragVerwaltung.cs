@@ -11,6 +11,15 @@ namespace AuftragVerwaltungKomponente
 
     class AuftragVerwaltung
         {
+
+        private static int AuftrNrCount = 0;
+
+        private int neueAuftrNr()
+        {
+            AuftrNrCount += 1;
+            return AuftrNrCount;
+        }
+
 private static ISessionFactory persistenz = Persistenzmanager.Factory.Session();
 
             public IAngebot ErstelleAngebot(IDictionary<ProduktNummerTyp, int> produkte, DateTime gültigAb, DateTime gültigBis)
@@ -59,6 +68,7 @@ private static ISessionFactory persistenz = Persistenzmanager.Factory.Session();
                         auftrag.Angebot = session.Get<Angebot>(angebotnummer.nummer);
                         auftrag.Kunde = kundenfassade.HoleKunde(kundennummer);
                         auftrag.BeauftragtAm = beauftragtAm;
+                        auftrag.nummer = new AuftragNummerTyp(neueAuftrNr()) ;
                         session.SaveOrUpdate(auftrag);
                         transaction.Commit();
                     }
