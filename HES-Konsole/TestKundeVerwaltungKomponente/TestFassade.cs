@@ -44,24 +44,34 @@ namespace TestVerwaltungKomponente
         public void TestBuchhaltungVerwaltung()
         {
             BuchhaltungVerwaltungFassade f = new BuchhaltungVerwaltungFassade();
+            AuftragVerwaltungFassade fassade = new AuftragVerwaltungFassade();
 
-            //f.ErstelleRechnung(null);
+            AngebotNummerTyp an = new AngebotNummerTyp(1);
+            KundeNummerTyp kn = new KundeNummerTyp(1);
+
+            IAuftrag NeuerAuftrag = fassade.ErstelleAuftrag(DateTime.Now, an, kn);
+            f.ErstelleRechnung(NeuerAuftrag);
+            
         }
 
         [TestMethod]
         public void TestAuftragVerwaltung()
         {
-            AuftragVerwaltungFassade f = new AuftragVerwaltungFassade();
+            AuftragVerwaltungFassade fassade = new AuftragVerwaltungFassade();
 
             AngebotNummerTyp an = new AngebotNummerTyp(1);
             KundeNummerTyp kn = new KundeNummerTyp(1);
 
-            IAuftrag auf = f.ErstelleAuftrag(DateTime.Now, an, kn);
+            IAuftrag NeuerAuftrag = fassade.ErstelleAuftrag(DateTime.Now, an, kn);
 
 
-            IAuftrag a = f.HoleAuftrag(auf.nummer);
+            IAuftrag a = fassade.HoleAuftrag(NeuerAuftrag.nummer);
 
-            Assert.AreEqual(auf.BeauftragtAm.ToString(), a.BeauftragtAm.ToString());
+            Assert.AreEqual(NeuerAuftrag.Angebot, a.Angebot);
+            Assert.AreEqual(NeuerAuftrag.Id, a.Id);
+            Assert.AreEqual(NeuerAuftrag.Kunde, a.Kunde);
+            Assert.AreEqual(NeuerAuftrag.nummer.nummer, a.nummer.nummer);
+            Assert.AreEqual(NeuerAuftrag.BeauftragtAm.ToString(), a.BeauftragtAm.ToString());
         }
 
     }

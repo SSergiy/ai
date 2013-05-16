@@ -15,7 +15,6 @@ namespace KundeVerwaltungKomponente
         public virtual KundeNummerTyp nummer { get; set; }
         public virtual String name { get; set; }
         public virtual AdresseTyp adresse { get; set; }
-        //public virtual IList<Angebot> angebote { get; set; }
 
         /// <summary>
         /// Nullable Constructor für NHibernate

@@ -22,6 +22,7 @@ namespace AuftragVerwaltungKomponente
         public AngebotMap()
         {
             Id(x => x.Id);
+            
             //Component<IDictionary<IProdukt, int>>(x => x.Produkte);
             Map(x => x.GültigAb);
             Map(x => x.GültigBis);
