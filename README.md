@@ -8,4 +8,5 @@ ai SS 2013
 * SQLite installieren <code>Install-Package System.Data.SQLite</code>
 * NHibernate LINQ <code>Install-Package NHibernate.Linq</code>
 * Log4Net <code>Install-Package log4net</code>
+* MySql <code>Install-Package MySql.Data</code>
 Als Graph Tool wird Yed benutzt: <code>http://www.yworks.com/de/products_yed_about.html</code>
