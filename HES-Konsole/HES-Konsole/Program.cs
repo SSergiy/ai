@@ -18,8 +18,9 @@ namespace HES_Konsole
             KundeNummerTyp nummer = new KundeNummerTyp(1);
             AdresseTyp adresse = new AdresseTyp("1","2","3","4","5");
             IKunde k = f.ErstelleKunde(nummer, "name", adresse);
-
+            IKunde k_neu = f.HoleKunde(nummer);
             Console.WriteLine(k.name);
+            Console.WriteLine(k_neu.name);
             Console.ReadKey();
         }
     }
