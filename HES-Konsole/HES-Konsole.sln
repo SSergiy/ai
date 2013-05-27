@@ -34,6 +34,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TransportdienstleisterVerwa
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BankVerwaltungKomponente", "BankVerwaltungKomponente\BankVerwaltungKomponente.csproj", "{D6E945B5-E3CE-4881-A5AA-4D4B227F9AF0}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DispatcherWebService", "DispatcherWebService\DispatcherWebService.csproj", "{33952E17-3DE0-493F-8658-9CFD9033B733}"
+EndProject
 Global
 	GlobalSection(TestCaseManagementSettings) = postSolution
 		CategoryFile = HES-Konsole.vsmdi
@@ -157,6 +159,16 @@ Global
 		{D6E945B5-E3CE-4881-A5AA-4D4B227F9AF0}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{D6E945B5-E3CE-4881-A5AA-4D4B227F9AF0}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{D6E945B5-E3CE-4881-A5AA-4D4B227F9AF0}.Release|x86.ActiveCfg = Release|Any CPU
+		{33952E17-3DE0-493F-8658-9CFD9033B733}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{33952E17-3DE0-493F-8658-9CFD9033B733}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{33952E17-3DE0-493F-8658-9CFD9033B733}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{33952E17-3DE0-493F-8658-9CFD9033B733}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{33952E17-3DE0-493F-8658-9CFD9033B733}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{33952E17-3DE0-493F-8658-9CFD9033B733}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{33952E17-3DE0-493F-8658-9CFD9033B733}.Release|Any CPU.Build.0 = Release|Any CPU
+		{33952E17-3DE0-493F-8658-9CFD9033B733}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{33952E17-3DE0-493F-8658-9CFD9033B733}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{33952E17-3DE0-493F-8658-9CFD9033B733}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
