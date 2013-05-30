@@ -28,6 +28,18 @@ namespace Nachrichten
             this.parameter = parameter;
         }
 
+        public Message(string component, string method, string client_name, string[] parameter)
+            : this(component, method, client_name)
+        {
+            List<string> parameter_liste = new List<string>();
+            foreach (String p in parameter)
+            {
+                parameter_liste.Add(p);
+            }
+            this.parameter = parameter_liste;
+        }
+
+
         private string getjson(string key, string value)
         {
             // "key":"value"
@@ -91,12 +103,7 @@ namespace Nachrichten
             if (parameter.Length > 0)
             {
                 string[] parameter_elements = parameter.Split(',');
-                List<string> parameter_liste = new List<string>();
-                foreach (String p in parameter_elements)
-                {
-                    parameter_liste.Add(p);
-                }
-                return new Message(fassdae, methode, client, parameter_liste);
+                return new Message(fassdae, methode, client, parameter_elements);
             }
             else
             {
