@@ -5,14 +5,13 @@
     <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{DB93A751-94C0-437F-BAF2-938D00AAB2FC}</ProjectGuid>
+    <ProjectGuid>{DA7B6754-AC58-4629-9D96-CD13F35F1955}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>HES_Konsole</RootNamespace>
-    <AssemblyName>HES-Konsole</AssemblyName>
+    <RootNamespace>HES_Instanz</RootNamespace>
+    <AssemblyName>HES-Instanz</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
-    <TargetFrameworkProfile>
-    </TargetFrameworkProfile>
+    <TargetFrameworkProfile>Client</TargetFrameworkProfile>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
@@ -35,26 +34,14 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="log4net">
-      <HintPath>..\packages\log4net.2.0.0\lib\net40-client\log4net.dll</HintPath>
-    </Reference>
     <Reference Include="MySql.Data">
       <HintPath>..\packages\MySql.Data.6.6.5\lib\net40\MySql.Data.dll</HintPath>
-    </Reference>
-    <Reference Include="NHibernate.Linq">
-      <HintPath>..\packages\NHibernate.Linq.1.0\lib\NHibernate.Linq.dll</HintPath>
     </Reference>
     <Reference Include="RabbitMQ.Client">
       <HintPath>..\packages\RabbitMQ.Client.3.0.4\lib\net30\RabbitMQ.Client.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Data.SQLite">
-      <HintPath>..\packages\System.Data.SQLite.1.0.85.0\lib\net40\System.Data.SQLite.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Data.SQLite.Linq">
-      <HintPath>..\packages\System.Data.SQLite.1.0.85.0\lib\net40\System.Data.SQLite.Linq.dll</HintPath>
-    </Reference>
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -64,18 +51,6 @@
   <ItemGroup>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="app.config" />
-    <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="x64\SQLite.Interop.dll">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="x86\SQLite.Interop.dll">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\0TypenKomponente\0TypenKomponente.csproj">
