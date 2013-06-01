@@ -31,36 +31,48 @@ namespace GUI
 
         private void Senden_Click(object sender, EventArgs e)
         {
-            string Kompoennte = KomponenteTextBox.Text;
-            string Methode = MethodeTextBox.Text;
-            string ClientName = clientname.Text;
+            string dll = TextBoxdll.Text.Trim();
+            string ns = TextBoxNameSpace.Text.Trim();
+            string klasse = TextBoxKlasse.Text.Trim();
+            string methode = TextBoxMethode.Text.Trim();
+            string client = clientTextBox.Text.Trim();
+            string parameter = TextBoxParameter.Text.Trim();
+            List<string> p = new List<string>();
+            if (parameter!=string.Empty)
+            {
+                p = parameter.Split(',').ToList<string>();
+            }
             int anzahl = 1;
             try
-            { anzahl = int.Parse(AnzahlAufrufeTextBox.Text); }
+            { anzahl = int.Parse(TextBoxAufrufe.Text.Trim()); }
             catch (Exception) { }
 
-            send(Kompoennte, Methode, ClientName, anzahl);
+            send(dll,ns,klasse,methode,client,anzahl,p);
         }
 
-        private void send(string komponente, string methode, string clientname, int anzahl)
+        private void send(string dll, string ns, string klasse, string methode, string client, int anzahl,List<string> p)
         {
             using (IConnection connection = connectionfactory.CreateConnection())
             {
                 using (IModel channel = connection.CreateModel())
                 {
-                    channel.QueueDeclare(server_queue_name, durable, exclusive, autoDelete, null);
+                    var a = channel.QueueDeclare(server_queue_name, durable, exclusive, autoDelete, null);
                     System.Text.UTF8Encoding encoder = new System.Text.UTF8Encoding();
-                    string message = new Nachrichten.Message(komponente, methode, clientname).getMessage();
+                    string message = new Nachrichten.Message(dll, ns, klasse, methode, client, p).getMessage();
 
 
 
                     for (int i = 0; i < anzahl; i++)
                     {
+                        //MessageBox.Show("Gesendete Nachricht: " + message+ "\n" + server_queue_name);
                         channel.BasicPublish("", server_queue_name, null, encoder.GetBytes(message));
+                        Console.WriteLine("Messages after send: " + a.MessageCount);
                     }
                 }
             }
         }
+
+        
 
         private void receive(string clientname)
         {
@@ -71,7 +83,7 @@ namespace GUI
                     var a = channel.QueueDeclare(clientname, durable, exclusive, autoDelete, null);
                     System.Text.UTF8Encoding encoder = new System.Text.UTF8Encoding();
                     QueueingBasicConsumer consumer = new QueueingBasicConsumer(channel);
-                    channel.BasicConsume(server_queue_name, true, consumer);
+                    channel.BasicConsume(clientname, true, consumer);
                     System.Console.WriteLine("Len: " + a.MessageCount);
                     BasicDeliverEventArgs ea = (BasicDeliverEventArgs)consumer.Queue.Dequeue();
 
@@ -90,6 +102,5 @@ namespace GUI
             string clientname = clientTextBox.Text;
             receive(clientname);
         }
-
     }
 }

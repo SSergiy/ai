@@ -30,54 +30,60 @@
         {
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.KomponenteTextBox = new System.Windows.Forms.TextBox();
-            this.MethodeTextBox = new System.Windows.Forms.TextBox();
+            this.TextBoxKlasse = new System.Windows.Forms.TextBox();
+            this.TextBoxMethode = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.Senden = new System.Windows.Forms.Button();
-            this.AnzahlAufrufeTextBox = new System.Windows.Forms.TextBox();
+            this.TextBoxAufrufe = new System.Windows.Forms.TextBox();
             this.Empfangen = new System.Windows.Forms.Button();
             this.clientTextBox = new System.Windows.Forms.TextBox();
             this.clientname = new System.Windows.Forms.Label();
+            this.parameter_label = new System.Windows.Forms.Label();
+            this.TextBoxParameter = new System.Windows.Forms.TextBox();
+            this.labeldll = new System.Windows.Forms.Label();
+            this.TextBoxdll = new System.Windows.Forms.TextBox();
+            this.labelnamespace = new System.Windows.Forms.Label();
+            this.TextBoxNameSpace = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(12, 9);
+            this.label1.Location = new System.Drawing.Point(13, 86);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(60, 13);
+            this.label1.Size = new System.Drawing.Size(131, 13);
             this.label1.TabIndex = 0;
-            this.label1.Text = "component";
+            this.label1.Text = "Klassenname der Fassade";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(12, 48);
+            this.label2.Location = new System.Drawing.Point(13, 124);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(49, 13);
             this.label2.TabIndex = 1;
             this.label2.Text = "Methode";
             // 
-            // KomponenteTextBox
+            // TextBoxKlasse
             // 
-            this.KomponenteTextBox.Location = new System.Drawing.Point(15, 25);
-            this.KomponenteTextBox.Name = "KomponenteTextBox";
-            this.KomponenteTextBox.Size = new System.Drawing.Size(212, 20);
-            this.KomponenteTextBox.TabIndex = 2;
-            this.KomponenteTextBox.Text = "ProduktVerwaltungFassade";
+            this.TextBoxKlasse.Location = new System.Drawing.Point(16, 102);
+            this.TextBoxKlasse.Name = "TextBoxKlasse";
+            this.TextBoxKlasse.Size = new System.Drawing.Size(289, 20);
+            this.TextBoxKlasse.TabIndex = 2;
+            this.TextBoxKlasse.Text = "KundeVerwaltungFassade";
             // 
-            // MethodeTextBox
+            // TextBoxMethode
             // 
-            this.MethodeTextBox.Location = new System.Drawing.Point(15, 65);
-            this.MethodeTextBox.Name = "MethodeTextBox";
-            this.MethodeTextBox.Size = new System.Drawing.Size(212, 20);
-            this.MethodeTextBox.TabIndex = 3;
-            this.MethodeTextBox.Text = "HoleAlleProdukte";
+            this.TextBoxMethode.Location = new System.Drawing.Point(16, 141);
+            this.TextBoxMethode.Name = "TextBoxMethode";
+            this.TextBoxMethode.Size = new System.Drawing.Size(212, 20);
+            this.TextBoxMethode.TabIndex = 3;
+            this.TextBoxMethode.Text = "HoleKundeRemote";
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(15, 92);
+            this.label3.Location = new System.Drawing.Point(19, 211);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(39, 13);
             this.label3.TabIndex = 4;
@@ -85,7 +91,7 @@
             // 
             // Senden
             // 
-            this.Senden.Location = new System.Drawing.Point(18, 135);
+            this.Senden.Location = new System.Drawing.Point(19, 253);
             this.Senden.Name = "Senden";
             this.Senden.Size = new System.Drawing.Size(75, 23);
             this.Senden.TabIndex = 5;
@@ -93,17 +99,17 @@
             this.Senden.UseVisualStyleBackColor = true;
             this.Senden.Click += new System.EventHandler(this.Senden_Click);
             // 
-            // AnzahlAufrufeTextBox
+            // TextBoxAufrufe
             // 
-            this.AnzahlAufrufeTextBox.Location = new System.Drawing.Point(15, 109);
-            this.AnzahlAufrufeTextBox.Name = "AnzahlAufrufeTextBox";
-            this.AnzahlAufrufeTextBox.Size = new System.Drawing.Size(212, 20);
-            this.AnzahlAufrufeTextBox.TabIndex = 6;
-            this.AnzahlAufrufeTextBox.Text = "1";
+            this.TextBoxAufrufe.Location = new System.Drawing.Point(19, 227);
+            this.TextBoxAufrufe.Name = "TextBoxAufrufe";
+            this.TextBoxAufrufe.Size = new System.Drawing.Size(212, 20);
+            this.TextBoxAufrufe.TabIndex = 6;
+            this.TextBoxAufrufe.Text = "10";
             // 
             // Empfangen
             // 
-            this.Empfangen.Location = new System.Drawing.Point(363, 95);
+            this.Empfangen.Location = new System.Drawing.Point(363, 51);
             this.Empfangen.Name = "Empfangen";
             this.Empfangen.Size = new System.Drawing.Size(75, 23);
             this.Empfangen.TabIndex = 7;
@@ -128,23 +134,80 @@
             this.clientname.TabIndex = 9;
             this.clientname.Text = "Client Name";
             // 
+            // parameter_label
+            // 
+            this.parameter_label.AutoSize = true;
+            this.parameter_label.Location = new System.Drawing.Point(16, 166);
+            this.parameter_label.Name = "parameter_label";
+            this.parameter_label.Size = new System.Drawing.Size(55, 13);
+            this.parameter_label.TabIndex = 10;
+            this.parameter_label.Text = "Parameter";
+            // 
+            // TextBoxParameter
+            // 
+            this.TextBoxParameter.Location = new System.Drawing.Point(19, 182);
+            this.TextBoxParameter.Name = "TextBoxParameter";
+            this.TextBoxParameter.Size = new System.Drawing.Size(209, 20);
+            this.TextBoxParameter.TabIndex = 11;
+            this.TextBoxParameter.Text = "1";
+            // 
+            // labeldll
+            // 
+            this.labeldll.AutoSize = true;
+            this.labeldll.Location = new System.Drawing.Point(12, 9);
+            this.labeldll.Name = "labeldll";
+            this.labeldll.Size = new System.Drawing.Size(65, 13);
+            this.labeldll.TabIndex = 12;
+            this.labeldll.Text = "DLL (mit .dll)";
+            // 
+            // TextBoxdll
+            // 
+            this.TextBoxdll.Location = new System.Drawing.Point(15, 24);
+            this.TextBoxdll.Name = "TextBoxdll";
+            this.TextBoxdll.Size = new System.Drawing.Size(290, 20);
+            this.TextBoxdll.TabIndex = 13;
+            this.TextBoxdll.Text = "KundeVerwaltungKomponente.dll";
+            // 
+            // labelnamespace
+            // 
+            this.labelnamespace.AutoSize = true;
+            this.labelnamespace.Location = new System.Drawing.Point(13, 47);
+            this.labelnamespace.Name = "labelnamespace";
+            this.labelnamespace.Size = new System.Drawing.Size(64, 13);
+            this.labelnamespace.TabIndex = 14;
+            this.labelnamespace.Text = "Namespace";
+            // 
+            // TextBoxNameSpace
+            // 
+            this.TextBoxNameSpace.Location = new System.Drawing.Point(16, 63);
+            this.TextBoxNameSpace.Name = "TextBoxNameSpace";
+            this.TextBoxNameSpace.Size = new System.Drawing.Size(289, 20);
+            this.TextBoxNameSpace.TabIndex = 15;
+            this.TextBoxNameSpace.Text = "KundeVerwaltungKomponente";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(484, 246);
+            this.ClientSize = new System.Drawing.Size(475, 289);
+            this.Controls.Add(this.TextBoxNameSpace);
+            this.Controls.Add(this.labelnamespace);
+            this.Controls.Add(this.TextBoxdll);
+            this.Controls.Add(this.labeldll);
+            this.Controls.Add(this.TextBoxParameter);
+            this.Controls.Add(this.parameter_label);
             this.Controls.Add(this.clientname);
             this.Controls.Add(this.clientTextBox);
             this.Controls.Add(this.Empfangen);
-            this.Controls.Add(this.AnzahlAufrufeTextBox);
+            this.Controls.Add(this.TextBoxAufrufe);
             this.Controls.Add(this.Senden);
             this.Controls.Add(this.label3);
-            this.Controls.Add(this.MethodeTextBox);
-            this.Controls.Add(this.KomponenteTextBox);
+            this.Controls.Add(this.TextBoxMethode);
+            this.Controls.Add(this.TextBoxKlasse);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Name = "Form1";
-            this.Text = "Client 1";
+            this.Text = "HES Remote Call App";
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -154,14 +217,20 @@
 
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox KomponenteTextBox;
-        private System.Windows.Forms.TextBox MethodeTextBox;
+        private System.Windows.Forms.TextBox TextBoxKlasse;
+        private System.Windows.Forms.TextBox TextBoxMethode;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Button Senden;
-        private System.Windows.Forms.TextBox AnzahlAufrufeTextBox;
+        private System.Windows.Forms.TextBox TextBoxAufrufe;
         private System.Windows.Forms.Button Empfangen;
         private System.Windows.Forms.TextBox clientTextBox;
         private System.Windows.Forms.Label clientname;
+        private System.Windows.Forms.Label parameter_label;
+        private System.Windows.Forms.TextBox TextBoxParameter;
+        private System.Windows.Forms.Label labeldll;
+        private System.Windows.Forms.TextBox TextBoxdll;
+        private System.Windows.Forms.Label labelnamespace;
+        private System.Windows.Forms.TextBox TextBoxNameSpace;
     }
 }
 

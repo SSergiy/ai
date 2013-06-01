@@ -10,9 +10,10 @@ using _0TypenKomponente.TransportInterfaces;
 using ProduktVerwaltungKomponente;
 using BuchhaltungVerwaltungKomponente;
 using AuftragVerwaltungKomponente;
-
+using Nachrichten;
 namespace TestVerwaltungKomponente
 {
+
     [TestClass]
     public class TestFassade
     {
