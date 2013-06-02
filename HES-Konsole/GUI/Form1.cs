@@ -38,7 +38,7 @@ namespace GUI
             string client = clientTextBox.Text.Trim();
             string parameter = TextBoxParameter.Text.Trim();
             List<string> p = new List<string>();
-            if (parameter!=string.Empty)
+            if (parameter != string.Empty)
             {
                 p = parameter.Split(',').ToList<string>();
             }
@@ -47,10 +47,10 @@ namespace GUI
             { anzahl = int.Parse(TextBoxAufrufe.Text.Trim()); }
             catch (Exception) { }
 
-            send(dll,ns,klasse,methode,client,anzahl,p);
+            send(dll, ns, klasse, methode, client, anzahl, p);
         }
 
-        private void send(string dll, string ns, string klasse, string methode, string client, int anzahl,List<string> p)
+        private void send(string dll, string ns, string klasse, string methode, string client, int anzahl, List<string> p)
         {
             using (IConnection connection = connectionfactory.CreateConnection())
             {
@@ -72,7 +72,7 @@ namespace GUI
             }
         }
 
-        
+
 
         private void receive(string clientname)
         {
@@ -85,15 +85,16 @@ namespace GUI
                     QueueingBasicConsumer consumer = new QueueingBasicConsumer(channel);
                     channel.BasicConsume(clientname, true, consumer);
                     System.Console.WriteLine("Len: " + a.MessageCount);
+                    // Alternative Methodenaufruf blockierend: consumer.Queue.Dequeue();
                     BasicDeliverEventArgs ea = (BasicDeliverEventArgs)consumer.Queue.Dequeue();
-
                     byte[] body = ea.Body;
                     string message = System.Text.Encoding.UTF8.GetString(body);
                     MessageBox.Show(message);
-                    //System.Console.WriteLine("Message Receive from RabbitMQ: " + message);
-                    //System.Console.WriteLine("Len: " + a.MessageCount);
 
-                }
+                    // Nicht-Blockierend
+                    //object body = consumer.Queue.DequeueNoWait("Kein Eintrag in der Client Queue für Client: "+clientname);
+                    //MessageBox.Show((string) body);
+               }
             }
         }
 

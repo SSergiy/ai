@@ -51,15 +51,15 @@ namespace HES_Instanz
                 using (IModel channel = connection.CreateModel())
                 {
                     Console.WriteLine("Verbindung zur Queue hergestellt");
-
+                    while(true) {
                     var a = channel.QueueDeclare(server_queue_name, durable, exclusive, autoDelete, null);
-                    System.Console.WriteLine("Len: " + a.MessageCount);
                     System.Text.UTF8Encoding encoder = new System.Text.UTF8Encoding();
                     QueueingBasicConsumer consumer = new QueueingBasicConsumer(channel);
                     channel.BasicConsume(server_queue_name, true, consumer);
 
+                        
                     BasicDeliverEventArgs ea = (BasicDeliverEventArgs)consumer.Queue.Dequeue();
-                    System.Console.WriteLine("Len: " + a.MessageCount);
+                    //System.Console.WriteLine("Len: " + a.MessageCount);
                     byte[] body = ea.Body;
                     // Erzeuge aus dem byte[] eine Message instanz um dann die Richtige Komponente ansprechen zu können.
                     string message = System.Text.Encoding.UTF8.GetString(body);
@@ -72,17 +72,8 @@ namespace HES_Instanz
                         Message m = Message.getMessage(message);
                         Console.WriteLine("Verarbeite Nachricht - Fassade: " + m.fassade + " Methode: " + m.methode + " Client: " + m.client + " Parameter: " + m.parameter);
                         // Anfang von Magic
-                        //System.AssemblyQualifiedName(
-
-                        //Assembly.LoadFile("KundeVerwaltungKomponente.dll");
-                        //Type Komponente = Assembly.LoadFile("KundeVerwaltungKomponente.dll").GetType("KundeVerwaltungKomponente.KundeVerwaltungKomponente");
-                        //Type Komponente = Type.GetType(m.fassade);
-
-                        //Type Komponente = Type.GetType("KundeVerwaltungKomponente.KundeVerwaltungKomponente");
-
                         string pfad_zur_assembly = System.IO.Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location) + "\\"+m.dll;
                         Assembly assembly_der_komponente = System.Reflection.Assembly.LoadFile(pfad_zur_assembly);
-                        //Type type_der_komponente = assembly_der_komponente.GetType("KundeVerwaltungKomponente.KundeVerwaltungFassade");
                         string voller_type = m.ns + "." + m.fassade;
                         Type type_der_komponente = assembly_der_komponente.GetType(voller_type);
 
@@ -134,10 +125,10 @@ namespace HES_Instanz
                         }
                     }
                     catch (Exception e) { Console.WriteLine("Typ der Komponente Konnte nicht ermittelt werden " + e.Message + "\n" + e.InnerException); }
+                Console.WriteLine("Abgearbeitet!");
                 }
-                Console.WriteLine("Alles abgearbeitet!");
-                Console.ReadKey();
-            }
+                
+                } }
         }
 
 
