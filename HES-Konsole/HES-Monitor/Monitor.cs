@@ -8,24 +8,34 @@ using System.Diagnostics;
 using System.IO;
 using System.Net;
 using System.Collections;
-
+using System.Runtime.Remoting;
+using System.Runtime.Remoting.Channels;
+using System.Runtime.Remoting.Channels.Tcp;
 
 namespace HES_Monitor
 {
-    class Monitor
+    public class Monitor : MarshalByRefObject, IMonitor
     {
-        IDictionary<string, DateTime> runningInstances = new Dictionary<string, DateTime>();
+        static IDictionary<string, DateTime> runningInstances = new Dictionary<string, DateTime>();
         int timeoutMillis = 3000;
 
+        public EventHandler Changed;
+
+        public IDictionary<string, DateTime> getRunningInstances()
+        {
+            return runningInstances;
+        }
+        
         public void start()
         {
+            this.Changed += new EventHandler(printRunningInstances);
+
             // Heartbeat-Listener
-            Thread heartbeatReceiver = new Thread(new ThreadStart(HeartbeatReceiver));
+            Thread heartbeatReceiver = new Thread(HeartbeatReceiver);
             heartbeatReceiver.Start();
 
             // nicht mehr laufende Instanzen entfernen
-            Thread instancesCleaner = new Thread(new ThreadStart(InstancesCleaner));
-            instancesCleaner.Start();
+            Timer instancesCleaner = new Timer(InstancesCleaner, 5, 0, timeoutMillis);
 
             // RabbitMQ + MySQL starten
             if (!Helper.portOpen("localhost", 3306))
@@ -34,28 +44,60 @@ namespace HES_Monitor
             }
 
             // Lokal
-            startLocal(@"D:\malte\documents\visual studio 2010\Projects\HeartbeatTest\HeartbeatTest\bin\Debug\HeartbeatTest.exe", "client1");
+            //startLocal(@"D:\malte\documents\visual studio 2010\Projects\HeartbeatTest\HeartbeatTest\bin\Debug\HeartbeatTest.exe", "client1");
+            //startLocal(@"D:\malte\documents\visual studio 2010\Projects\HeartbeatTest\HeartbeatTest\bin\Debug\HeartbeatTest.exe", "client2");
+
+            
+            //Process.Start("HES-Instanz.exe client2");
 
             // Remote
-            startRemoteProgram("192.168.0.120", "client2");
-
-
+            //startRemoteProgram("192.168.0.120", "client2");
+            heartbeatReceiver.Join();
         }
 
-        void InstancesCleaner()
+        public void startLocalInstance()
         {
-            IDictionary<string, DateTime> tmp = new Dictionary<string, DateTime>();
+            Process.Start("HES-Instanz.exe");
+        }
+
+        void printRunningInstances(object sender, EventArgs e)
+        {
+            Console.Clear();
+
+            Console.WriteLine("Running: " + runningInstances.Count);
 
             foreach (string client in runningInstances.Keys)
             {
-                if (DateTime.Now.Subtract(runningInstances[client]).TotalMilliseconds < timeoutMillis)
-                {
-                    tmp.Add(client, runningInstances[client]);
-                }
+                Console.WriteLine(client + " : " + runningInstances[client]);
             }
-            runningInstances = tmp;
         }
 
+        void InstancesCleaner(Object state)
+        {
+            IDictionary<string, DateTime> tmp = new Dictionary<string, DateTime>();
+            bool changed = false;
+
+            foreach (string client in runningInstances.Keys)
+            {
+                tmp.Add(client, runningInstances[client]);
+            }
+
+            foreach (string client in tmp.Keys)
+            {
+                if (DateTime.Now.Subtract(tmp[client]).TotalMilliseconds > timeoutMillis)
+                {
+                    changed = true;
+                    runningInstances.Remove(client);
+                }
+            }
+
+            if (changed)
+            {
+                if (this.Changed != null)
+                    this.Changed(this, EventArgs.Empty);
+            }
+
+        }
 
         void HeartbeatReceiver()
         {
@@ -65,9 +107,22 @@ namespace HES_Monitor
             {
                 byte[] data = new byte[1024];
                 data = server.Receive(ref sender);
+
                 string stringData = Encoding.ASCII.GetString(data, 0, data.Length);
 
-                runningInstances.Add("" + sender.Address, DateTime.Now);
+                var key = stringData + "@" + sender.Address;
+
+                if (runningInstances.ContainsKey(key))
+                {
+                    runningInstances[key] = DateTime.Now;
+                }
+                else
+                {
+                    runningInstances.Add(key, DateTime.Now);
+                }
+                if (this.Changed != null)
+                    this.Changed(this, EventArgs.Empty);
+
 
                 //Console.WriteLine("Response from " + sender.Address + Environment.NewLine + "Message: " + stringData);
             }
@@ -91,11 +146,11 @@ namespace HES_Monitor
             Helper.runCommands(c);
         }
 
-        static void startLocal(string path, string clientName)
+        void startLocal(string path, string clientName)
         {
             List<string> c = new List<string>();
             c.Add(@"""" + path + @""" " + clientName + " " + Helper.LocalIPAddress());
-            Helper.runCommands(c);
+            Helper.runCommandsAsThread(c);
         }
     }
 }

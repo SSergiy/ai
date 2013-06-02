@@ -24,5 +24,10 @@ namespace _0TypenKomponente
             this.ort = ort;
             this.land = land;
         }
+
+        public override string ToString()
+        {
+            return " Straße: " + strasse + " Hausnummer: " + hausnummer + " Postleitzahl " + postleitzahl + " Ort: " + ort + " Land: " + land; 
+        }
     }
 }

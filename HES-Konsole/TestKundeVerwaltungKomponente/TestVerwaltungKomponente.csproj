@@ -84,6 +84,10 @@
       <Project>{C9AEA77F-3506-4148-ADA7-DFA401D0772E}</Project>
       <Name>KundeVerwaltungKomponente</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Nachrichten\Nachrichten.csproj">
+      <Project>{408A404C-4F29-448C-AF5B-E6179D6C74FF}</Project>
+      <Name>Nachrichten</Name>
+    </ProjectReference>
     <ProjectReference Include="..\ProduktVerwaltungKomponente\ProduktVerwaltungKomponente.csproj">
       <Project>{0D4944A5-1820-47AA-8271-898CC2381FEB}</Project>
       <Name>ProduktVerwaltungKomponente</Name>
@@ -93,9 +97,6 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="x64\SQLite.Interop.dll">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
     <Content Include="x86\SQLite.Interop.dll">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

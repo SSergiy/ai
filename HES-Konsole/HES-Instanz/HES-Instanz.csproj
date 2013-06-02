@@ -34,6 +34,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Iesi.Collections">
+      <HintPath>..\packages\Iesi.Collections.3.2.0.4000\lib\Net35\Iesi.Collections.dll</HintPath>
+    </Reference>
     <Reference Include="MySql.Data">
       <HintPath>..\packages\MySql.Data.6.6.5\lib\net40\MySql.Data.dll</HintPath>
     </Reference>
@@ -57,9 +60,41 @@
       <Project>{4048C75D-4694-4079-8A1A-312B5192F966}</Project>
       <Name>0TypenKomponente</Name>
     </ProjectReference>
+    <ProjectReference Include="..\AuftragVerwaltungKomponente\AuftragVerwaltungKomponente.csproj">
+      <Project>{B4FF9550-FF3E-4A78-A8BF-B7CC5984364E}</Project>
+      <Name>AuftragVerwaltungKomponente</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\BankVerwaltungKomponente\BankVerwaltungKomponente.csproj">
+      <Project>{D6E945B5-E3CE-4881-A5AA-4D4B227F9AF0}</Project>
+      <Name>BankVerwaltungKomponente</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\BuchhaltungVerwaltungKomponente\BuchhaltungVerwaltungKomponente.csproj">
+      <Project>{47C9F6B7-6385-432F-AF3B-F74C32411814}</Project>
+      <Name>BuchhaltungVerwaltungKomponente</Name>
+    </ProjectReference>
     <ProjectReference Include="..\KundeVerwaltungKomponente\KundeVerwaltungKomponente.csproj">
       <Project>{C9AEA77F-3506-4148-ADA7-DFA401D0772E}</Project>
       <Name>KundeVerwaltungKomponente</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Nachrichten\Nachrichten.csproj">
+      <Project>{408A404C-4F29-448C-AF5B-E6179D6C74FF}</Project>
+      <Name>Nachrichten</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Persistenzmanager\Persistenzmanager.csproj">
+      <Project>{BC76B9E3-70FA-4AE2-9092-E1C7AB786028}</Project>
+      <Name>Persistenzmanager</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ProduktVerwaltungKomponente\ProduktVerwaltungKomponente.csproj">
+      <Project>{0D4944A5-1820-47AA-8271-898CC2381FEB}</Project>
+      <Name>ProduktVerwaltungKomponente</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TransportauftragVerwaltungKomponente\TransportauftragVerwaltungKomponente.csproj">
+      <Project>{0C5B2C44-F64F-4CE2-94C2-B4546E616723}</Project>
+      <Name>TransportauftragVerwaltungKomponente</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TransportdienstleisterVerwaltungKomponente\TransportdienstleisterVerwaltungKomponente.csproj">
+      <Project>{55F6D7B4-1A15-433C-B672-E87935DD51D4}</Project>
+      <Name>TransportdienstleisterVerwaltungKomponente</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -27,6 +27,11 @@ namespace KundeVerwaltungKomponente
             this.name = name;
             this.adresse = adresse;
         }
+
+        public override string ToString() 
+        {
+            return "Kundennummer: " + nummer.ToString() + " Name: " + name + " Adresse: " + adresse.ToString();
+        }
     }
     public class KundeMap : ClassMap<Kunde>
     {

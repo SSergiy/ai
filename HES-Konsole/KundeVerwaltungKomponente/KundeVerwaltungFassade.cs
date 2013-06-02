@@ -17,9 +17,17 @@ namespace KundeVerwaltungKomponente
             return verwalter.ErstelleKunde(nummer, name, adresse);
         }
 
+
         public IKunde HoleKunde(KundeNummerTyp kundennummerntyp)
         {
             return verwalter.HoleKunde(kundennummerntyp);
         }
+
+        // Remote Call
+        public IKunde HoleKundeRemote(string kundennummerntyp)
+        {
+            return verwalter.HoleKunde(new KundeNummerTyp(int.Parse(kundennummerntyp)));
+        }
+
     }
 }

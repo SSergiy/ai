@@ -5,10 +5,12 @@ using System.Text;
 using System.Net.Sockets;
 using System.Diagnostics;
 using System.IO;
+using System.Net;
+using System.Threading;
 
 namespace HES_Monitor
 {
-    class Helper
+    public class Helper
     {
         public static bool portOpen(string host, int port)
         {
@@ -25,6 +27,12 @@ namespace HES_Monitor
             {
                 return false;
             }
+        }
+
+        public static void runCommandsAsThread(List<string> commands)
+        {
+            Thread t = new Thread(() => runCommands(commands));
+            t.Start();
         }
 
         public static void runCommands(List<string> commands)
