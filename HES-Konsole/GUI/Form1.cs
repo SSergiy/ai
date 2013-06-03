@@ -81,20 +81,37 @@ namespace GUI
                 using (IModel channel = connection.CreateModel())
                 {
                     var a = channel.QueueDeclare(clientname, durable, exclusive, autoDelete, null);
-                    System.Text.UTF8Encoding encoder = new System.Text.UTF8Encoding();
-                    QueueingBasicConsumer consumer = new QueueingBasicConsumer(channel);
-                    channel.BasicConsume(clientname, true, consumer);
-                    System.Console.WriteLine("Len: " + a.MessageCount);
-                    // Alternative Methodenaufruf blockierend: consumer.Queue.Dequeue();
-                    BasicDeliverEventArgs ea = (BasicDeliverEventArgs)consumer.Queue.Dequeue();
-                    byte[] body = ea.Body;
-                    string message = System.Text.Encoding.UTF8.GetString(body);
-                    MessageBox.Show(message);
+                    Console.WriteLine("Es befinden sich: " + a.MessageCount.ToString() + " Nachrichten in der " + a.QueueName.ToString() + " Queue");
+                    if (a.MessageCount > 0)
+                    {
+                        System.Text.UTF8Encoding encoder = new System.Text.UTF8Encoding();
+                        QueueingBasicConsumer consumer = new QueueingBasicConsumer(channel);
+                        channel.BasicConsume(clientname, true, consumer);
 
-                    // Nicht-Blockierend
-                    //object body = consumer.Queue.DequeueNoWait("Kein Eintrag in der Client Queue für Client: "+clientname);
-                    //MessageBox.Show((string) body);
-               }
+                        // Blockierend
+                        BasicDeliverEventArgs ea = (BasicDeliverEventArgs)consumer.Queue.Dequeue();
+                        byte[] body = ea.Body;
+                        string message = System.Text.Encoding.UTF8.GetString(body);
+                        MessageBox.Show(message);
+
+                        // Nicht-Blockierend
+
+                        //object result = consumer.Queue.DequeueNoWait(null);
+                        //string message = "";
+                        //if (result != null)
+                        //{
+                        //    BasicDeliverEventArgs ea = (BasicDeliverEventArgs)result;
+                        //    byte[] body = ea.Body;
+                        //    message = System.Text.Encoding.UTF8.GetString(body);
+
+                        //}
+                        //else { message = "Queue hat keine Einträge"; }
+                        //MessageBox.Show(message);
+                    }
+                    else {
+                        MessageBox.Show("gibt keine");
+                    }
+                }
             }
         }
 

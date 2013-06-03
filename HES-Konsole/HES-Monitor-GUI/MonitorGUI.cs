@@ -58,6 +58,8 @@ namespace HES_Monitor_GUI
 
             var ri = remoteObject.getRunningInstances();
 
+            label1.Text = remoteObject.queueSize().ToString();
+
             foreach (string client in ri.Keys)
             {
                 runningInstances.Items.Add(client + " : " + ri[client]);

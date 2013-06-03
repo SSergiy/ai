@@ -11,6 +11,7 @@ using System.Collections;
 using System.Runtime.Remoting;
 using System.Runtime.Remoting.Channels;
 using System.Runtime.Remoting.Channels.Tcp;
+using RabbitMQ.Client;
 
 namespace HES_Monitor
 {
@@ -19,16 +20,39 @@ namespace HES_Monitor
         static IDictionary<string, DateTime> runningInstances = new Dictionary<string, DateTime>();
         int timeoutMillis = 3000;
 
+        bool durable = true;
+        bool exclusive = false;
+        bool autoDelete = false;
+        string serverAddress = "localhost";
+        string queuename = "in";
+        static ConnectionFactory connectionfactory = new ConnectionFactory();
+        static QueueDeclareOk a;
+        static IConnection connection;
+        static IModel channel;
+
         public EventHandler Changed;
+
+        public uint queueSize()
+        {
+            if (a == null) return 0;
+
+            return a.MessageCount;
+        }
 
         public IDictionary<string, DateTime> getRunningInstances()
         {
             return runningInstances;
         }
-        
+
         public void start()
         {
             this.Changed += new EventHandler(printRunningInstances);
+
+            connectionfactory.HostName = serverAddress;
+            connection = connectionfactory.CreateConnection();
+            channel = connection.CreateModel();
+            a = channel.QueueDeclare(queuename, durable, exclusive, autoDelete, null);
+
 
             // Heartbeat-Listener
             Thread heartbeatReceiver = new Thread(HeartbeatReceiver);
@@ -47,7 +71,7 @@ namespace HES_Monitor
             //startLocal(@"D:\malte\documents\visual studio 2010\Projects\HeartbeatTest\HeartbeatTest\bin\Debug\HeartbeatTest.exe", "client1");
             //startLocal(@"D:\malte\documents\visual studio 2010\Projects\HeartbeatTest\HeartbeatTest\bin\Debug\HeartbeatTest.exe", "client2");
 
-            
+
             //Process.Start("HES-Instanz.exe client2");
 
             // Remote

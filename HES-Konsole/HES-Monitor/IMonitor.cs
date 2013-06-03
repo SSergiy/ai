@@ -10,5 +10,6 @@ namespace HES_Monitor
         void start();
         void startLocalInstance();
         IDictionary<string, DateTime> getRunningInstances();
+        uint queueSize();
     }
 }

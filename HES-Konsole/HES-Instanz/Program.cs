@@ -69,99 +69,112 @@ namespace HES_Instanz
             }
 
             connectionfactory.HostName = serverAddress;
-
-            //insertDummyContent();
-
             Console.WriteLine("Starte HES Instanz");
+            KundeVerwaltungFassade f = new KundeVerwaltungFassade();
+            // und weitere
+
+
             Console.WriteLine("HES gestartet");
             Console.WriteLine("Verbinde zur Queue");
             // Receive from in queue
             connectionfactory = new ConnectionFactory();
             connectionfactory.HostName = serverAddress;
+            insertDummyContent();
             using (IConnection connection = connectionfactory.CreateConnection())
             {
                 using (IModel channel = connection.CreateModel())
                 {
                     Console.WriteLine("Verbindung zur Queue hergestellt");
-                    while (true) 
-                        
+                    while (true)
                     {
-                    if (shutdown) shutdownHES();
-                    var a = channel.QueueDeclare(server_queue_name, durable, exclusive, autoDelete, null);
-                    System.Text.UTF8Encoding encoder = new System.Text.UTF8Encoding();
-                    QueueingBasicConsumer consumer = new QueueingBasicConsumer(channel);
-                    channel.BasicConsume(server_queue_name, true, consumer);
-                    BasicDeliverEventArgs ea = (BasicDeliverEventArgs)consumer.Queue.Dequeue();
-                    //System.Console.WriteLine("Len: " + a.MessageCount);
-                    byte[] body = ea.Body;
-                    // Erzeuge aus dem byte[] eine Message instanz um dann die Richtige Komponente ansprechen zu können.
-                    string message = System.Text.Encoding.UTF8.GetString(body);
+                        if (shutdown) shutdownHES();
+                        var a = channel.QueueDeclare(server_queue_name, durable, exclusive, autoDelete, null);
+                        Console.WriteLine("Es befinden sich: " + a.MessageCount.ToString() + " Nachrichten in der " + a.QueueName.ToString() + " Queue");
+                        System.Text.UTF8Encoding encoder = new System.Text.UTF8Encoding();
+                        QueueingBasicConsumer consumer = new QueueingBasicConsumer(channel);
+                        channel.BasicConsume(server_queue_name, true, consumer);
+                        BasicDeliverEventArgs ea = (BasicDeliverEventArgs)consumer.Queue.Dequeue();
+                        byte[] body = ea.Body;
+                        // Erzeuge aus dem byte[] eine Message instanz um dann die Richtige Komponente ansprechen zu können.
+                        string message = System.Text.Encoding.UTF8.GetString(body);
+                        Console.WriteLine(message);
 
-
-                    Console.WriteLine(message);
-
-                    try
-                    {
-                        Message m = Message.getMessage(message);
-                        Console.WriteLine("Verarbeite Nachricht - Fassade: " + m.fassade + " Methode: " + m.methode + " Client: " + m.client + " Parameter: " + m.parameter);
-                        // Anfang von Magic
-                        string pfad_zur_assembly = System.IO.Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location) + "\\"+m.dll;
-                        Assembly assembly_der_komponente = System.Reflection.Assembly.LoadFile(pfad_zur_assembly);
-                        string voller_type = m.ns + "." + m.fassade;
-                        Type type_der_komponente = assembly_der_komponente.GetType(voller_type);
-
-                        if (type_der_komponente == null)
+                        try
                         {
-                            Console.WriteLine("Fassade: " + m.fassade + " nicht gefunden");
-                        }
-                        else
-                        {
-                            // Erzeuge Instanz der Fassade
-                            try
+                            Message m = Message.getMessage(message);
+                            Console.WriteLine("Verarbeite Nachricht - Fassade: " + m.fassade + " Methode: " + m.methode + " Client: " + m.client + " Parameter: " + m.parameter);
+                            // Anfang von Magic
+                            string pfad_zur_assembly = System.IO.Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location) + "\\" + m.dll;
+                            Assembly assembly_der_komponente = System.Reflection.Assembly.LoadFile(pfad_zur_assembly);
+                            string voller_type = m.ns + "." + m.fassade;
+                            Type type_der_komponente = assembly_der_komponente.GetType(voller_type);
+
+                            if (type_der_komponente == null)
                             {
-                                object instanz_der_komponente = Activator.CreateInstance(type_der_komponente);
+                                Console.WriteLine("Fassade: " + m.fassade + " nicht gefunden");
+                            }
+                            else
+                            {
+                                // Erzeuge Instanz der Fassade
                                 try
                                 {
-                                    // Hat diese Instanz die benötigte Methode ?
-                                    MethodInfo Methode = type_der_komponente.GetMethod(m.methode);
+                                    object instanz_der_komponente = Activator.CreateInstance(type_der_komponente);
                                     try
                                     {
-
-                                        object result = null;
-
-                                        if (m.parameter.Count() > 0)
-                                        {
-
-                                            object[] p = m.parameter.ToArray<object>();
-                                            result = Methode.Invoke(instanz_der_komponente, p);
-                                        }
-                                        else
-                                        {
-                                            result = Methode.Invoke(instanz_der_komponente, null);
-                                        }
-
-                                        // Sende Ergebnis zurück.
+                                        // Hat diese Instanz die benötigte Methode ?
+                                        MethodInfo Methode = type_der_komponente.GetMethod(m.methode);
                                         try
                                         {
-                                            var respond_queue = channel.QueueDeclare(m.client, durable, exclusive, autoDelete, null);
-                                            string return_message = result.ToString();
-                                            channel.BasicPublish("", m.client, null, encoder.GetBytes(return_message));
-                                            Console.WriteLine("Antwort mit: " + return_message + " an Client: " + m.client + " gesendet.");
+
+                                            object result = null;
+
+                                            if (m.parameter.Count() > 0)
+                                            {
+
+                                                object[] p = m.parameter.ToArray<object>();
+                                                result = Methode.Invoke(instanz_der_komponente, p);
+                                            }
+                                            else
+                                            {
+                                                result = Methode.Invoke(instanz_der_komponente, null);
+                                            }
+
+                                            // Falls Ergebnis Null, leeren String setzten.
+                                            if (result == null)
+                                            {
+                                                result = "Die Anfrage lieferte kein Ergebnis";
+                                            }
+
+                                            // Sende Ergebnis zurück.
+                                            try
+                                            {
+                                                var respond_queue = channel.QueueDeclare(m.client, durable, exclusive, autoDelete, null);
+                                                string return_message = result.ToString();
+                                                for (int i = 0; i < 10; i++)
+                                                {
+                                                    channel.BasicPublish("", m.client, null, encoder.GetBytes(return_message));
+                                                }
+
+                                                Console.WriteLine("Antwort mit: " + return_message + " an Client: " + m.client + " gesendet.");
+                                                Console.WriteLine("Einträge in Client queue: " + respond_queue.MessageCount);
+                                                Console.WriteLine("Name der Queue: " + respond_queue.QueueName);
+                                            }
+                                            catch (Exception e) { Console.WriteLine("Antwort konnte nicht zurück gesendet werden." + e.Message + "\n" + e.InnerException); }
                                         }
-                                        catch (Exception e) { Console.WriteLine("Antwort konnte nicht zurück gesendet werden." + e.Message + "\n" + e.InnerException); }
+                                        catch (Exception e) { Console.WriteLine("Methode lieferte eine Exception." + e.Message + "\n" + e.InnerException); }
                                     }
-                                    catch (Exception e) { Console.WriteLine("Methode lieferte eine Exception." + e.Message + "\n" + e.InnerException); }
+                                    catch (Exception e) { Console.WriteLine("Methode der Fassade konnte nicht gefunden werden." + e.Message + "\n" + e.InnerException); }
                                 }
-                                catch (Exception e) { Console.WriteLine("Methode der Fassade konnte nicht gefunden werden." + e.Message + "\n" + e.InnerException); }
+                                catch (Exception e) { Console.WriteLine("Instanz der Fassdade konnte nicht erstellt werden" + e.Message + "\n" + e.InnerException); }
                             }
-                            catch (Exception e) { Console.WriteLine("Instanz der Fassdade konnte nicht erstellt werden" + e.Message + "\n" + e.InnerException); }
                         }
+                        catch (Exception e) { Console.WriteLine("Typ der Komponente Konnte nicht ermittelt werden " + e.Message + "\n" + e.InnerException); }
+                        Console.WriteLine("Abgearbeitet!");
                     }
-                    catch (Exception e) { Console.WriteLine("Typ der Komponente Konnte nicht ermittelt werden " + e.Message + "\n" + e.InnerException); }
-                Console.WriteLine("Abgearbeitet!");
+
                 }
-                
-                } }
+            }
+
         }
 
 

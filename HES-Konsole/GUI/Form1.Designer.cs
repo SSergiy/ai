@@ -85,9 +85,9 @@
             this.label3.AutoSize = true;
             this.label3.Location = new System.Drawing.Point(19, 211);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(39, 13);
+            this.label3.Size = new System.Drawing.Size(94, 13);
             this.label3.TabIndex = 4;
-            this.label3.Text = "Anzahl";
+            this.label3.Text = "Anzahl der Aufrufe";
             // 
             // Senden
             // 
@@ -105,7 +105,7 @@
             this.TextBoxAufrufe.Name = "TextBoxAufrufe";
             this.TextBoxAufrufe.Size = new System.Drawing.Size(212, 20);
             this.TextBoxAufrufe.TabIndex = 6;
-            this.TextBoxAufrufe.Text = "10";
+            this.TextBoxAufrufe.Text = "1";
             // 
             // Empfangen
             // 

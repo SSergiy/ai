@@ -33,6 +33,7 @@
             this.newLocalInstance = new System.Windows.Forms.Button();
             this.refreshGUI = new System.Windows.Forms.Timer(this.components);
             this.autoRefresh = new System.Windows.Forms.CheckBox();
+            this.label1 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // runningInstances
@@ -71,11 +72,21 @@
             this.autoRefresh.UseVisualStyleBackColor = true;
             this.autoRefresh.CheckedChanged += new System.EventHandler(this.autoRefresh_CheckedChanged);
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(197, 136);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(35, 13);
+            this.label1.TabIndex = 4;
+            this.label1.Text = "label1";
+            // 
             // MonitorGUI
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(544, 401);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.autoRefresh);
             this.Controls.Add(this.newLocalInstance);
             this.Controls.Add(this.runningInstances);
@@ -94,6 +105,7 @@
         private System.Windows.Forms.Button newLocalInstance;
         private System.Windows.Forms.Timer refreshGUI;
         private System.Windows.Forms.CheckBox autoRefresh;
+        private System.Windows.Forms.Label label1;
     }
 }
 
