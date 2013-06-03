@@ -36,12 +36,22 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BankVerwaltungKomponente", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HES-Instanz", "HES-Instanz\HES-Instanz.csproj", "{DA7B6754-AC58-4629-9D96-CD13F35F1955}"
 EndProject
+<<<<<<< HEAD
+=======
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HES-Monitor", "HES-Monitor\HES-Monitor.csproj", "{AB03EA21-7E2B-4D86-A945-C5C4504DBA9B}"
+EndProject
+>>>>>>> 9b02cafe95defef6cc1e452fb5fb85faf7bc0c91
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "GUI", "GUI", "{464EBEE5-D1B4-40CD-A9DB-51D16E26BCC3}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GUI", "GUI\GUI.csproj", "{B3873209-7BEF-41C8-B550-C958CCC78B72}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nachrichten", "Nachrichten\Nachrichten.csproj", "{408A404C-4F29-448C-AF5B-E6179D6C74FF}"
 EndProject
+<<<<<<< HEAD
+=======
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HES-Monitor-GUI", "HES-Monitor-GUI\HES-Monitor-GUI.csproj", "{74F7D659-520C-4CB3-B614-7AA6BF804C08}"
+EndProject
+>>>>>>> 9b02cafe95defef6cc1e452fb5fb85faf7bc0c91
 Global
 	GlobalSection(TestCaseManagementSettings) = postSolution
 		CategoryFile = HES-Konsole.vsmdi
@@ -175,6 +185,19 @@ Global
 		{DA7B6754-AC58-4629-9D96-CD13F35F1955}.Release|Mixed Platforms.Build.0 = Release|x86
 		{DA7B6754-AC58-4629-9D96-CD13F35F1955}.Release|x86.ActiveCfg = Release|x86
 		{DA7B6754-AC58-4629-9D96-CD13F35F1955}.Release|x86.Build.0 = Release|x86
+<<<<<<< HEAD
+=======
+		{AB03EA21-7E2B-4D86-A945-C5C4504DBA9B}.Debug|Any CPU.ActiveCfg = Debug|x86
+		{AB03EA21-7E2B-4D86-A945-C5C4504DBA9B}.Debug|Mixed Platforms.ActiveCfg = Debug|x86
+		{AB03EA21-7E2B-4D86-A945-C5C4504DBA9B}.Debug|Mixed Platforms.Build.0 = Debug|x86
+		{AB03EA21-7E2B-4D86-A945-C5C4504DBA9B}.Debug|x86.ActiveCfg = Debug|x86
+		{AB03EA21-7E2B-4D86-A945-C5C4504DBA9B}.Debug|x86.Build.0 = Debug|x86
+		{AB03EA21-7E2B-4D86-A945-C5C4504DBA9B}.Release|Any CPU.ActiveCfg = Release|x86
+		{AB03EA21-7E2B-4D86-A945-C5C4504DBA9B}.Release|Mixed Platforms.ActiveCfg = Release|x86
+		{AB03EA21-7E2B-4D86-A945-C5C4504DBA9B}.Release|Mixed Platforms.Build.0 = Release|x86
+		{AB03EA21-7E2B-4D86-A945-C5C4504DBA9B}.Release|x86.ActiveCfg = Release|x86
+		{AB03EA21-7E2B-4D86-A945-C5C4504DBA9B}.Release|x86.Build.0 = Release|x86
+>>>>>>> 9b02cafe95defef6cc1e452fb5fb85faf7bc0c91
 		{B3873209-7BEF-41C8-B550-C958CCC78B72}.Debug|Any CPU.ActiveCfg = Debug|x86
 		{B3873209-7BEF-41C8-B550-C958CCC78B72}.Debug|Mixed Platforms.ActiveCfg = Debug|x86
 		{B3873209-7BEF-41C8-B550-C958CCC78B72}.Debug|Mixed Platforms.Build.0 = Debug|x86
@@ -195,6 +218,19 @@ Global
 		{408A404C-4F29-448C-AF5B-E6179D6C74FF}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{408A404C-4F29-448C-AF5B-E6179D6C74FF}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{408A404C-4F29-448C-AF5B-E6179D6C74FF}.Release|x86.ActiveCfg = Release|Any CPU
+<<<<<<< HEAD
+=======
+		{74F7D659-520C-4CB3-B614-7AA6BF804C08}.Debug|Any CPU.ActiveCfg = Debug|x86
+		{74F7D659-520C-4CB3-B614-7AA6BF804C08}.Debug|Mixed Platforms.ActiveCfg = Debug|x86
+		{74F7D659-520C-4CB3-B614-7AA6BF804C08}.Debug|Mixed Platforms.Build.0 = Debug|x86
+		{74F7D659-520C-4CB3-B614-7AA6BF804C08}.Debug|x86.ActiveCfg = Debug|x86
+		{74F7D659-520C-4CB3-B614-7AA6BF804C08}.Debug|x86.Build.0 = Debug|x86
+		{74F7D659-520C-4CB3-B614-7AA6BF804C08}.Release|Any CPU.ActiveCfg = Release|x86
+		{74F7D659-520C-4CB3-B614-7AA6BF804C08}.Release|Mixed Platforms.ActiveCfg = Release|x86
+		{74F7D659-520C-4CB3-B614-7AA6BF804C08}.Release|Mixed Platforms.Build.0 = Release|x86
+		{74F7D659-520C-4CB3-B614-7AA6BF804C08}.Release|x86.ActiveCfg = Release|x86
+		{74F7D659-520C-4CB3-B614-7AA6BF804C08}.Release|x86.Build.0 = Release|x86
+>>>>>>> 9b02cafe95defef6cc1e452fb5fb85faf7bc0c91
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

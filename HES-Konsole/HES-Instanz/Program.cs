@@ -11,20 +11,45 @@ using RabbitMQ.Client.Events;
 using Nachrichten;
 using System.Reflection;
 using ProduktVerwaltungKomponente;
+using System.Net;
+using System.Threading;
 
 namespace HES_Instanz
 {
     class Program
     {
-
         readonly static bool durable = true;
         readonly static bool exclusive = false;
         readonly static bool autoDelete = false;
-
         readonly static string serverAddress = "localhost";
         readonly static string server_queue_name = "in";
         readonly static int timeoutMillis = 1000;
         readonly static string remote_string = "Remote";
+        readonly static int clientId = new Random().Next();
+
+        readonly static DateTime startTime = DateTime.Now;
+        static bool shutdown = false;
+
+        static string ip;
+
+        private static void Heartbeat(Object state)
+        {
+            SendUdpPacket("client" + clientId);
+        }
+
+        private static void SendUdpPacket(string message)
+        {
+            System.Net.Sockets.UdpClient sock = new System.Net.Sockets.UdpClient();
+            IPEndPoint iep = new IPEndPoint(IPAddress.Parse(ip), 15000);
+            byte[] data = Encoding.ASCII.GetBytes(message);
+            sock.Send(data, data.Length, iep);
+            sock.Close();
+        }
+
+        private static void shutdownHES()
+        {
+            System.Environment.Exit(0);
+        }
 
         // Sender
         static ConnectionFactory connectionfactory = new ConnectionFactory();
@@ -32,15 +57,22 @@ namespace HES_Instanz
 
         static void Main(string[] args)
         {
+            Timer heartbeat = new Timer(Heartbeat, 5, 0, 1000);
+
+            if (args.Length > 0)
+            {
+                ip = args[0];
+            }
+            else
+            {
+                ip = "127.0.0.1";
+            }
+
             connectionfactory.HostName = serverAddress;
 
-            insertDummyContent();
+            //insertDummyContent();
 
             Console.WriteLine("Starte HES Instanz");
-            KundeVerwaltungFassade f = new KundeVerwaltungFassade();
-            // und weitere
-
-
             Console.WriteLine("HES gestartet");
             Console.WriteLine("Verbinde zur Queue");
             // Receive from in queue
@@ -51,13 +83,14 @@ namespace HES_Instanz
                 using (IModel channel = connection.CreateModel())
                 {
                     Console.WriteLine("Verbindung zur Queue hergestellt");
-                    while(true) {
+                    while (true) 
+                        
+                    {
+                    if (shutdown) shutdownHES();
                     var a = channel.QueueDeclare(server_queue_name, durable, exclusive, autoDelete, null);
                     System.Text.UTF8Encoding encoder = new System.Text.UTF8Encoding();
                     QueueingBasicConsumer consumer = new QueueingBasicConsumer(channel);
                     channel.BasicConsume(server_queue_name, true, consumer);
-
-                        
                     BasicDeliverEventArgs ea = (BasicDeliverEventArgs)consumer.Queue.Dequeue();
                     //System.Console.WriteLine("Len: " + a.MessageCount);
                     byte[] body = ea.Body;
@@ -137,19 +170,7 @@ namespace HES_Instanz
         {
             // Damit auch was da ist nech ...
             var kundenverwaltungsfassade = new KundeVerwaltungFassade();
-
             kundenverwaltungsfassade.ErstelleKunde(new KundeNummerTyp(1), "Peter", new AdresseTyp("Musterstraße", "2", "12345", "Hamburg", "Deutschland"));
-            //using (IConnection connection = connectionfactory.CreateConnection())
-            //{
-            //    using (IModel channel = connection.CreateModel())
-            //    {
-            //        channel.QueueDeclare("in", durable, exclusive, autoDelete, null);
-            //        System.Text.UTF8Encoding encoder = new System.Text.UTF8Encoding();
-            //        string message = new Nachrichten.Message("KundeVerwaltungFassade", "HoleKunde", "Client1").getMessage();
-            //        channel.BasicPublish("", "in", null, encoder.GetBytes(message));
-            //    }
-            //}
-
         }
 
     }

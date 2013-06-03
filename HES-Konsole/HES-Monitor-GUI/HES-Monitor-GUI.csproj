@@ -5,11 +5,11 @@
     <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{DA7B6754-AC58-4629-9D96-CD13F35F1955}</ProjectGuid>
-    <OutputType>Exe</OutputType>
+    <ProjectGuid>{74F7D659-520C-4CB3-B614-7AA6BF804C08}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>HES_Instanz</RootNamespace>
-    <AssemblyName>HES-Instanz</AssemblyName>
+    <RootNamespace>HES_Monitor_GUI</RootNamespace>
+    <AssemblyName>HES-Monitor-GUI</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <TargetFrameworkProfile>Client</TargetFrameworkProfile>
     <FileAlignment>512</FileAlignment>
@@ -34,67 +34,71 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Iesi.Collections">
+    <Reference Include="Iesi.Collections, Version=1.0.1.0, Culture=neutral, PublicKeyToken=aa95f207798dfdb4, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Iesi.Collections.3.2.0.4000\lib\Net35\Iesi.Collections.dll</HintPath>
     </Reference>
     <Reference Include="MySql.Data">
       <HintPath>..\packages\MySql.Data.6.6.5\lib\net40\MySql.Data.dll</HintPath>
     </Reference>
-    <Reference Include="RabbitMQ.Client">
+    <Reference Include="NHibernate.Linq">
+      <HintPath>..\packages\NHibernate.Linq.1.0\lib\NHibernate.Linq.dll</HintPath>
+    </Reference>
+    <Reference Include="RabbitMQ.Client, Version=3.0.4.0, Culture=neutral, PublicKeyToken=89e7d7c5feba84ce, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\RabbitMQ.Client.3.0.4\lib\net30\RabbitMQ.Client.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Remoting" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="MonitorGUI.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MonitorGUI.Designer.cs">
+      <DependentUpon>MonitorGUI.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="MonitorGUI.resx">
+      <DependentUpon>MonitorGUI.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\0TypenKomponente\0TypenKomponente.csproj">
-      <Project>{4048C75D-4694-4079-8A1A-312B5192F966}</Project>
-      <Name>0TypenKomponente</Name>
+    <ProjectReference Include="..\HES-Instanz\HES-Instanz.csproj">
+      <Project>{DA7B6754-AC58-4629-9D96-CD13F35F1955}</Project>
+      <Name>HES-Instanz</Name>
     </ProjectReference>
-    <ProjectReference Include="..\AuftragVerwaltungKomponente\AuftragVerwaltungKomponente.csproj">
-      <Project>{B4FF9550-FF3E-4A78-A8BF-B7CC5984364E}</Project>
-      <Name>AuftragVerwaltungKomponente</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\BankVerwaltungKomponente\BankVerwaltungKomponente.csproj">
-      <Project>{D6E945B5-E3CE-4881-A5AA-4D4B227F9AF0}</Project>
-      <Name>BankVerwaltungKomponente</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\BuchhaltungVerwaltungKomponente\BuchhaltungVerwaltungKomponente.csproj">
-      <Project>{47C9F6B7-6385-432F-AF3B-F74C32411814}</Project>
-      <Name>BuchhaltungVerwaltungKomponente</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\KundeVerwaltungKomponente\KundeVerwaltungKomponente.csproj">
-      <Project>{C9AEA77F-3506-4148-ADA7-DFA401D0772E}</Project>
-      <Name>KundeVerwaltungKomponente</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Nachrichten\Nachrichten.csproj">
-      <Project>{408A404C-4F29-448C-AF5B-E6179D6C74FF}</Project>
-      <Name>Nachrichten</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Persistenzmanager\Persistenzmanager.csproj">
-      <Project>{BC76B9E3-70FA-4AE2-9092-E1C7AB786028}</Project>
-      <Name>Persistenzmanager</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\ProduktVerwaltungKomponente\ProduktVerwaltungKomponente.csproj">
-      <Project>{0D4944A5-1820-47AA-8271-898CC2381FEB}</Project>
-      <Name>ProduktVerwaltungKomponente</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\TransportauftragVerwaltungKomponente\TransportauftragVerwaltungKomponente.csproj">
-      <Project>{0C5B2C44-F64F-4CE2-94C2-B4546E616723}</Project>
-      <Name>TransportauftragVerwaltungKomponente</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\TransportdienstleisterVerwaltungKomponente\TransportdienstleisterVerwaltungKomponente.csproj">
-      <Project>{55F6D7B4-1A15-433C-B672-E87935DD51D4}</Project>
-      <Name>TransportdienstleisterVerwaltungKomponente</Name>
+    <ProjectReference Include="..\HES-Monitor\HES-Monitor.csproj">
+      <Project>{AB03EA21-7E2B-4D86-A945-C5C4504DBA9B}</Project>
+      <Name>HES-Monitor</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
