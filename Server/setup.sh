@@ -16,6 +16,9 @@ service rabbitmq-server stop
 rabbitmq-plugins enable rabbitmq_management
 rabbitmq-plugins enable rabbitmq_jsonrpc
 service rabbitmq-server start
+rabbitmqctl add_user admin admin
+rabbitmqctl set_user_tags admin administrator
+rabbitmqctl set_permissions -p / admin ".*" ".*" ".*"
 
 # rabbitmq-plugins list
 
