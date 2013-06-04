@@ -13,7 +13,7 @@ apt-get install -q -y rabbitmq-server
 
 # RabbitMQ Plugins
 service rabbitmq-server stop
-rabbitmq-plugins enable rabbitmq_management
+rabbitmq-plugins enable rabbitmq_management #Running on 15672
 rabbitmq-plugins enable rabbitmq_jsonrpc
 service rabbitmq-server start
 rabbitmqctl add_user admin admin

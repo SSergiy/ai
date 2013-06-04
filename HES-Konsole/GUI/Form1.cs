@@ -93,9 +93,11 @@ namespace GUI
 
                         // Blockierend
                         BasicDeliverEventArgs ea = (BasicDeliverEventArgs)consumer.Queue.Dequeue();
+                        //channel.BasicAck(ea.DeliveryTag, true);
                         byte[] body = ea.Body;
                         string message = System.Text.Encoding.UTF8.GetString(body);
                         MessageBox.Show(message);
+                        
 
                         // Nicht-Blockierend
 

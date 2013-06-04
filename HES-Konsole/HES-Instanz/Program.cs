@@ -90,12 +90,14 @@ namespace HES_Instanz
                         if (shutdown) shutdownHES();
                         channel.ExchangeDeclare(server_queue_name, ExchangeType.Fanout, durable);
                         channel.QueueBind(server_queue_name, server_queue_name, "");
+
                         //var a = channel.BasicGet(server_queue_name, false);
                         //Console.WriteLine("Es befinden sich: " + a.MessageCount.ToString() + " Nachrichten in der Queue");
                         System.Text.UTF8Encoding encoder = new System.Text.UTF8Encoding();
                         QueueingBasicConsumer consumer = new QueueingBasicConsumer(channel);
                         channel.BasicConsume(server_queue_name, true, consumer);
                         BasicDeliverEventArgs ea = (BasicDeliverEventArgs)consumer.Queue.Dequeue();
+
                         byte[] body = ea.Body;
                         // Erzeuge aus dem byte[] eine Message instanz um dann die Richtige Komponente ansprechen zu können.
                         string message = System.Text.Encoding.UTF8.GetString(body);
@@ -153,12 +155,9 @@ namespace HES_Instanz
                                                 channel.ExchangeDeclare(m.client, ExchangeType.Fanout);
                                                 channel.QueueBind(m.client, m.client, "");
                                                 //channel.QueueDeclare(m.client, durable, exclusive, autoDelete, null);
-                                                string return_message = result.ToString();
-                                                for (int i = 0; i < 10; i++)
-                                                {
-                                                    channel.BasicPublish(m.client, m.client, null, encoder.GetBytes(return_message));
-                                                }
-
+                                                string return_message = "Zeitpunkt: " + DateTime.UtcNow.ToString() + " \nRückgabe: " + result.ToString();
+                                                //channel.BasicAck(ea.DeliveryTag, true);
+                                                channel.BasicPublish(m.client, m.client, null, encoder.GetBytes(return_message));
                                                 Console.WriteLine("Antwort mit: " + return_message + " an Client: " + m.client + " gesendet.");
                                             }
                                             catch (Exception e) { Console.WriteLine("Antwort konnte nicht zurück gesendet werden." + e.Message + "\n" + e.InnerException); }

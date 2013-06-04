@@ -13,10 +13,13 @@ namespace Nachrichten
         public string ns { get; private set; }
         public string fassade { get; private set; }
         public string methode { get; private set; }
+        public DateTime zeitpunkt { get; private set; }
         public List<string> parameter { get; private set; }
 
+        // Basis Konstruktor
         public Message(string dll, string ns, string fassade, string method, string client)
         {
+            this.zeitpunkt = DateTime.UtcNow;
             this.dll = dll;
             this.ns = ns;
             this.fassade = fassade;
@@ -25,10 +28,21 @@ namespace Nachrichten
             this.parameter = new List<string>();
         }
 
+
+        public Message(DateTime zeitpunkt, string dll, string ns, string fassade, string method, string client)
+            : this(dll, ns, fassade, method, client) { this.zeitpunkt = zeitpunkt; }
+
         public Message(string dll, string ns, string fassade, string method, string client, List<string> parameter)
             : this(dll, ns, fassade, method, client)
         {
             this.parameter = parameter;
+        }
+
+        private Message(DateTime zeitpunkt, string dll, string ns, string fassade, string method, string client, List<string> parameter)
+            : this(dll, ns, fassade, method, client)
+        {
+            this.parameter = parameter;
+            this.zeitpunkt = zeitpunkt;
         }
 
         private string getjson(string key, string value)
@@ -36,6 +50,8 @@ namespace Nachrichten
             // "key":"value"
             return "\"" + key + "\":\"" + value + "\"";
         }
+
+
 
         private string getjson(string key, List<string> values)
         {
@@ -64,6 +80,7 @@ namespace Nachrichten
         public string getMessage()
         {
             string result = "{\n";
+            result += getjson("zeitpunkt", DateTime.UtcNow.ToBinary().ToString()) + ",\n";
             result += getjson("client", client) + ",\n";
             result += getjson("dll", dll) + ",\n";
             result += getjson("ns", ns) + ",\n";
@@ -77,22 +94,25 @@ namespace Nachrichten
         public static Message getMessage(string message)
         {
             string[] groups = message.Split('\n');
-            string[] client_group = groups[1].Split(':');
+            string[] zeitpunkt_group = groups[1].Split(':');
+            string zeitpunkt = zeitpunkt_group[1].Replace("\"", string.Empty).Replace(",", string.Empty);
+
+            string[] client_group = groups[2].Split(':');
             string client = client_group[1].Replace("\"", string.Empty).Replace(",", string.Empty);
 
-            string[] dll_group = groups[2].Split(':');
+            string[] dll_group = groups[3].Split(':');
             string dll = dll_group[1].Replace("\"", string.Empty).Replace(",", string.Empty);
 
-            string[] ns_group = groups[3].Split(':');
+            string[] ns_group = groups[4].Split(':');
             string ns = ns_group[1].Replace("\"", string.Empty).Replace(",", string.Empty);
 
-            string[] fassade_group = groups[4].Split(':');
+            string[] fassade_group = groups[5].Split(':');
             string fassade = fassade_group[1].Replace("\"", string.Empty).Replace(",", string.Empty);
 
-            string[] methode_group = groups[5].Split(':');
+            string[] methode_group = groups[6].Split(':');
             string methode = methode_group[1].Replace("\"", string.Empty).Replace(",", string.Empty);
 
-            string[] parameter_group = groups[6].Split(':');
+            string[] parameter_group = groups[7].Split(':');
             string parameter = parameter_group[1].Replace("[", string.Empty).Replace("]", string.Empty);
 
             if (parameter.Length > 0)
@@ -104,11 +124,11 @@ namespace Nachrichten
                 {
                     result_params.Add(parameter_elements[i].Replace("\"", string.Empty));
                 }
-                return new Message(dll, ns, fassade, methode, client, result_params);
+                return new Message(DateTime.FromBinary(long.Parse(zeitpunkt)), dll, ns, fassade, methode, client, result_params);
             }
             else
             {
-                return new Message(dll, ns, fassade, methode, client);
+                return new Message(DateTime.FromBinary(long.Parse(zeitpunkt)), dll, ns, fassade, methode, client);
             }
         }
     }
