@@ -12,6 +12,8 @@ using System.Runtime.Remoting;
 using System.Runtime.Remoting.Channels;
 using System.Runtime.Remoting.Channels.Tcp;
 using RabbitMQ.Client;
+using System.Web.Script.Serialization;
+using _0TypenKomponente;
 
 namespace HES_Monitor
 {
@@ -20,23 +22,28 @@ namespace HES_Monitor
         static IDictionary<string, DateTime> runningInstances = new Dictionary<string, DateTime>();
         int timeoutMillis = 3000;
 
-        bool durable = true;
-        bool exclusive = false;
-        bool autoDelete = false;
-        string serverAddress = "localhost";
-        string queuename = "in";
-        static ConnectionFactory connectionfactory = new ConnectionFactory();
-        static QueueDeclareOk a;
-        static IConnection connection;
-        static IModel channel;
-
         public EventHandler Changed;
 
-        public uint queueSize()
+        public int queueSize()
         {
-            if (a == null) return 0;
+            var w = new WebClient();
+            w.Credentials = new NetworkCredential("guest", "guest", "");
 
-            return a.MessageCount;
+            var json = w.DownloadString("http://localhost:15672/api/queues");
+
+            var serializer = new JavaScriptSerializer();
+            serializer.RegisterConverters(new[] { new DynamicJsonConverter() });
+
+            dynamic obj = serializer.Deserialize(json, typeof(object));
+
+            for (int i = 0; i < obj.Length; i++)
+            {
+                if (obj[i].name == "in")
+                {
+                    return obj[i].messages;
+                }
+            }
+            return 0;
         }
 
         public IDictionary<string, DateTime> getRunningInstances()
@@ -48,12 +55,6 @@ namespace HES_Monitor
         {
             this.Changed += new EventHandler(printRunningInstances);
 
-            connectionfactory.HostName = serverAddress;
-            connection = connectionfactory.CreateConnection();
-            channel = connection.CreateModel();
-            a = channel.QueueDeclare(queuename, durable, exclusive, autoDelete, null);
-
-
             // Heartbeat-Listener
             Thread heartbeatReceiver = new Thread(HeartbeatReceiver);
             heartbeatReceiver.Start();
@@ -62,10 +63,10 @@ namespace HES_Monitor
             Timer instancesCleaner = new Timer(InstancesCleaner, 5, 0, timeoutMillis);
 
             // RabbitMQ + MySQL starten
-            if (!Helper.portOpen("localhost", 3306))
-            {
-                startVagrant();
-            }
+            //if (!Helper.portOpen("localhost", 3306))
+            //{
+            //    startVagrant();
+            //}
 
             // Lokal
             //startLocal(@"D:\malte\documents\visual studio 2010\Projects\HeartbeatTest\HeartbeatTest\bin\Debug\HeartbeatTest.exe", "client1");
@@ -89,7 +90,7 @@ namespace HES_Monitor
             Console.Clear();
 
             Console.WriteLine("Running: " + runningInstances.Count);
-
+            Console.WriteLine("QueueSize: " + queueSize());
             foreach (string client in runningInstances.Keys)
             {
                 Console.WriteLine(client + " : " + runningInstances[client]);
@@ -120,7 +121,6 @@ namespace HES_Monitor
                 if (this.Changed != null)
                     this.Changed(this, EventArgs.Empty);
             }
-
         }
 
         void HeartbeatReceiver()

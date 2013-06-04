@@ -12,6 +12,7 @@ using System.Runtime.Remoting.Channels;
 using System.Runtime.Remoting.Channels.Tcp;
 using System.Threading;
 using System.Diagnostics;
+using System.Net;
 
 namespace HES_Monitor_GUI
 {
@@ -58,7 +59,7 @@ namespace HES_Monitor_GUI
 
             var ri = remoteObject.getRunningInstances();
 
-            label1.Text = remoteObject.queueSize().ToString();
+            queueSizeVal.Text = remoteObject.queueSize().ToString();
 
             foreach (string client in ri.Keys)
             {

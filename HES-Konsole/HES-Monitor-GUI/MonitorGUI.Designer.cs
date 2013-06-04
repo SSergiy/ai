@@ -33,15 +33,18 @@
             this.newLocalInstance = new System.Windows.Forms.Button();
             this.refreshGUI = new System.Windows.Forms.Timer(this.components);
             this.autoRefresh = new System.Windows.Forms.CheckBox();
-            this.label1 = new System.Windows.Forms.Label();
+            this.queueSize = new System.Windows.Forms.Label();
+            this.queueSizeVal = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // runningInstances
             // 
+            this.runningInstances.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.runningInstances.FormattingEnabled = true;
             this.runningInstances.Location = new System.Drawing.Point(12, 13);
             this.runningInstances.Name = "runningInstances";
-            this.runningInstances.Size = new System.Drawing.Size(520, 108);
+            this.runningInstances.Size = new System.Drawing.Size(400, 108);
             this.runningInstances.TabIndex = 0;
             // 
             // newLocalInstance
@@ -72,21 +75,30 @@
             this.autoRefresh.UseVisualStyleBackColor = true;
             this.autoRefresh.CheckedChanged += new System.EventHandler(this.autoRefresh_CheckedChanged);
             // 
-            // label1
+            // queueSize
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(197, 136);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(35, 13);
-            this.label1.TabIndex = 4;
-            this.label1.Text = "label1";
+            this.queueSize.AutoSize = true;
+            this.queueSize.Location = new System.Drawing.Point(179, 132);
+            this.queueSize.Name = "queueSize";
+            this.queueSize.Size = new System.Drawing.Size(90, 13);
+            this.queueSize.TabIndex = 4;
+            this.queueSize.Text = "Länge der Queue";
+            // 
+            // queueSizeVal
+            // 
+            this.queueSizeVal.Location = new System.Drawing.Point(275, 129);
+            this.queueSizeVal.Name = "queueSizeVal";
+            this.queueSizeVal.ReadOnly = true;
+            this.queueSizeVal.Size = new System.Drawing.Size(74, 20);
+            this.queueSizeVal.TabIndex = 6;
             // 
             // MonitorGUI
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(544, 401);
-            this.Controls.Add(this.label1);
+            this.ClientSize = new System.Drawing.Size(424, 196);
+            this.Controls.Add(this.queueSizeVal);
+            this.Controls.Add(this.queueSize);
             this.Controls.Add(this.autoRefresh);
             this.Controls.Add(this.newLocalInstance);
             this.Controls.Add(this.runningInstances);
@@ -105,7 +117,8 @@
         private System.Windows.Forms.Button newLocalInstance;
         private System.Windows.Forms.Timer refreshGUI;
         private System.Windows.Forms.CheckBox autoRefresh;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label queueSize;
+        private System.Windows.Forms.TextBox queueSizeVal;
     }
 }
 

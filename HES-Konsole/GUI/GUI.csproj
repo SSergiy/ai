@@ -11,7 +11,8 @@
     <RootNamespace>GUI</RootNamespace>
     <AssemblyName>GUI</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
-    <TargetFrameworkProfile>Client</TargetFrameworkProfile>
+    <TargetFrameworkProfile>
+    </TargetFrameworkProfile>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
@@ -49,6 +50,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Client.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -68,7 +70,9 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
+    <None Include="app.config" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -81,6 +85,10 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\0TypenKomponente\0TypenKomponente.csproj">
+      <Project>{4048C75D-4694-4079-8A1A-312B5192F966}</Project>
+      <Name>0TypenKomponente</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Nachrichten\Nachrichten.csproj">
       <Project>{408A404C-4F29-448C-AF5B-E6179D6C74FF}</Project>
       <Name>Nachrichten</Name>
