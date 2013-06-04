@@ -88,8 +88,10 @@ namespace HES_Instanz
                     while (true)
                     {
                         if (shutdown) shutdownHES();
-                        var a = channel.QueueDeclare(server_queue_name, durable, exclusive, autoDelete, null);
-                        Console.WriteLine("Es befinden sich: " + a.MessageCount.ToString() + " Nachrichten in der " + a.QueueName.ToString() + " Queue");
+                        channel.ExchangeDeclare(server_queue_name, ExchangeType.Fanout, durable);
+                        channel.QueueBind(server_queue_name, server_queue_name, "");
+                        //var a = channel.BasicGet(server_queue_name, false);
+                        //Console.WriteLine("Es befinden sich: " + a.MessageCount.ToString() + " Nachrichten in der Queue");
                         System.Text.UTF8Encoding encoder = new System.Text.UTF8Encoding();
                         QueueingBasicConsumer consumer = new QueueingBasicConsumer(channel);
                         channel.BasicConsume(server_queue_name, true, consumer);
@@ -148,16 +150,16 @@ namespace HES_Instanz
                                             // Sende Ergebnis zurück.
                                             try
                                             {
-                                                var respond_queue = channel.QueueDeclare(m.client, durable, exclusive, autoDelete, null);
+                                                channel.ExchangeDeclare(m.client, ExchangeType.Fanout);
+                                                channel.QueueBind(m.client, m.client, "");
+                                                //channel.QueueDeclare(m.client, durable, exclusive, autoDelete, null);
                                                 string return_message = result.ToString();
                                                 for (int i = 0; i < 10; i++)
                                                 {
-                                                    channel.BasicPublish("", m.client, null, encoder.GetBytes(return_message));
+                                                    channel.BasicPublish(m.client, m.client, null, encoder.GetBytes(return_message));
                                                 }
 
                                                 Console.WriteLine("Antwort mit: " + return_message + " an Client: " + m.client + " gesendet.");
-                                                Console.WriteLine("Einträge in Client queue: " + respond_queue.MessageCount);
-                                                Console.WriteLine("Name der Queue: " + respond_queue.QueueName);
                                             }
                                             catch (Exception e) { Console.WriteLine("Antwort konnte nicht zurück gesendet werden." + e.Message + "\n" + e.InnerException); }
                                         }

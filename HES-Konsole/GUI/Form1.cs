@@ -56,7 +56,8 @@ namespace GUI
             {
                 using (IModel channel = connection.CreateModel())
                 {
-                    var a = channel.QueueDeclare(server_queue_name, durable, exclusive, autoDelete, null);
+                    channel.ExchangeDeclare(server_queue_name, ExchangeType.Fanout, durable);
+                    channel.QueueBind(server_queue_name, server_queue_name, "");
                     System.Text.UTF8Encoding encoder = new System.Text.UTF8Encoding();
                     string message = new Nachrichten.Message(dll, ns, klasse, methode, client, p).getMessage();
 
@@ -65,8 +66,8 @@ namespace GUI
                     for (int i = 0; i < anzahl; i++)
                     {
                         //MessageBox.Show("Gesendete Nachricht: " + message+ "\n" + server_queue_name);
-                        channel.BasicPublish("", server_queue_name, null, encoder.GetBytes(message));
-                        Console.WriteLine("Messages after send: " + a.MessageCount);
+                        channel.BasicPublish(server_queue_name,"", null, encoder.GetBytes(message));
+                        //Console.WriteLine("Messages after send: " + a.MessageCount);
                     }
                 }
             }
@@ -80,8 +81,10 @@ namespace GUI
             {
                 using (IModel channel = connection.CreateModel())
                 {
-                    var a = channel.QueueDeclare(clientname, durable, exclusive, autoDelete, null);
-                    Console.WriteLine("Es befinden sich: " + a.MessageCount.ToString() + " Nachrichten in der " + a.QueueName.ToString() + " Queue");
+                    //channel.ExchangeDeclare(clientname, ExchangeType.Fanout, durable);
+                    //channel.QueueBind(clientname, clientname, "");
+                    var a = channel.BasicGet(clientname, false);
+                    Console.WriteLine("Es befinden sich: " + a.MessageCount.ToString() + " Nachrichten in der Queue");
                     if (a.MessageCount > 0)
                     {
                         System.Text.UTF8Encoding encoder = new System.Text.UTF8Encoding();
