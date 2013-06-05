@@ -14,8 +14,8 @@ namespace HES_Instanz
 {
     class Instanz : RabbitClient
     {
-        public Instanz()
-            : base("in", "Client1", "localhost", "127.0.0.1")
+        public Instanz(string ip)
+            : base("in", "Client1", ip, ip)
         {
             Console.CancelKeyPress += new ConsoleCancelEventHandler(Console_CancelKeyPress);
         }
@@ -24,16 +24,18 @@ namespace HES_Instanz
         {
             Console.WriteLine("Shutting down...");
 
-            Dispose();
+            //Dispose();
+            stop = true;
 
             System.Threading.Thread.Sleep(750);
         }
 
         protected bool stop = false;
+        Timer heartbeat;
 
         public void start()
         {
-            Timer heartbeat = new Timer(Heartbeat, 5, 0, 1000);
+            heartbeat = new Timer(Heartbeat, 5, 0, 1000);
 
             Console.WriteLine("Starte HES Instanz");
             Console.WriteLine("Verbinde zur Queue");
@@ -62,8 +64,14 @@ namespace HES_Instanz
                 }
 
             }
-
+            
             Dispose();
+        }
+
+        new public void Dispose()
+        {
+            base.Dispose();
+            heartbeat.Dispose();
         }
 
 

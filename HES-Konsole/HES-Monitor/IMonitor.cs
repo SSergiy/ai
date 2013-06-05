@@ -9,7 +9,9 @@ namespace HES_Monitor
     {
         void start();
         void startLocalInstance();
+        void startRemoteInstance(string host);
         IDictionary<string, DateTime> getRunningInstances();
         int queueSize();
+        void Dispose();
     }
 }

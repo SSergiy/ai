@@ -45,11 +45,6 @@ namespace _0TypenKomponente
             OutModel.QueueDeclare(OutQueue, durable, false, false, null);
         }
 
-        //public int InQueueSize()
-        //{
-        //    InModel.BasicGet(InQueue, true).MessageCount;
-        //}
-
         public byte[] Receive()
         {
             try
