@@ -12,13 +12,12 @@ using System.Runtime.Remoting.Channels;
 using System.Runtime.Remoting.Channels.Tcp;
 using System.Threading;
 using System.Diagnostics;
+using System.Net;
 
 namespace HES_Monitor_GUI
 {
     public partial class MonitorGUI : Form
     {
-
-        Thread t;
         Process monitor;
 
         public MonitorGUI()
@@ -27,29 +26,12 @@ namespace HES_Monitor_GUI
         }
 
         IMonitor remoteObject;
+        TcpChannel tcpChannel;
+        bool connected = false;
 
         private void MonitorGUI_Load(object sender, EventArgs e)
         {
-            startMonitor();
 
-            refreshGUI.Start();
-
-            TcpChannel tcpChannel = new TcpChannel();
-            ChannelServices.RegisterChannel(tcpChannel, false);
-
-            Type requiredType = typeof(IMonitor);
-
-            remoteObject = (IMonitor)Activator.GetObject(requiredType, "tcp://localhost:9998/HES-Monitor");
-
-            try
-            {
-                t = new Thread(() => remoteObject.start());
-                t.Start();
-            }
-            catch (Exception)
-            {
-
-            }
         }
 
         void refreshRunningInstances()
@@ -58,7 +40,7 @@ namespace HES_Monitor_GUI
 
             var ri = remoteObject.getRunningInstances();
 
-            label1.Text = remoteObject.queueSize().ToString();
+            queueSizeVal.Text = remoteObject.queueSize().ToString();
 
             foreach (string client in ri.Keys)
             {
@@ -69,21 +51,16 @@ namespace HES_Monitor_GUI
         void startMonitor()
         {
             ProcessStartInfo p = new ProcessStartInfo();
-            p.WindowStyle = ProcessWindowStyle.Hidden;
+            p.WindowStyle = ProcessWindowStyle.Normal;
             p.FileName = "HES-Monitor.exe";
             monitor = new Process();
             monitor.StartInfo = p;
             monitor.Start();
         }
 
-        private void MonitorGUI_FormClosed(object sender, FormClosedEventArgs e)
-        {
-            t.Abort();
-            monitor.Kill();
-        }
-
         private void newLocalInstance_Click(object sender, EventArgs e)
         {
+            if (!connected) return;
             remoteObject.startLocalInstance();
         }
 
@@ -98,6 +75,31 @@ namespace HES_Monitor_GUI
                 refreshGUI.Start();
             else
                 refreshGUI.Stop();
+        }
+
+        private void MonitorGUI_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            ChannelServices.UnregisterChannel(tcpChannel);
+            //monitor.Kill();
+        }
+
+        private void connect_Click(object sender, EventArgs e)
+        {
+            connected = true;
+            tcpChannel = new TcpChannel();
+            ChannelServices.RegisterChannel(tcpChannel, false);
+
+            Type requiredType = typeof(IMonitor);
+            remoteObject = (IMonitor)Activator.GetObject(requiredType, "tcp://" + hostname.Text + ":9998/HES-Monitor");
+
+            startMonitor();
+            refreshGUI.Start();
+        }
+
+        private void newRemoteInstance_Click(object sender, EventArgs e)
+        {
+            if (!connected) return;
+            remoteObject.startRemoteInstance(clientName.Text);
         }
     }
 }

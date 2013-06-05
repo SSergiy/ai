@@ -16,17 +16,21 @@ namespace HES_Monitor
     {
         static void Main(string[] args)
         {
+            if (Helper.portOpen("localhost", 9998)) return;
+
             TcpChannel tcpChannel = new TcpChannel(9998);
-
             ChannelServices.RegisterChannel(tcpChannel, false);
-
             Type commonInterfaceType = Type.GetType("HES_Monitor.Monitor");
-                        
             RemotingConfiguration.RegisterWellKnownServiceType(commonInterfaceType, "HES-Monitor", WellKnownObjectMode.SingleCall);
+
+            Type requiredType = typeof(IMonitor);
+
+            IMonitor m = (IMonitor)Activator.GetObject(requiredType, "tcp://localhost:9998/HES-Monitor");
+
+            m.start();
 
             //Monitor m = new Monitor();
             //m.start();
-            Console.ReadKey();
         }
     }
 }
