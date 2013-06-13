@@ -10,6 +10,7 @@ ai SS 2013
 * Log4Net <code>Install-Package log4net</code>
 * MySql <code>Install-Package MySql.Data</code>
 * ServiceStack.Text (JSON (De)Serializer )<code>Install-Package ServiceStack.Text</code>
+* Microsoft Web API für REST Architektur <code>http://www.microsoft.com/web/handlers/webpi.ashx?command=getinstallerredirect&appid=MVC4VS2010_Loc</code>
 * RabbitMQ - Server <code>http://www.rabbitmq.com/download.html</code>
 * RabbitMQ Server starten: "C:\Program Files (x86)\RabbitMQ Server\rabbitmq_server-3.1.1\sbin\rabbitmq-server.bat" 
 * Es bietet sich alternativ an RabbitMQ und Mysql über vagrant zu starten. Dafür nach /Server wechselt und <code>vagrant up</code> eingeben. 

@@ -95,10 +95,6 @@
       <Project>{0C5B2C44-F64F-4CE2-94C2-B4546E616723}</Project>
       <Name>TransportauftragVerwaltungKomponente</Name>
     </ProjectReference>
-    <ProjectReference Include="..\TransportdienstleisterVerwaltungKomponente\TransportdienstleisterVerwaltungKomponente.csproj">
-      <Project>{55F6D7B4-1A15-433C-B672-E87935DD51D4}</Project>
-      <Name>TransportdienstleisterVerwaltungKomponente</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
