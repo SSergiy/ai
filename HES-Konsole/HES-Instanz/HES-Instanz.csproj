@@ -54,7 +54,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Instanz.cs" />
+    <Compile Include="Heartbeat.cs" />
+    <Compile Include="HESInstanz.cs" />
+    <Compile Include="MethodInvoker.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -78,6 +80,10 @@
     <ProjectReference Include="..\KundeVerwaltungKomponente\KundeVerwaltungKomponente.csproj">
       <Project>{C9AEA77F-3506-4148-ADA7-DFA401D0772E}</Project>
       <Name>KundeVerwaltungKomponente</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MessagingAdapter\MessagingAdapter.csproj">
+      <Project>{69121A90-DC70-4766-87AB-5AFB03B8B0EE}</Project>
+      <Name>MessagingAdapter</Name>
     </ProjectReference>
     <ProjectReference Include="..\Nachrichten\Nachrichten.csproj">
       <Project>{408A404C-4F29-448C-AF5B-E6179D6C74FF}</Project>
