@@ -28,5 +28,4 @@ namespace _0TypenKomponente.NummerTypen
             return "LieferungNummerTyp:" + nummer;
         }
     }
-    }
 }

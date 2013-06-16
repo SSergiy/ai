@@ -9,16 +9,17 @@ using System.Windows.Forms;
 using RabbitMQ.Client;
 using RabbitMQ.Client.Events;
 using Nachrichten;
-using _0TypenKomponente;
+using MessagingAdapter;
 
 namespace GUI
 {
     public partial class Form1 : Form
     {
-        Client rabbit_client = new Client();
+        IMessagingAdapter messagingAdapter;
 
         public Form1()
         {
+            messagingAdapter = new RabbitClient("Client1", "in", "localhost", "127.0.0.1");
             InitializeComponent();
         }
 
@@ -49,13 +50,13 @@ namespace GUI
             string message = new Nachrichten.Message(dll, ns, klasse, methode, client, p).getMessage();
             for (int i = 0; i < anzahl; i++)
             {
-                rabbit_client.SendMessage(encoder.GetBytes(message));
+                messagingAdapter.SendMessage(encoder.GetBytes(message));
             }
         }
 
         private void receive(string clientname)
         {
-            byte[] body = rabbit_client.Receive();
+            byte[] body = messagingAdapter.ReceiveMessage();
             string message = System.Text.Encoding.UTF8.GetString(body);
             MessageBox.Show(message);
         }
@@ -68,7 +69,7 @@ namespace GUI
 
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
         {
-            rabbit_client.Dispose();
+            messagingAdapter.Dispose();
         }
     }
 }

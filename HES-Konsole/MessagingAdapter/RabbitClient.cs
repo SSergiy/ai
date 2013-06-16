@@ -5,9 +5,9 @@ using System.Text;
 using RabbitMQ.Client;
 using RabbitMQ.Client.Exceptions;
 
-namespace _0TypenKomponente
+namespace MessagingAdapter
 {
-    public abstract class RabbitClient : IDisposable
+    public class RabbitClient : IMessagingAdapter
     {
         protected IModel InModel;
         protected IModel OutModel;
@@ -45,7 +45,12 @@ namespace _0TypenKomponente
             OutModel.QueueDeclare(OutQueue, durable, false, false, null);
         }
 
-        public byte[] Receive()
+        public UTF8Encoding Encoder()
+        {
+            return encoder;
+        }
+
+        public byte[] ReceiveMessage()
         {
             try
             {

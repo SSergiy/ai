@@ -46,6 +46,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HES-Monitor-GUI", "HES-Moni
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Transportdienstleister", "Transportdienstleister\Transportdienstleister.csproj", "{4C209B68-852B-40A3-A0C7-C2E32407C70F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MessagingAdapter", "MessagingAdapter\MessagingAdapter.csproj", "{69121A90-DC70-4766-87AB-5AFB03B8B0EE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "hapsar-payment", "hapsar-payment\hapsar-payment.csproj", "{7595EEE8-931A-42F4-A6FA-1BE254CC16DA}"
+EndProject
 Global
 	GlobalSection(TestCaseManagementSettings) = postSolution
 		CategoryFile = HES-Konsole.vsmdi
@@ -219,6 +223,26 @@ Global
 		{4C209B68-852B-40A3-A0C7-C2E32407C70F}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{4C209B68-852B-40A3-A0C7-C2E32407C70F}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{4C209B68-852B-40A3-A0C7-C2E32407C70F}.Release|x86.ActiveCfg = Release|Any CPU
+		{69121A90-DC70-4766-87AB-5AFB03B8B0EE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{69121A90-DC70-4766-87AB-5AFB03B8B0EE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{69121A90-DC70-4766-87AB-5AFB03B8B0EE}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{69121A90-DC70-4766-87AB-5AFB03B8B0EE}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{69121A90-DC70-4766-87AB-5AFB03B8B0EE}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{69121A90-DC70-4766-87AB-5AFB03B8B0EE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{69121A90-DC70-4766-87AB-5AFB03B8B0EE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{69121A90-DC70-4766-87AB-5AFB03B8B0EE}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{69121A90-DC70-4766-87AB-5AFB03B8B0EE}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{69121A90-DC70-4766-87AB-5AFB03B8B0EE}.Release|x86.ActiveCfg = Release|Any CPU
+		{7595EEE8-931A-42F4-A6FA-1BE254CC16DA}.Debug|Any CPU.ActiveCfg = Debug|x86
+		{7595EEE8-931A-42F4-A6FA-1BE254CC16DA}.Debug|Mixed Platforms.ActiveCfg = Debug|x86
+		{7595EEE8-931A-42F4-A6FA-1BE254CC16DA}.Debug|Mixed Platforms.Build.0 = Debug|x86
+		{7595EEE8-931A-42F4-A6FA-1BE254CC16DA}.Debug|x86.ActiveCfg = Debug|x86
+		{7595EEE8-931A-42F4-A6FA-1BE254CC16DA}.Debug|x86.Build.0 = Debug|x86
+		{7595EEE8-931A-42F4-A6FA-1BE254CC16DA}.Release|Any CPU.ActiveCfg = Release|x86
+		{7595EEE8-931A-42F4-A6FA-1BE254CC16DA}.Release|Mixed Platforms.ActiveCfg = Release|x86
+		{7595EEE8-931A-42F4-A6FA-1BE254CC16DA}.Release|Mixed Platforms.Build.0 = Release|x86
+		{7595EEE8-931A-42F4-A6FA-1BE254CC16DA}.Release|x86.ActiveCfg = Release|x86
+		{7595EEE8-931A-42F4-A6FA-1BE254CC16DA}.Release|x86.Build.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -228,6 +252,7 @@ Global
 		{6572C551-C044-41B5-B40D-F5C26052B9DD} = {50F1B66E-E170-4856-AAB8-12A58659C759}
 		{D6E945B5-E3CE-4881-A5AA-4D4B227F9AF0} = {E15E4308-6CD0-4961-B738-2BA2574481F8}
 		{4C209B68-852B-40A3-A0C7-C2E32407C70F} = {E15E4308-6CD0-4961-B738-2BA2574481F8}
+		{7595EEE8-931A-42F4-A6FA-1BE254CC16DA} = {E15E4308-6CD0-4961-B738-2BA2574481F8}
 		{B3873209-7BEF-41C8-B550-C958CCC78B72} = {464EBEE5-D1B4-40CD-A9DB-51D16E26BCC3}
 	EndGlobalSection
 EndGlobal
