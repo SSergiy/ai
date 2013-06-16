@@ -27,7 +27,7 @@ namespace HES_Instanz
                 ip = args[0];
             }
 
-            Instanz i = new Instanz(ip);
+            HESInstanz i = new HESInstanz(ip);
             i.start();
             Console.ReadKey();
 
