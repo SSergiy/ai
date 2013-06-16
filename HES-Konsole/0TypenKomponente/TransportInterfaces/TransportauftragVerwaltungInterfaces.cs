@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-
+using _0TypenKomponente.EnumTypen;
 namespace _0TypenKomponente.TransportInterfaces
 {
     public interface ILieferung
@@ -18,6 +18,6 @@ namespace _0TypenKomponente.TransportInterfaces
         DateTime Ausgangsdatum { get; }
         bool LieferungErfolgt { get; }
         DateTime Lieferdatum { get; }
-        TransportdienstleisterTyp Transportdienstleister { get; }
+        TransportDienstleister Transportdienstleister { get; }
     }
 }
