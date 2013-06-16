@@ -12,6 +12,12 @@ namespace TransportdienstleisterVerwaltungKomponente
 
         private TransportdienstleisterWebAPIAdapter adapter = new TransportdienstleisterWebAPIAdapter();
 
+        // Diese Signatur ist für den Remote Call
+        public ILieferung HoleLieferungUeberLieferNummerRemote(string liefernummer) 
+        {
+            return HoleLieferungUeberLieferNummer(new LieferungNummerTyp(int.Parse(liefernummer)));
+        }
+
         public ILieferung HoleLieferungUeberLieferNummer(LieferungNummerTyp liefernummer)
         {
             return adapter.Hole<ILieferung>(liefernummer.nummer);

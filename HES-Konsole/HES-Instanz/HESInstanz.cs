@@ -64,8 +64,9 @@ namespace HES_Instanz
 
                     messagingAdapter.SendMessage(messagingAdapter.Encoder().GetBytes(return_message));
                 }
-                catch (Exception)
+                catch (Exception ex)
                 {
+                    Console.Error.WriteLine(ex.Message);
                     break;
                 }
 

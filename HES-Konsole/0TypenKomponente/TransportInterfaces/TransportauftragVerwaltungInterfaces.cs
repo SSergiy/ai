@@ -3,18 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using _0TypenKomponente.EnumTypen;
+using _0TypenKomponente.NummerTypen;
 namespace _0TypenKomponente.TransportInterfaces
 {
     public interface ILieferung
     {
-        int Id { get; }
-        ITransportauftrag Transportauftrag { get; }
-        IAuftrag Auftrag { get; }
-    }
-
-    public interface ITransportauftrag
-    {
-        int Id { get; }
+        LieferungNummerTyp LieferungNr { get; }
+        TransportAuftragNummerTyp AuftragNr { get; }
         DateTime Ausgangsdatum { get; }
         bool LieferungErfolgt { get; }
         DateTime Lieferdatum { get; }

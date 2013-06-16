@@ -4,10 +4,11 @@ using System.Linq;
 using System.Web;
 using _0TypenKomponente.NummerTypen;
 using _0TypenKomponente.EnumTypen;
+using _0TypenKomponente.TransportInterfaces;
 
 namespace Transportdienstleister.Models
 {
-    public class Lieferung
+    public class Lieferung : ILieferung
     {
         public LieferungNummerTyp LieferungNr { get; private set; }
         public TransportAuftragNummerTyp AuftragNr { get; private set; }

@@ -4,7 +4,6 @@ using System.Linq;
 using System.Text;
 using _0TypenKomponente.TransportInterfaces;
 using KundeVerwaltungKomponente;
-using TransportauftragVerwaltungKomponente;
 using FluentNHibernate.Mapping;
 using _0TypenKomponente.NummerTypen;
 

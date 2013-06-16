@@ -78,7 +78,7 @@
             this.TextBoxMethode.Name = "TextBoxMethode";
             this.TextBoxMethode.Size = new System.Drawing.Size(212, 20);
             this.TextBoxMethode.TabIndex = 3;
-            this.TextBoxMethode.Text = "HoleLieferungUeberLieferNummer";
+            this.TextBoxMethode.Text = "HoleLieferungUeberLieferNummerRemote";
             // 
             // label3
             // 

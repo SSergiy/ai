@@ -98,7 +98,7 @@ namespace Adapter
         }
         private string erzeugeuri()
         {
-            return protokoll + "://" + HostName + ";" + port + "/" + api_pfad + "/" + controller;
+            return protokoll + "://" + HostName + ":" + port + "/" + api_pfad + "/" + controller;
         }
         private string erzeugeuri(int id)
         {
