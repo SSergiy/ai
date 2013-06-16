@@ -3,9 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace _0TypenKomponente
+namespace _0TypenKomponente.EnumTypen
 {
-    public class TransportdienstleisterTyp
-    {
-    }
+    public enum TransportDienstleister { DHL };
 }

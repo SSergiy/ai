@@ -46,6 +46,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HES-Monitor-GUI", "HES-Moni
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Transportdienstleister", "Transportdienstleister\Transportdienstleister.csproj", "{4C209B68-852B-40A3-A0C7-C2E32407C70F}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Adapter", "Adapter", "{4A94DE40-0FB9-4E92-9697-995CCB3995E9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebAPIAdapter", "WebAPIAdapter\WebAPIAdapter.csproj", "{7AB18B54-ADC1-48FF-BE7F-269252488F76}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TransportdienstleisterVerwaltungKomponente", "TransportdienstleisterVerwaltungKomponente\TransportdienstleisterVerwaltungKomponente.csproj", "{90731465-0BDF-45F9-9097-89C66FA43248}"
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MessagingAdapter", "MessagingAdapter\MessagingAdapter.csproj", "{69121A90-DC70-4766-87AB-5AFB03B8B0EE}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "hapsar-payment", "hapsar-payment\hapsar-payment.csproj", "{7595EEE8-931A-42F4-A6FA-1BE254CC16DA}"
@@ -223,6 +228,26 @@ Global
 		{4C209B68-852B-40A3-A0C7-C2E32407C70F}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{4C209B68-852B-40A3-A0C7-C2E32407C70F}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{4C209B68-852B-40A3-A0C7-C2E32407C70F}.Release|x86.ActiveCfg = Release|Any CPU
+		{7AB18B54-ADC1-48FF-BE7F-269252488F76}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7AB18B54-ADC1-48FF-BE7F-269252488F76}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7AB18B54-ADC1-48FF-BE7F-269252488F76}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{7AB18B54-ADC1-48FF-BE7F-269252488F76}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{7AB18B54-ADC1-48FF-BE7F-269252488F76}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{7AB18B54-ADC1-48FF-BE7F-269252488F76}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7AB18B54-ADC1-48FF-BE7F-269252488F76}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7AB18B54-ADC1-48FF-BE7F-269252488F76}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{7AB18B54-ADC1-48FF-BE7F-269252488F76}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{7AB18B54-ADC1-48FF-BE7F-269252488F76}.Release|x86.ActiveCfg = Release|Any CPU
+		{90731465-0BDF-45F9-9097-89C66FA43248}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{90731465-0BDF-45F9-9097-89C66FA43248}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{90731465-0BDF-45F9-9097-89C66FA43248}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{90731465-0BDF-45F9-9097-89C66FA43248}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{90731465-0BDF-45F9-9097-89C66FA43248}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{90731465-0BDF-45F9-9097-89C66FA43248}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{90731465-0BDF-45F9-9097-89C66FA43248}.Release|Any CPU.Build.0 = Release|Any CPU
+		{90731465-0BDF-45F9-9097-89C66FA43248}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{90731465-0BDF-45F9-9097-89C66FA43248}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{90731465-0BDF-45F9-9097-89C66FA43248}.Release|x86.ActiveCfg = Release|Any CPU
 		{69121A90-DC70-4766-87AB-5AFB03B8B0EE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{69121A90-DC70-4766-87AB-5AFB03B8B0EE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{69121A90-DC70-4766-87AB-5AFB03B8B0EE}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
@@ -254,5 +279,6 @@ Global
 		{4C209B68-852B-40A3-A0C7-C2E32407C70F} = {E15E4308-6CD0-4961-B738-2BA2574481F8}
 		{7595EEE8-931A-42F4-A6FA-1BE254CC16DA} = {E15E4308-6CD0-4961-B738-2BA2574481F8}
 		{B3873209-7BEF-41C8-B550-C958CCC78B72} = {464EBEE5-D1B4-40CD-A9DB-51D16E26BCC3}
+		{7AB18B54-ADC1-48FF-BE7F-269252488F76} = {4A94DE40-0FB9-4E92-9697-995CCB3995E9}
 	EndGlobalSection
 EndGlobal
