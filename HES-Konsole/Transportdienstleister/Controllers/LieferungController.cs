@@ -20,7 +20,7 @@ namespace Transportdienstleister.Controllers
         /// <returns>JSON String</returns>
         public string Get()
         {
-            return Newtonsoft.Json.JsonConvert.SerializeObject(verwalter.HoleAlleLieferungen());
+            return Newtonsoft.Json.JsonConvert.SerializeObject(verwalter.HoleAlleLieferungen().ToArray<Lieferung>());
         }
 
         // GET api/lieferung/5
@@ -48,7 +48,7 @@ namespace Transportdienstleister.Controllers
                  DateTime Ausgangsdatum = DateTime.Parse(parameter_liste[2]);
                  bool LieferungErfolgt = Boolean.Parse(parameter_liste[3]);
                  DateTime Lieferdatum = DateTime.Parse(parameter_liste[4]);
-                 var dienstleister = (TransportDienstleister) (Enum.Parse(typeof(TransportDienstleister), parameter_liste[5]));
+                 var dienstleister = (_0TypenKomponente.EnumTypen.TransportDienstleister) (Enum.Parse(typeof(_0TypenKomponente.EnumTypen.TransportDienstleister), parameter_liste[5]));
                  var result=  verwalter.ErstelleLieferung(LieferungNr, AuftragNr, Ausgangsdatum, LieferungErfolgt, Lieferdatum, dienstleister);
                  return Newtonsoft.Json.JsonConvert.SerializeObject(result);
             }

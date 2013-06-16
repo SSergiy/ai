@@ -24,7 +24,7 @@ namespace HES_Instanz
         {
             HostIp = ip;
             heartbeat = new Heartbeat(clientId, HostIp);
-            messagingAdapter = new RabbitClient("in", "Client1", HostIp, HostIp);
+            messagingAdapter = new MessagingAdapter.RabbitClient("in", "Client1", HostIp, HostIp);
 
             Console.CancelKeyPress += new ConsoleCancelEventHandler(Console_CancelKeyPress);
         }

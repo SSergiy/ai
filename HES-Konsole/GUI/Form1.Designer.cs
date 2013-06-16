@@ -70,7 +70,7 @@
             this.TextBoxKlasse.Name = "TextBoxKlasse";
             this.TextBoxKlasse.Size = new System.Drawing.Size(289, 20);
             this.TextBoxKlasse.TabIndex = 2;
-            this.TextBoxKlasse.Text = "KundeVerwaltungFassade";
+            this.TextBoxKlasse.Text = "TransportdienleisterVerwaltungFassade";
             // 
             // TextBoxMethode
             // 
@@ -78,7 +78,7 @@
             this.TextBoxMethode.Name = "TextBoxMethode";
             this.TextBoxMethode.Size = new System.Drawing.Size(212, 20);
             this.TextBoxMethode.TabIndex = 3;
-            this.TextBoxMethode.Text = "HoleKundeRemote";
+            this.TextBoxMethode.Text = "HoleLieferungUeberLieferNummer";
             // 
             // label3
             // 
@@ -166,7 +166,7 @@
             this.TextBoxdll.Name = "TextBoxdll";
             this.TextBoxdll.Size = new System.Drawing.Size(290, 20);
             this.TextBoxdll.TabIndex = 13;
-            this.TextBoxdll.Text = "KundeVerwaltungKomponente.dll";
+            this.TextBoxdll.Text = "TransportdienstleisterVerwaltungKomponente.dll";
             // 
             // labelnamespace
             // 
@@ -183,7 +183,7 @@
             this.TextBoxNameSpace.Name = "TextBoxNameSpace";
             this.TextBoxNameSpace.Size = new System.Drawing.Size(289, 20);
             this.TextBoxNameSpace.TabIndex = 15;
-            this.TextBoxNameSpace.Text = "KundeVerwaltungKomponente";
+            this.TextBoxNameSpace.Text = "TransportdienstleisterVerwaltungKomponente";
             // 
             // Form1
             // 

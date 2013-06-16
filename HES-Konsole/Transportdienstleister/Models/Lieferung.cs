@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using _0TypenKomponente.NummerTypen;
+using _0TypenKomponente.EnumTypen;
 
 namespace Transportdienstleister.Models
 {
