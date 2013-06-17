@@ -8,6 +8,8 @@ using Transportdienstleister.Persistenz;
 using Transportdienstleister.Models;
 using System.Web.Helpers;
 using _0TypenKomponente.NummerTypen;
+using _0TypenKomponente.TransportInterfaces;
+using System.Collections;
 
 namespace Transportdienstleister.Controllers
 {
@@ -20,12 +22,13 @@ namespace Transportdienstleister.Controllers
         /// <returns>JSON String</returns>
         public string Get()
         {
-            return Newtonsoft.Json.JsonConvert.SerializeObject(verwalter.HoleAlleLieferungen().ToArray<Lieferung>());
+            return Newtonsoft.Json.JsonConvert.SerializeObject(verwalter.HoleAlleLieferungen().ToArray<ILieferung>());
         }
 
         // GET api/lieferung/5
         public string Get(int id)
         {
+            // Newtonsoft.Json.JsonConvert.SerializeObject(verwalter.HoleLieferungUeberLieferNummer(id))
             return Newtonsoft.Json.JsonConvert.SerializeObject(verwalter.HoleLieferungUeberLieferNummer(id));
         }
 

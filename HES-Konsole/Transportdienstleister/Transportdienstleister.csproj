@@ -127,7 +127,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\Lieferung.cs" />
+    <Compile Include="Models\TransportdienstleisterLieferung.cs" />
     <Compile Include="Persistenz\LieferungVerwalter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

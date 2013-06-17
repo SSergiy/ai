@@ -2,18 +2,20 @@
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{90731465-0BDF-45F9-9097-89C66FA43248}</ProjectGuid>
-    <OutputType>Library</OutputType>
+    <ProjectGuid>{3DC00349-4E15-428B-9ACB-3A000EDD0050}</ProjectGuid>
+    <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>TransportdienstleisterVerwaltungKomponente</RootNamespace>
-    <AssemblyName>TransportdienstleisterVerwaltungKomponente</AssemblyName>
+    <RootNamespace>WebAPITest</RootNamespace>
+    <AssemblyName>WebAPITest</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkProfile>Client</TargetFrameworkProfile>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -22,7 +24,8 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
@@ -31,9 +34,8 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Newtonsoft.Json, Version=4.5.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\Newtonsoft.Json.4.5.6\lib\net40\Newtonsoft.Json.dll</HintPath>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\packages\Newtonsoft.Json.5.0.6\lib\net40\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -44,19 +46,20 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Lieferung.cs" />
-    <Compile Include="TransportdienleisterVerwaltungFassade.cs" />
+    <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="TransportdienstleisterWebAPIAdapter.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\0TypenKomponente\0TypenKomponente.csproj">
-      <Project>{4048C75D-4694-4079-8A1A-312B5192F966}</Project>
-      <Name>0TypenKomponente</Name>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Testlib\Testlib.csproj">
+      <Project>{8A9C3DA1-7756-4213-BF36-F6FC8B210033}</Project>
+      <Name>Testlib</Name>
     </ProjectReference>
-    <ProjectReference Include="..\WebAPIAdapter\WebAPIAdapter.csproj">
-      <Project>{7AB18B54-ADC1-48FF-BE7F-269252488F76}</Project>
-      <Name>WebAPIAdapter</Name>
+    <ProjectReference Include="..\TransportTypen\TransportTypen.csproj">
+      <Project>{BE32C44A-5B73-4BA1-96B6-1C810742DCCD}</Project>
+      <Name>TransportTypen</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

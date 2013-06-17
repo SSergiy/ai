@@ -13,38 +13,32 @@ namespace TransportdienstleisterVerwaltungKomponente
         private TransportdienstleisterWebAPIAdapter adapter = new TransportdienstleisterWebAPIAdapter();
 
         // Diese Signatur ist für den Remote Call
-        public ILieferung HoleLieferungUeberLieferNummerRemote(string liefernummer) 
+        public ILieferung HoleLieferungUeberLieferNummerRemote(string liefernummer)
         {
             return HoleLieferungUeberLieferNummer(new LieferungNummerTyp(int.Parse(liefernummer)));
         }
 
         public ILieferung HoleLieferungUeberLieferNummer(LieferungNummerTyp liefernummer)
         {
-            return adapter.Hole<ILieferung>(liefernummer.nummer);
+            return adapter.HoleLieferungUeberLieferNummer(liefernummer);
         }
 
         public ILieferung ErstelleLieferung(LieferungNummerTyp LieferungNr,
             TransportAuftragNummerTyp AuftragNr, DateTime Ausgangsdatum, bool LieferungErfolgt, DateTime Lieferdatum, TransportDienstleister LieferDienstLeister)
         {
-            List<string> parameter_liste = new List<string>();
-            parameter_liste.Add(LieferungNr.nummer.ToString());
-            parameter_liste.Add(AuftragNr.nummer.ToString());
-            parameter_liste.Add(Ausgangsdatum.ToBinary().ToString());
-            parameter_liste.Add(LieferungErfolgt.ToString());
-            parameter_liste.Add(Lieferdatum.ToBinary().ToString());
-            parameter_liste.Add(LieferDienstLeister.ToString());
-            return adapter.Erstelle<ILieferung>(parameter_liste);
+            return adapter.ErstelleLieferung(LieferungNr,
+             AuftragNr, Ausgangsdatum, LieferungErfolgt, Lieferdatum, LieferDienstLeister);
         }
 
         public void LöscheLieferung(LieferungNummerTyp LieferungNr)
         {
-            adapter.Lösche<ILieferung>(LieferungNr.nummer);
+            adapter.Lösche(LieferungNr.nummer);
         }
 
 
         public IList<ILieferung> HoleAlleLieferungen()
         {
-            return adapter.HoleAlle<ILieferung>();
+            return adapter.HoleAlleLieferungen();
         }
     }
 }

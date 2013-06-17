@@ -28,40 +28,31 @@ namespace Adapter
         public abstract string port { get; }
         public abstract string controller { get; }
 
-        public T Hole<T>(int id)
+        public string Hole(int id)
         {
-            T return_value = default(T);
+            string return_value = default(string);
             using (WebClient client = new System.Net.WebClient())
             {
                 var uri = erzeugeuri(id);
                 byte[] response = client.DownloadData(uri);
-                string json = System.Text.Encoding.UTF8.GetString(response);
-                return_value = (T)Newtonsoft.Json.JsonConvert.DeserializeObject(json);
-
+                return_value = System.Text.Encoding.UTF8.GetString(response);
             }
             return return_value;
-
-
         }
 
-        public IList<T> HoleAlle<T>()
+        public string HoleAlle()
         {
-            List<T> return_value = new List<T>();
+            string return_value = default(string);
             using (WebClient client = new System.Net.WebClient())
             {
                 var uri = erzeugeuri();
                 byte[] response = client.DownloadData(uri);
-                string json = System.Text.Encoding.UTF8.GetString(response);
-                T[] elemente = (T[])Newtonsoft.Json.JsonConvert.DeserializeObject(json);
-                foreach (T elem in elemente)
-                {
-                    return_value.Add(elem);
-                }
+                return_value = System.Text.Encoding.UTF8.GetString(response);
             }
             return return_value;
         }
 
-        public void Lösche<T>(int id)
+        public void Lösche(int id)
         {
             using (WebClient client = new System.Net.WebClient())
             {
@@ -70,9 +61,9 @@ namespace Adapter
             }
         }
 
-        public T Erstelle<T>(IList<string> parameter)
+        public string Erstelle(IList<string> parameter)
         {
-            var result_object = default(T);
+            var result_object = default(string);
             var uri = erzeugeuri();
             WebRequest request = WebRequest.Create(uri);
             request.Method = "POST";
@@ -89,7 +80,7 @@ namespace Adapter
             string responseFromServer = reader.ReadToEnd();
             if (responseFromServer.Length > 0)
             {
-                result_object = (T)Newtonsoft.Json.JsonConvert.DeserializeObject(responseFromServer);
+                result_object = responseFromServer;
             }
             reader.Close();
             dataStream.Close();

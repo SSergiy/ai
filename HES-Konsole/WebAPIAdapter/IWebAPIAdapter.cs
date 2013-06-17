@@ -8,10 +8,10 @@ namespace Adapter
     // Dieses Interface muss von Allen Adapterklassen Implementiert werden
     public interface IWebAPIAdapter
     {
-        T Hole<T>(int id);
-        IList<T> HoleAlle<T>();
-        void Lösche<T>(int id);
-        T Erstelle<T>(IList<String> parameter);
+        string Hole(int id);
+        string HoleAlle();
+        void Lösche(int id);
+        string Erstelle(IList<String> parameter);
         // HTTP Schnitstellen
         string protokoll { get; }
         string HostName { get; }
