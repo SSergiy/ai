@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using _0TypenKomponente.NummerTypen;
 
 namespace _0TypenKomponente.TransportInterfaces
 {
@@ -9,8 +10,11 @@ namespace _0TypenKomponente.TransportInterfaces
     {
         int Id { get; }
         DateTime RechnungsDatum { get; }
-        bool IstBezahlt { get; }
+        bool IstBezahlt();
         List<IZahlungseingang> Zahlungseingang { get; }
+        RechnungNummerTyp nummer { get; }
+        double Betrag { get; }
+        double Restbetrag();
     }
 
     public interface IZahlungseingang

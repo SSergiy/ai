@@ -11,9 +11,18 @@ namespace hapsar_payment
         static void Main(string[] args)
         {
             IMessagingAdapter m = new RabbitClient("in", "Bank", "localhost", "127.0.0.1");
+            UTF8Encoding encoder = new System.Text.UTF8Encoding();
 
-
-
+            var Dll = "BuchhaltungVerwaltungKomponente.dll";
+            var Namespace = "BuchhaltungVerwaltungKomponente";
+            var Klasse = "BuchhaltungVerwaltungFassade";
+            var Methode = "VerbucheZahlungRemote";
+            var Client = "Bank";
+            var Parameter = new List<string>();
+            Parameter.Add("0");
+            Parameter.Add("100.0");
+            string message = new Nachrichten.Message(Dll, Namespace, Klasse, Methode, Client, Parameter).getMessage();
+            m.SendMessage(encoder.GetBytes(message));
             m.Dispose();
         }
     }

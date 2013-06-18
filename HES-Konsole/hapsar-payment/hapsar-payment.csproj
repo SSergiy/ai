@@ -51,6 +51,10 @@
       <Project>{69121A90-DC70-4766-87AB-5AFB03B8B0EE}</Project>
       <Name>MessagingAdapter</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Nachrichten\Nachrichten.csproj">
+      <Project>{408A404C-4F29-448C-AF5B-E6179D6C74FF}</Project>
+      <Name>Nachrichten</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

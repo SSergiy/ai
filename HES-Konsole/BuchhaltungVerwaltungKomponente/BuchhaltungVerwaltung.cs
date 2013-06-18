@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using NHibernate;
 using _0TypenKomponente.TransportInterfaces;
+using _0TypenKomponente.NummerTypen;
+using NHibernate.Linq;
 
 namespace BuchhaltungVerwaltungKomponente
 {
@@ -32,6 +34,43 @@ namespace BuchhaltungVerwaltungKomponente
         internal void VerschickeRechnung(IRechnung rechnung)
         {
             // ok, verschickt
+        }
+
+
+
+        internal IRechnung HoleRechnung(RechnungNummerTyp rechnungnummertyp)
+        {
+            Rechnung r = null;
+
+            using (var session = persistenz.OpenSession())
+            {
+                var temp = session.Query<Rechnung>().ToList();
+                foreach (Rechnung t in temp)
+                {
+                    if (t.nummer.nummer == rechnungnummertyp.nummer)
+                        r = t;
+                }
+            }
+
+            return r;
+        }
+
+        internal void VerbucheZahlung(RechnungNummerTyp rechnungnummertyp, double betrag)
+        {
+            IRechnung r = HoleRechnung(rechnungnummertyp);
+
+            using (var session = persistenz.OpenSession())
+            {
+                using (var transaction = session.BeginTransaction())
+                {
+                    Zahlungseingang z = new Zahlungseingang();
+                    z.Betrag = betrag;
+                    z.Eingangsdatum = DateTime.Now;
+                    r.Zahlungseingang.Add(z);
+                    session.SaveOrUpdate(r);
+                    transaction.Commit();
+                }
+            }
         }
     }
 }
