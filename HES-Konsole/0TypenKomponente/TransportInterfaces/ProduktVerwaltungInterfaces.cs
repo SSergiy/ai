@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using _0TypenKomponente.NummerTypen;
 
 namespace _0TypenKomponente.TransportInterfaces
 {
@@ -19,6 +20,7 @@ namespace _0TypenKomponente.TransportInterfaces
     public interface IProdukt
     {
         int Id { get; }
+        ProduktNummerTyp nummer { get; }
         string Name { get; }
         int Lagerbestand { get; }
         IOrderbuch Orderbuch { get; }

@@ -50,6 +50,7 @@
     <Compile Include="Auftrag.cs" />
     <Compile Include="AuftragVerwaltung.cs" />
     <Compile Include="AuftragVerwaltungFassade.cs" />
+    <Compile Include="ProduktAnzahl.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

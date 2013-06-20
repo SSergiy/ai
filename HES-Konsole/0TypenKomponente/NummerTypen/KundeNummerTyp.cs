@@ -5,22 +5,15 @@ using System.Text;
 
 namespace _0TypenKomponente.NummerTypen
 {
-    public class KundeNummerTyp
+    public class KundeNummerTyp : NummerTyp
     {
-        public virtual Int32 nummer { get; private set; }
-
-        public KundeNummerTyp()
-        {
-        }
+        public KundeNummerTyp() { }
 
         /// <summary>
         /// Basisconstructor, erzeugt ein neues KundeNummerTyp Objekt.
         /// </summary>
         /// <param name="nummer"></param>
-        public KundeNummerTyp(Int32 nummer)
-        {
-            this.nummer = nummer;
-        }
+        public KundeNummerTyp(Int32 nummer) : base(nummer) { }
 
         public override String ToString()
         {

@@ -5,10 +5,8 @@ using System.Text;
 
 namespace _0TypenKomponente.NummerTypen
 {
-    public class AuftragNummerTyp
+    public class AuftragNummerTyp : NummerTyp
     {
-        public virtual Int32 nummer { get; private set; }
-
         /// <summary>
         /// Nullable Constructor für NHibernate
         /// </summary>
@@ -18,10 +16,7 @@ namespace _0TypenKomponente.NummerTypen
         /// Basisconstructor, erzeugt ein neues AuftragNummerTyp Objekt.
         /// </summary>
         /// <param name="nummer"></param>
-        public AuftragNummerTyp(Int32 nummer)
-        {
-            this.nummer = nummer;
-        }
+        public AuftragNummerTyp(Int32 nummer) : base(nummer) { }
 
         public override String ToString()
         {

@@ -9,12 +9,13 @@ namespace _0TypenKomponente.TransportInterfaces
     public interface IRechnung
     {
         int Id { get; }
-        DateTime RechnungsDatum { get; }
+        DateTime RechnungsDatum { get; set; }
         bool IstBezahlt();
-        List<IZahlungseingang> Zahlungseingang { get; }
-        RechnungNummerTyp nummer { get; }
-        double Betrag { get; }
+        IList<IZahlungseingang> Zahlungseingang { get; }
+        RechnungNummerTyp nummer { get; set; }
+        double Betrag { get; set; }
         double Restbetrag();
+        void NeuerZahlungseingang(IZahlungseingang zahlungseingang);
     }
 
     public interface IZahlungseingang

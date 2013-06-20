@@ -14,7 +14,7 @@ namespace KundeVerwaltungKomponente
     {
         private static ISessionFactory persistenz = Persistenzmanager.Factory.Session();
 
-        internal IKunde ErstelleKunde(KundeNummerTyp nummer, String name, AdresseTyp adresse)
+        internal IKunde ErstelleKunde(String name, AdresseTyp adresse)
         {
             Kunde k = null;
 
@@ -22,7 +22,9 @@ namespace KundeVerwaltungKomponente
             {
                 using (var transaction = session.BeginTransaction())
                 {
-                    k = new Kunde(nummer, name, adresse);
+                    k = new Kunde(name, adresse);
+                    session.SaveOrUpdate(k);
+                    k.nummer = new KundeNummerTyp(k.id);
                     session.SaveOrUpdate(k);
                     transaction.Commit();
                 }

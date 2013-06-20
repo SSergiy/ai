@@ -54,6 +54,7 @@
     <Compile Include="NummerTypen\AuftragNummerTyp.cs" />
     <Compile Include="NummerTypen\KundeNummerTyp.cs" />
     <Compile Include="NummerTypen\LieferungNummerTyp.cs" />
+    <Compile Include="NummerTypen\NummerTyp.cs" />
     <Compile Include="NummerTypen\ProduktNummerTyp.cs" />
     <Compile Include="NummerTypen\RechnungNummerTyp.cs" />
     <Compile Include="NummerTypen\TransportAuftragNummerTyp.cs" />

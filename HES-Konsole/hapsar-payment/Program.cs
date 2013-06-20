@@ -10,7 +10,7 @@ namespace hapsar_payment
     {
         static void Main(string[] args)
         {
-            IMessagingAdapter m = new RabbitClient("in", "Bank", "localhost", "127.0.0.1");
+            IMessagingAdapter m = new RabbitClient("Bank", "in", "localhost", "127.0.0.1");
             UTF8Encoding encoder = new System.Text.UTF8Encoding();
 
             var Dll = "BuchhaltungVerwaltungKomponente.dll";

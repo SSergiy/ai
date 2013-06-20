@@ -23,6 +23,8 @@ namespace BuchhaltungVerwaltungKomponente
                     ir = new Rechnung();
                     ir.RechnungsDatum = DateTime.Now;
                     session.SaveOrUpdate(ir);
+                    ir.nummer = new RechnungNummerTyp(ir.Id);
+                    session.SaveOrUpdate(ir);
                     transaction.Commit();
                 }
             }
@@ -47,7 +49,7 @@ namespace BuchhaltungVerwaltungKomponente
                 var temp = session.Query<Rechnung>().ToList();
                 foreach (Rechnung t in temp)
                 {
-                    if (t.nummer.nummer == rechnungnummertyp.nummer)
+                    if (t.nummer != null && t.nummer.nummer == rechnungnummertyp.nummer)
                         r = t;
                 }
             }
@@ -66,7 +68,9 @@ namespace BuchhaltungVerwaltungKomponente
                     Zahlungseingang z = new Zahlungseingang();
                     z.Betrag = betrag;
                     z.Eingangsdatum = DateTime.Now;
-                    r.Zahlungseingang.Add(z);
+                    //session.SaveOrUpdate(z);
+                    
+                    r.NeuerZahlungseingang(z);
                     session.SaveOrUpdate(r);
                     transaction.Commit();
                 }

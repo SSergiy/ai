@@ -12,9 +12,9 @@ namespace KundeVerwaltungKomponente
     {
         static KundeVerwaltung verwalter = new KundeVerwaltung();
 
-        public IKunde ErstelleKunde(KundeNummerTyp nummer, String name, AdresseTyp adresse)
+        public IKunde ErstelleKunde(String name, AdresseTyp adresse)
         {
-            return verwalter.ErstelleKunde(nummer, name, adresse);
+            return verwalter.ErstelleKunde(name, adresse);
         }
 
 

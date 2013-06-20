@@ -5,10 +5,8 @@ using System.Text;
 
 namespace _0TypenKomponente.NummerTypen
 {
-    public class RechnungNummerTyp
+    public class RechnungNummerTyp : NummerTyp
     {
-        public virtual Int32 nummer { get; private set; }
-
         /// <summary>
         /// Nullable Constructor für NHibernate
         /// </summary>
@@ -19,8 +17,8 @@ namespace _0TypenKomponente.NummerTypen
         /// </summary>
         /// <param name="nummer"></param>
         public RechnungNummerTyp(Int32 nummer)
+            : base(nummer)
         {
-            this.nummer = nummer;
         }
 
         public override String ToString()
