@@ -9,10 +9,10 @@ namespace _0TypenKomponente.TransportInterfaces
     public interface ILieferung
     {
         LieferungNummerTyp LieferungNr { get; }
-        TransportAuftragNummerTyp AuftragNr { get; }
-        DateTime Ausgangsdatum { get; }
-        bool LieferungErfolgt { get; }
-        DateTime Lieferdatum { get; }
-        TransportDienstleister Transportdienstleister { get; }
+        //TransportAuftragNummerTyp AuftragNr { get; }
+        //DateTime Ausgangsdatum { get; }
+        //bool LieferungErfolgt { get; }
+        //DateTime Lieferdatum { get; }
+        //TransportDienstleister Transportdienstleister { get; }
     }
 }

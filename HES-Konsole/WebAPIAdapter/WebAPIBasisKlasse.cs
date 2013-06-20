@@ -5,6 +5,8 @@ using System.Text;
 using System.Net;
 using System.IO;
 using ServiceStack.Text.Json;
+using RestSharp;
+using ServiceStack.Text;
 namespace Adapter
 {
     public abstract class WebAPIBasisKlasse : IWebAPIAdapter
@@ -30,14 +32,13 @@ namespace Adapter
 
         public string Hole(int id)
         {
-            string return_value = default(string);
-            using (WebClient client = new System.Net.WebClient())
-            {
-                var uri = erzeugeuri(id);
-                byte[] response = client.DownloadData(uri);
-                return_value = System.Text.Encoding.UTF8.GetString(response);
-            }
-            return return_value;
+            var restclient = new RestClient();
+            var client = new RestClient(protokoll + "://" +HostName + ":" + port);
+            var request = new RestRequest(api_pfad + "/" + controller+  "/"+ id.ToString(), Method.GET);
+            request.AddHeader("Content-Type", "application/json");
+            var queryResult = client.Execute(request);
+
+            return queryResult.Content;
         }
 
         public string HoleAlle()
@@ -64,27 +65,19 @@ namespace Adapter
         public string Erstelle(IList<string> parameter)
         {
             var result_object = default(string);
-            var uri = erzeugeuri();
-            WebRequest request = WebRequest.Create(uri);
-            request.Method = "POST";
-            string postData = Newtonsoft.Json.JsonConvert.SerializeObject(parameter);
-            byte[] byteArray = Encoding.UTF8.GetBytes(postData);
-            request.ContentType = "application/json";
-            request.ContentLength = byteArray.Length;
-            Stream dataStream = request.GetRequestStream();
-            dataStream.Write(byteArray, 0, byteArray.Length);
-            dataStream.Close();
-            WebResponse response = request.GetResponse();
-            dataStream = response.GetResponseStream();
-            StreamReader reader = new StreamReader(dataStream);
-            string responseFromServer = reader.ReadToEnd();
-            if (responseFromServer.Length > 0)
+            var client = new RestClient(protokoll + "://" +HostName + ":" + port);
+            var request = new RestRequest(api_pfad + "/" + controller, Method.POST);
+
+            //Json to post 
+            string jsonToSend = parameter.ToArray<string>().ToJson();
+
+            request.AddParameter("application/json; charset=utf-8", jsonToSend, ParameterType.RequestBody);
+            request.RequestFormat = DataFormat.Json;
+            var response = client.Execute(request);
+            if (response.StatusCode == HttpStatusCode.OK)
             {
-                result_object = responseFromServer;
+                result_object = response.Content;
             }
-            reader.Close();
-            dataStream.Close();
-            response.Close();
             return result_object;
         }
         private string erzeugeuri()
@@ -95,5 +88,7 @@ namespace Adapter
         {
             return erzeugeuri() + "/" + id.ToString();
         }
+
+        public T Descerialize<T>(string json) { return TypeSerializer.DeserializeFromString<T>(json); }
     }
 }

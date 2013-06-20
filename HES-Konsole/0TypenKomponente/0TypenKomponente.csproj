@@ -63,6 +63,7 @@
     <Compile Include="TransportInterfaces\KundeVerwaltungInterfaces.cs" />
     <Compile Include="TransportInterfaces\ProduktVerwaltungInterfaces.cs" />
     <Compile Include="TransportInterfaces\TransportauftragVerwaltungInterfaces.cs" />
+    <Compile Include="TransportTypen\TLieferung.cs" />
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Service References\" />
