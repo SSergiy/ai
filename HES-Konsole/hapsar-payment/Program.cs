@@ -19,7 +19,7 @@ namespace hapsar_payment
             var Methode = "VerbucheZahlungRemote";
             var Client = "Bank";
             var Parameter = new List<string>();
-            Parameter.Add("0");
+            Parameter.Add("1");
             Parameter.Add("100.0");
             string message = new Nachrichten.Message(Dll, Namespace, Klasse, Methode, Client, Parameter).getMessage();
             m.SendMessage(encoder.GetBytes(message));

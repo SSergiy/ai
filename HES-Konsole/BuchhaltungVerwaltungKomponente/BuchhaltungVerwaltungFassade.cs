@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using _0TypenKomponente.TransportInterfaces;
 using _0TypenKomponente.NummerTypen;
+using System.Globalization;
 
 namespace BuchhaltungVerwaltungKomponente
 {
@@ -29,12 +30,12 @@ namespace BuchhaltungVerwaltungKomponente
         public IRechnung HoleRechnung(RechnungNummerTyp rechnungnummertyp)
         {
             return buchhaltungsVerwalter.HoleRechnung(rechnungnummertyp);
-        } 
-        
+        }
+
         // Remote Call
         public void VerbucheZahlungRemote(string rechnungnummer, string betrag)
         {
-            VerbucheZahlung(new RechnungNummerTyp(int.Parse(rechnungnummer)), double.Parse(betrag));
+            VerbucheZahlung(new RechnungNummerTyp(int.Parse(rechnungnummer)), double.Parse(betrag, CultureInfo.InvariantCulture));
         }
     }
 }

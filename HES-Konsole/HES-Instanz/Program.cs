@@ -29,8 +29,6 @@ namespace HES_Instanz
 
             HESInstanz i = new HESInstanz(ip);
             i.start();
-            Console.ReadKey();
-
         }
     }
 }
