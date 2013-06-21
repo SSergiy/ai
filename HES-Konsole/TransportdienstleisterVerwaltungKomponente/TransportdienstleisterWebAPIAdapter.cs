@@ -6,6 +6,7 @@ using Adapter;
 using _0TypenKomponente.TransportInterfaces;
 using _0TypenKomponente.NummerTypen;
 using _0TypenKomponente.EnumTypen;
+using _0TypenKomponente.TransportTypen;
 namespace TransportdienstleisterVerwaltungKomponente
 {
     public class TransportdienstleisterWebAPIAdapter : WebAPIBasisKlasse
@@ -19,13 +20,14 @@ namespace TransportdienstleisterVerwaltungKomponente
             get { return "51856"; }
         }
 
-        public ILieferung HoleLieferungUeberLieferNummer(LieferungNummerTyp liefernummer)
+        public TLieferung HoleLieferungUeberLieferNummer(LieferungNummerTyp liefernummer)
         {
             var respond = base.Hole(liefernummer.nummer);
-            return Newtonsoft.Json.JsonConvert.DeserializeObject<Lieferung>(respond); 
+            return base.Descerialize<TLieferung>(respond);
+            
         }
 
-        public ILieferung ErstelleLieferung(LieferungNummerTyp LieferungNr,
+        public TLieferung ErstelleLieferung(LieferungNummerTyp LieferungNr,
             TransportAuftragNummerTyp AuftragNr, DateTime Ausgangsdatum, bool LieferungErfolgt, DateTime Lieferdatum, TransportDienstleister LieferDienstLeister)
         {
             List<string> parameter_liste = new List<string>();
@@ -36,7 +38,7 @@ namespace TransportdienstleisterVerwaltungKomponente
             parameter_liste.Add(Lieferdatum.ToBinary().ToString());
             parameter_liste.Add(LieferDienstLeister.ToString());
             var respond = base.Erstelle(parameter_liste);
-            return Newtonsoft.Json.JsonConvert.DeserializeObject<Lieferung>(respond); 
+            return Newtonsoft.Json.JsonConvert.DeserializeObject<TLieferung>(respond); 
         }
 
         public void LöscheLieferung(LieferungNummerTyp LieferungNr)
@@ -45,12 +47,13 @@ namespace TransportdienstleisterVerwaltungKomponente
         }
 
 
-        public IList<ILieferung> HoleAlleLieferungen()
+        public IList<TLieferung> HoleAlleLieferungen()
         {
             var respond = base.HoleAlle();
-            ILieferung[] elemente = Newtonsoft.Json.JsonConvert.DeserializeObject<Lieferung[]>(respond);
-            return elemente.ToList<ILieferung>();
+            TLieferung[] elemente = Newtonsoft.Json.JsonConvert.DeserializeObject<TLieferung[]>(respond);
+            return elemente.ToList<TLieferung>();
         }
+
 
     }
 }

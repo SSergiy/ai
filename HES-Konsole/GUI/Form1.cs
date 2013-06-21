@@ -71,5 +71,22 @@ namespace GUI
         {
             messagingAdapter.Dispose();
         }
+
+        private void buttonErstelleTransportauftrag_Click(object sender, EventArgs e)
+        {
+            string dll = "TransportdienstleisterVerwaltungKomponente.dll";
+            string ns = "TransportdienstleisterVerwaltungKomponente";
+            string klasse = "TransportdienleisterVerwaltungFassade";
+            string methode = "ErstelleLieferungRemote";
+            string client = clientTextBox.Text.Trim();
+            List<string> parameter = new List<string>();
+            parameter.Add(textBoxLieferungNummer.Text);
+            parameter.Add(textBoxAuftragnummer.Text);
+            parameter.Add(dateTimePickerAusgang.Value.ToBinary().ToString());
+            parameter.Add(checkBox1.Checked.ToString());
+            parameter.Add(dateTimePickerLieferdatum.Value.ToBinary().ToString());
+            parameter.Add("DHL");           
+            send(dll, ns, klasse, methode, client, 1, parameter);
+        }
     }
 }

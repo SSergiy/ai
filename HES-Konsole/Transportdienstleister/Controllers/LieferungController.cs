@@ -5,11 +5,12 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using Transportdienstleister.Persistenz;
-using Transportdienstleister.Models;
 using System.Web.Helpers;
 using _0TypenKomponente.NummerTypen;
 using _0TypenKomponente.TransportInterfaces;
 using System.Collections;
+using ServiceStack.Text;
+using _0TypenKomponente.TransportTypen;
 
 namespace Transportdienstleister.Controllers
 {
@@ -22,43 +23,47 @@ namespace Transportdienstleister.Controllers
         /// <returns>JSON String</returns>
         public string Get()
         {
-            return Newtonsoft.Json.JsonConvert.SerializeObject(verwalter.HoleAlleLieferungen().ToArray<ILieferung>());
+            return Newtonsoft.Json.JsonConvert.SerializeObject(verwalter.HoleAlleLieferungen().ToArray<TLieferung>());
         }
 
         // GET api/lieferung/5
-        public string Get(int id)
+        public TLieferung Get(int id)
         {
-            // Newtonsoft.Json.JsonConvert.SerializeObject(verwalter.HoleLieferungUeberLieferNummer(id))
-            return Newtonsoft.Json.JsonConvert.SerializeObject(verwalter.HoleLieferungUeberLieferNummer(id));
+            var tlieferung = verwalter.HoleLieferungUeberLieferNummer(id);
+            return tlieferung;
+
+
+            //return TypeSerializer.SerializeToString<TLieferung>(verwalter.HoleLieferungUeberLieferNummer(id));
+            //return Newtonsoft.Json.JsonConvert.SerializeObject(verwalter.HoleLieferungUeberLieferNummer(id),);
         }
 
         // POST api/lieferung
+        /// <example>curl -X POST "Content-Type: application/json" -d '"[\"2\",\"2\",\"-858829873463932369\",\"False\",\"-858829873463932369\",\"DHL\"]"' http://localhost:51856/api/lieferung/</example>
         /// <summary>
         /// Ruft die Erstellen Methode auf für einen Lieferungsauftrag.
         /// Eingabe ist hier eine Liste an Strings in JSON Verpackt. Reihenfolge beachten !
         /// </summary>
         /// <param name="json_lieferung_erstellen"></param>
         /// <returns>Liefert die Erzeugte Instanz als JSON string zurück.</returns>
-        public string Post([FromBody]string json_lieferung_erstellen)
+        public TLieferung Post([FromBody]string[] parameter_liste)
         {
-            object lieferung_parameter_liste = Newtonsoft.Json.JsonConvert.DeserializeObject(json_lieferung_erstellen);
-
             try {
-                var parameter_liste = (string[]) lieferung_parameter_liste;
-                // Nun das Große Casten
+               // Nun das Große Casten
                 LieferungNummerTyp LieferungNr = new LieferungNummerTyp(int.Parse(parameter_liste[0]));
                 TransportAuftragNummerTyp AuftragNr = new TransportAuftragNummerTyp(int.Parse(parameter_liste[1]));
-                 DateTime Ausgangsdatum = DateTime.Parse(parameter_liste[2]);
+                 DateTime Ausgangsdatum = DateTime.FromBinary(long.Parse(parameter_liste[2]));
                  bool LieferungErfolgt = Boolean.Parse(parameter_liste[3]);
-                 DateTime Lieferdatum = DateTime.Parse(parameter_liste[4]);
+                 DateTime Lieferdatum = DateTime.FromBinary(long.Parse(parameter_liste[4]));
                  var dienstleister = (_0TypenKomponente.EnumTypen.TransportDienstleister) (Enum.Parse(typeof(_0TypenKomponente.EnumTypen.TransportDienstleister), parameter_liste[5]));
                  var result=  verwalter.ErstelleLieferung(LieferungNr, AuftragNr, Ausgangsdatum, LieferungErfolgt, Lieferdatum, dienstleister);
-                 return Newtonsoft.Json.JsonConvert.SerializeObject(result);
+                 return result;
             }
             catch (InvalidCastException ex) { 
                 Console.Error.WriteLine(ex.Message);
-                return Newtonsoft.Json.JsonConvert.SerializeObject(ex.Message); ;
+               
             }
+
+            return null;
            
         }
 
