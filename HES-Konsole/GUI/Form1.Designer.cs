@@ -58,6 +58,7 @@
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.label10 = new System.Windows.Forms.Label();
             this.buttonErstelleTransportauftrag = new System.Windows.Forms.Button();
+            this.buttonHoleAlleTransportaufträge = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label1
@@ -123,7 +124,7 @@
             // 
             // Empfangen
             // 
-            this.Empfangen.Location = new System.Drawing.Point(852, 52);
+            this.Empfangen.Location = new System.Drawing.Point(612, 52);
             this.Empfangen.Name = "Empfangen";
             this.Empfangen.Size = new System.Drawing.Size(75, 23);
             this.Empfangen.TabIndex = 7;
@@ -133,7 +134,7 @@
             // 
             // clientTextBox
             // 
-            this.clientTextBox.Location = new System.Drawing.Point(852, 26);
+            this.clientTextBox.Location = new System.Drawing.Point(612, 26);
             this.clientTextBox.Name = "clientTextBox";
             this.clientTextBox.Size = new System.Drawing.Size(100, 20);
             this.clientTextBox.TabIndex = 8;
@@ -142,7 +143,7 @@
             // clientname
             // 
             this.clientname.AutoSize = true;
-            this.clientname.Location = new System.Drawing.Point(849, 9);
+            this.clientname.Location = new System.Drawing.Point(609, 9);
             this.clientname.Name = "clientname";
             this.clientname.Size = new System.Drawing.Size(64, 13);
             this.clientname.TabIndex = 9;
@@ -320,11 +321,22 @@
             this.buttonErstelleTransportauftrag.UseVisualStyleBackColor = true;
             this.buttonErstelleTransportauftrag.Click += new System.EventHandler(this.buttonErstelleTransportauftrag_Click);
             // 
+            // buttonHoleAlleTransportaufträge
+            // 
+            this.buttonHoleAlleTransportaufträge.Location = new System.Drawing.Point(397, 348);
+            this.buttonHoleAlleTransportaufträge.Name = "buttonHoleAlleTransportaufträge";
+            this.buttonHoleAlleTransportaufträge.Size = new System.Drawing.Size(145, 23);
+            this.buttonHoleAlleTransportaufträge.TabIndex = 30;
+            this.buttonHoleAlleTransportaufträge.Text = "HoleAlleTransportaufträge";
+            this.buttonHoleAlleTransportaufträge.UseVisualStyleBackColor = true;
+            this.buttonHoleAlleTransportaufträge.Click += new System.EventHandler(this.buttonHoleAlleTransportaufträge_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(983, 357);
+            this.ClientSize = new System.Drawing.Size(728, 410);
+            this.Controls.Add(this.buttonHoleAlleTransportaufträge);
             this.Controls.Add(this.buttonErstelleTransportauftrag);
             this.Controls.Add(this.label10);
             this.Controls.Add(this.comboBox1);
@@ -395,6 +407,7 @@
         private System.Windows.Forms.ComboBox comboBox1;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Button buttonErstelleTransportauftrag;
+        private System.Windows.Forms.Button buttonHoleAlleTransportaufträge;
     }
 }
 

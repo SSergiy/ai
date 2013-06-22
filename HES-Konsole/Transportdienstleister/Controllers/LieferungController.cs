@@ -21,9 +21,9 @@ namespace Transportdienstleister.Controllers
         /// GET api/lieferung
         /// </summary>
         /// <returns>JSON String</returns>
-        public string Get()
+        public TLieferung[] Get()
         {
-            return Newtonsoft.Json.JsonConvert.SerializeObject(verwalter.HoleAlleLieferungen().ToArray<TLieferung>());
+            return verwalter.HoleAlleLieferungen().ToArray<TLieferung>();
         }
 
         // GET api/lieferung/5

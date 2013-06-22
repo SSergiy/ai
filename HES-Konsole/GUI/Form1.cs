@@ -17,6 +17,7 @@ namespace GUI
     {
         IMessagingAdapter messagingAdapter;
 
+
         public Form1()
         {
             messagingAdapter = new RabbitClient("Client1", "in", "localhost", "127.0.0.1");
@@ -48,6 +49,17 @@ namespace GUI
         {
             System.Text.UTF8Encoding encoder = new System.Text.UTF8Encoding();
             string message = new Nachrichten.Message(dll, ns, klasse, methode, client, p).getMessage();
+            for (int i = 0; i < anzahl; i++)
+            {
+                messagingAdapter.SendMessage(encoder.GetBytes(message));
+            }
+        }
+
+        private void send(string dll, string ns, string klasse, string methode, string client, int anzahl) 
+        {
+
+            System.Text.UTF8Encoding encoder = new System.Text.UTF8Encoding();
+            string message = new Nachrichten.Message(dll, ns, klasse, methode, client).getMessage();
             for (int i = 0; i < anzahl; i++)
             {
                 messagingAdapter.SendMessage(encoder.GetBytes(message));
@@ -87,6 +99,16 @@ namespace GUI
             parameter.Add(dateTimePickerLieferdatum.Value.ToBinary().ToString());
             parameter.Add("DHL");           
             send(dll, ns, klasse, methode, client, 1, parameter);
+        }
+
+        private void buttonHoleAlleTransportaufträge_Click(object sender, EventArgs e)
+        {
+            string dll = "TransportdienstleisterVerwaltungKomponente.dll";
+            string ns = "TransportdienstleisterVerwaltungKomponente";
+            string klasse = "TransportdienleisterVerwaltungFassade";
+            string methode = "HoleAlleLieferungen";
+            string client = clientTextBox.Text.Trim();
+            send(dll, ns, klasse, methode, client, 1);
         }
     }
 }
