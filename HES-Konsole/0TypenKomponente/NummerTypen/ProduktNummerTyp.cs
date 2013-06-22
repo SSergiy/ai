@@ -5,10 +5,8 @@ using System.Text;
 
 namespace _0TypenKomponente.NummerTypen
 {
-    public class ProduktNummerTyp
+    public class ProduktNummerTyp : NummerTyp
     {
-        public virtual Int32 nummer { get; private set; }
-
         public ProduktNummerTyp()
         {
         }
@@ -18,8 +16,8 @@ namespace _0TypenKomponente.NummerTypen
         /// </summary>
         /// <param name="nummer"></param>
         public ProduktNummerTyp(Int32 nummer)
+            : base(nummer)
         {
-            this.nummer = nummer;
         }
 
         public override String ToString()

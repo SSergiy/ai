@@ -10,8 +10,8 @@ namespace BuchhaltungVerwaltungKomponente
     public class Zahlungseingang : IZahlungseingang
     {
         public virtual int Id { get; protected set; }
-        public virtual DateTime Eingangsdatum { get; protected set; }
-        public virtual double Betrag { get; protected set; }
+        public virtual DateTime Eingangsdatum { get; set; }
+        public virtual double Betrag { get; set; }
     }
 
     public class ZahlungseingangMap : ClassMap<Zahlungseingang>

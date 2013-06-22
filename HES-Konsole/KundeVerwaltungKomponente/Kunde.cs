@@ -21,9 +21,8 @@ namespace KundeVerwaltungKomponente
         /// </summary>
         public Kunde() { }
 
-        public Kunde(KundeNummerTyp nummer, String name, AdresseTyp adresse)
+        public Kunde(String name, AdresseTyp adresse)
         {
-            this.nummer = nummer;
             this.name = name;
             this.adresse = adresse;
         }

@@ -5,13 +5,14 @@
     <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{7595EEE8-931A-42F4-A6FA-1BE254CC16DA}</ProjectGuid>
+    <ProjectGuid>{E08934D4-C469-49FE-8B8A-35DE19251DC5}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>hapsar_payment</RootNamespace>
-    <AssemblyName>hapsar-payment</AssemblyName>
+    <RootNamespace>CleanRabbitMQ</RootNamespace>
+    <AssemblyName>CleanRabbitMQ</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
-    <TargetFrameworkProfile>Client</TargetFrameworkProfile>
+    <TargetFrameworkProfile>
+    </TargetFrameworkProfile>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
@@ -36,6 +37,7 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -47,13 +49,12 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\MessagingAdapter\MessagingAdapter.csproj">
-      <Project>{69121A90-DC70-4766-87AB-5AFB03B8B0EE}</Project>
-      <Name>MessagingAdapter</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Nachrichten\Nachrichten.csproj">
-      <Project>{408A404C-4F29-448C-AF5B-E6179D6C74FF}</Project>
-      <Name>Nachrichten</Name>
+    <None Include="app.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\0TypenKomponente\0TypenKomponente.csproj">
+      <Project>{4048C75D-4694-4079-8A1A-312B5192F966}</Project>
+      <Name>0TypenKomponente</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

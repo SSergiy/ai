@@ -96,6 +96,10 @@
       <Project>{408A404C-4F29-448C-AF5B-E6179D6C74FF}</Project>
       <Name>Nachrichten</Name>
     </ProjectReference>
+    <ProjectReference Include="..\WebAPIAdapter\WebAPIAdapter.csproj">
+      <Project>{7AB18B54-ADC1-48FF-BE7F-269252488F76}</Project>
+      <Name>WebAPIAdapter</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

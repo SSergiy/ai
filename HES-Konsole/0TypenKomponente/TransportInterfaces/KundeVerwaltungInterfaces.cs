@@ -6,7 +6,7 @@ using _0TypenKomponente.NummerTypen;
 
 namespace _0TypenKomponente.TransportInterfaces
 {
-        public interface IKunde
+    public interface IKunde
         {
             Int32 id { get; }
             KundeNummerTyp nummer { get; }

@@ -11,7 +11,7 @@ namespace AuftragVerwaltungKomponente
     {
         private static readonly AuftragVerwaltung verwalter = new AuftragVerwaltung();
 
-        public IAngebot ErstelleAngebot(IDictionary<ProduktNummerTyp, int> produkte, DateTime gültigAb, DateTime gültigBis)
+        public IAngebot ErstelleAngebot(List<KeyValuePair<IProdukt, int>> produkte, DateTime gültigAb, DateTime gültigBis)
         {
             return verwalter.ErstelleAngebot(produkte, gültigAb, gültigBis);
         }

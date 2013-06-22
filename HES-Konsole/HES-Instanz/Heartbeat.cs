@@ -42,7 +42,12 @@ namespace HES_Instanz
 
         public void Dispose()
         {
-            heartbeatTimer.Dispose();
+            try
+            {
+                heartbeatTimer.Dispose();
+            }
+            catch (Exception) { }
+
         }
     }
 }

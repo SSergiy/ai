@@ -15,6 +15,8 @@ namespace ProduktVerwaltungKomponente
 
         public IProdukt HoleProdukt(ProduktNummerTyp produktnummer)
         {
+            Produkt produkt = null;
+
             using (var session = persistenz.OpenSession())
             {
                 var temp = session.Query<Produkt>().ToList();
@@ -23,8 +25,14 @@ namespace ProduktVerwaltungKomponente
                 {
                     temp = erzeugeDummyProdukte();
                 }
+
+                foreach (Produkt t in temp)
+                {
+                    if (t.nummer != null && t.nummer.nummer == produktnummer.nummer)
+                        produkt = t;
+                }
             }
-            return persistenz.OpenSession().Get<Produkt>(produktnummer.nummer);
+            return produkt;
         }
 
         public bool PrüfeProduktLagerbestand(IDictionary<ProduktNummerTyp, int> produktliste)
@@ -59,7 +67,7 @@ namespace ProduktVerwaltungKomponente
                     {
                         Produkt p = new Produkt();
                         p.Lagerbestand = 10;
-
+                        p.nummer = new ProduktNummerTyp(i);
                         p.Name = "Produkt " + i;
                         session.SaveOrUpdate(p);
                         result.Add(p);

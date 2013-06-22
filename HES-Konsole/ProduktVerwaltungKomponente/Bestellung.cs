@@ -15,7 +15,7 @@ namespace ProduktVerwaltungKomponente
         public virtual bool Freigabe { get; protected set; }
         public virtual IWareneingangsmeldung Wareneingangsmeldung { get; protected set; }
 
-public Bestellung() { }
+        public Bestellung() { }
     }
 
 

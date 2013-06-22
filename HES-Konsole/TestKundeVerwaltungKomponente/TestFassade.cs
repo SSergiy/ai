@@ -21,10 +21,10 @@ namespace TestVerwaltungKomponente
         public void TestKundeVerwaltung()
         {
             KundeVerwaltungFassade f = new KundeVerwaltungFassade();
-            // , String name, AdresseTyp adresse)
+
             KundeNummerTyp nummer = new KundeNummerTyp(1);
             AdresseTyp adresse = new AdresseTyp("1", "2", "3", "4", "5");
-            IKunde k = f.ErstelleKunde(nummer, "name", adresse);
+            IKunde k = f.ErstelleKunde("name", adresse);
 
             Assert.AreEqual("name", k.name);
 
@@ -44,33 +44,50 @@ namespace TestVerwaltungKomponente
         [TestMethod]
         public void TestBuchhaltungVerwaltung()
         {
-            BuchhaltungVerwaltungFassade f = new BuchhaltungVerwaltungFassade();
-            AuftragVerwaltungFassade fassade = new AuftragVerwaltungFassade();
+            BuchhaltungVerwaltungFassade buchhaltungVerwaltungFassade = new BuchhaltungVerwaltungFassade();
+            AuftragVerwaltungFassade auftragVerwaltungFassade = new AuftragVerwaltungFassade();
+            ProduktVerwaltungFassade produktVerwaltungFassade = new ProduktVerwaltungFassade();
+
+            ProduktNummerTyp pn = new ProduktNummerTyp(1);
+            var prodlist = new List<KeyValuePair<IProdukt, int>>();
+            prodlist.Add(new KeyValuePair<IProdukt, int>(produktVerwaltungFassade.HoleProdukt(pn), 2));
+            auftragVerwaltungFassade.ErstelleAngebot(prodlist, DateTime.Now, DateTime.Now);
 
             AngebotNummerTyp an = new AngebotNummerTyp(1);
             KundeNummerTyp kn = new KundeNummerTyp(1);
 
-            IAuftrag NeuerAuftrag = fassade.ErstelleAuftrag(DateTime.Now, an, kn);
-            f.ErstelleRechnung(NeuerAuftrag);
-            
+            IAuftrag NeuerAuftrag = auftragVerwaltungFassade.ErstelleAuftrag(DateTime.Now, an, kn);
+            IRechnung r = buchhaltungVerwaltungFassade.ErstelleRechnung(NeuerAuftrag);
+
+            IRechnung test = buchhaltungVerwaltungFassade.HoleRechnung(r.nummer);
+
+            buchhaltungVerwaltungFassade.VerbucheZahlung(r.nummer, 10);
+
+            Assert.AreEqual(r.nummer.nummer, test.nummer.nummer);
+
         }
 
         [TestMethod]
         public void TestAuftragVerwaltung()
         {
-            AuftragVerwaltungFassade fassade = new AuftragVerwaltungFassade();
+            AuftragVerwaltungFassade auftragVerwaltungFassade = new AuftragVerwaltungFassade();
+            ProduktVerwaltungFassade produktVerwaltungFassade = new ProduktVerwaltungFassade();
 
-            AngebotNummerTyp an = new AngebotNummerTyp(1);
+            ProduktNummerTyp pn = new ProduktNummerTyp(1);
+            var prodlist = new List<KeyValuePair<IProdukt, int>>();
+            prodlist.Add(new KeyValuePair<IProdukt, int>(produktVerwaltungFassade.HoleProdukt(pn), 2));
+
+
+            IAngebot an = auftragVerwaltungFassade.ErstelleAngebot(prodlist, DateTime.Now, DateTime.Now);
             KundeNummerTyp kn = new KundeNummerTyp(1);
 
-            IAuftrag NeuerAuftrag = fassade.ErstelleAuftrag(DateTime.Now, an, kn);
+            IAuftrag NeuerAuftrag = auftragVerwaltungFassade.ErstelleAuftrag(DateTime.Now, an.nummer, kn);
 
 
-            IAuftrag a = fassade.HoleAuftrag(NeuerAuftrag.nummer);
+            IAuftrag a = auftragVerwaltungFassade.HoleAuftrag(NeuerAuftrag.nummer);
 
-            Assert.AreEqual(NeuerAuftrag.Angebot, a.Angebot);
+            Assert.AreEqual(NeuerAuftrag.Angebot.nummer, a.Angebot.nummer);
             Assert.AreEqual(NeuerAuftrag.Id, a.Id);
-            Assert.AreEqual(NeuerAuftrag.Kunde, a.Kunde);
             Assert.AreEqual(NeuerAuftrag.nummer.nummer, a.nummer.nummer);
             Assert.AreEqual(NeuerAuftrag.BeauftragtAm.ToString(), a.BeauftragtAm.ToString());
         }

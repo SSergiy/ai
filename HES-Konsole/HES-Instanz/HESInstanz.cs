@@ -85,7 +85,7 @@ namespace HES_Instanz
         {
             // Damit auch was da ist nech ...
             var kundenverwaltungsfassade = new KundeVerwaltungFassade();
-            kundenverwaltungsfassade.ErstelleKunde(new KundeNummerTyp(1), "Peter", new AdresseTyp("Musterstraße", "2", "12345", "Hamburg", "Deutschland"));
+            kundenverwaltungsfassade.ErstelleKunde("Peter", new AdresseTyp("Musterstraße", "2", "12345", "Hamburg", "Deutschland"));
         }
     }
 }
